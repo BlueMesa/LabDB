@@ -23,7 +23,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-use Sabre\VObject;
+use Sabre\VObject\Component\VCalendar;
 use VIB\CoreBundle\Controller\AbstractController;
 
 /**
@@ -45,20 +45,20 @@ class CalendarController extends AbstractController
     {
         $user = $this->get('user_provider')->loadUserByUsername($username);
         $om = $this->getObjectManager('VIB\FliesBundle\Entity\Vial');
-        $calendar = VObject\Component::create('VCALENDAR');
+        $calendar = new VCalendar();
         $calendar->VERSION = '2.0';
         $field = 'X-WR-CALNAME';
         $calendar->$field = $user->getShortName() . '\'s flywork';
 
         $stockDates =  $om->getRepository('VIB\FliesBundle\Entity\StockVial')->getFlipDates($user);
         foreach ($stockDates as $stockDate) {
-            $event = VObject\Component::create('VEVENT');
+            $event = $calendar->createComponent('VEVENT');
             $calendar->add($event);
             $event->SUMMARY = 'Transfer stocks';
-            $dtstart = VObject\Property::create('DTSTART');
-            $dtstart->setDateTime($stockDate, VObject\Property\DateTime::DATE);
+            $dtstart = $calendar->createProperty('DTSTART');
+            $dtstart->setDateTime($stockDate);
             $event->DTSTART = $dtstart;
-            $alarm = VObject\Component::create('VALARM');
+            $alarm = $calendar->createComponent('VALARM');
             $event->add($alarm);
             $alarm->TRIGGER = 'PT8H';
             $alarm->ACTION = 'DISPLAY';
@@ -67,13 +67,13 @@ class CalendarController extends AbstractController
         $crossDates =  $om->getRepository('VIB\FliesBundle\Entity\CrossVial')->getFlipDates($user);
         foreach ($crossDates as $crossDate) {
             $crossDates[] = $crossDate;
-            $event = VObject\Component::create('VEVENT');
+            $event = $calendar->createComponent('VEVENT');
             $calendar->add($event);
             $event->SUMMARY = 'Check crosses';
-            $dtstart = VObject\Property::create('DTSTART');
-            $dtstart->setDateTime($crossDate, VObject\Property\DateTime::DATE);
+            $calendar->createProperty('DTSTART');
+            $dtstart->setDateTime($crossDate);
             $event->DTSTART = $dtstart;
-            $alarm = VObject\Component::create('VALARM');
+            $alarm = $calendar->createComponent('VALARM');
             $event->add($alarm);
             $alarm->TRIGGER = 'PT8H';
             $alarm->ACTION = 'DISPLAY';
