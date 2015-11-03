@@ -18,7 +18,7 @@
 
 namespace VIB\FliesBundle\Repository;
 
-use VIB\CoreBundle\Filter\ListFilterInterface;
+use Bluemesa\Bundle\CoreBundle\Filter\ListFilterInterface;
 use VIB\SearchBundle\Search\SearchQueryInterface;
 use VIB\FliesBundle\Filter\VialFilter;
 use VIB\FliesBundle\Search\SearchQuery;

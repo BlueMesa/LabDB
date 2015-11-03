@@ -22,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
-use VIB\StorageBundle\Entity\RackPosition as BaseRackPosition;
+use Bluemesa\Bundle\StorageBundle\Entity\RackPosition as BaseRackPosition;
 
 
 /**

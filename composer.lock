@@ -4,19 +4,22 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e3732c7b96856f9a5d630721621e0926",
-    "content-hash": "9458ce4701c92cdf24669117b1ac135d",
+    "hash": "451dfeb89444a2967a519c491b1e13d4",
+    "content-hash": "20f316416592e3898b2996e84190a2db",
     "packages": [
         {
-            "name": "bluemesa/core-bundle",
+            "name": "bluemesa/acl-bundle",
             "version": "dev-master",
-            "target-dir": "Bluemesa/Bundle/CoreBundle",
             "source": {
                 "type": "git",
-                "url": "../core-bundle/",
-                "reference": "055389d87dbadd844d49c994c569b19ef149822d"
+                "url": "../acl-bundle/",
+                "reference": "aa33c4fab352b3ae68b3d0d3b45089eae3b59424"
             },
             "require": {
+                "bluemesa/core-bundle": "dev-master",
+                "doctrine/common": "^2.4.8",
+                "jms/di-extra-bundle": "~1.6.0",
+                "jms/security-extra-bundle": "~1.5.1",
                 "php": ">=5.6.0",
                 "symfony/framework-bundle": "~2.7"
             },
@@ -25,13 +28,53 @@
             },
             "type": "symfony-bundle",
             "autoload": {
-                "psr-0": {
-                    "Bluemesa\\Bundle\\CoreBundle\\": ""
+                "psr-4": {
+                    "Bluemesa\\Bundle\\AclBundle\\": ""
                 }
             },
-            "scripts": {
-                "post-install-cmd": [],
-                "post-update-cmd": []
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Radoslaw Kamil Ejsmont",
+                    "email": "radoslaw@ejsmont.net"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/BlueMesa/AclBundle/graphs/contributors"
+                }
+            ],
+            "description": "Acl bundle for BlueMesa projects",
+            "keywords": [
+                "ACL",
+                "bluemesa"
+            ],
+            "time": "2015-11-02 15:42:34"
+        },
+        {
+            "name": "bluemesa/core-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "../core-bundle/",
+                "reference": "2d4161352049445ad1aadf9c5417fd3abd8b9818"
+            },
+            "require": {
+                "doctrine/common": "^2.4.8",
+                "jms/di-extra-bundle": "~1.6.0",
+                "knplabs/knp-paginator-bundle": "~2.5.0",
+                "php": ">=5.6.0",
+                "symfony/framework-bundle": "~2.7"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Bluemesa\\Bundle\\CoreBundle\\": ""
+                }
             },
             "license": [
                 "MIT"
@@ -52,7 +95,49 @@
                 "bluemesa",
                 "core"
             ],
-            "time": "2015-10-25 21:43:15"
+            "time": "2015-11-02 16:14:30"
+        },
+        {
+            "name": "bluemesa/storage-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "../storage-bundle/",
+                "reference": "37a297470e1c5f8096e45be5d8e7ccf0378b2b1d"
+            },
+            "require": {
+                "bluemesa/core-bundle": "dev-master",
+                "php": ">=5.6.0",
+                "symfony/framework-bundle": "~2.7"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Bluemesa\\Bundle\\StorageBundle\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Radoslaw Kamil Ejsmont",
+                    "email": "radoslaw@ejsmont.net"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/BlueMesa/StorageBundle/graphs/contributors"
+                }
+            ],
+            "description": "Storage bundle for BlueMesa projects",
+            "keywords": [
+                "bluemesa",
+                "storage"
+            ],
+            "time": "2015-10-30 10:34:21"
         },
         {
             "name": "components/bootstrap",
@@ -288,16 +373,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.4.2",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "8c434000f420ade76a07c64cbe08ca47e5c101ca"
+                "reference": "eb8a73619af4f1c8711e2ce482f5de3643258a1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/8c434000f420ade76a07c64cbe08ca47e5c101ca",
-                "reference": "8c434000f420ade76a07c64cbe08ca47e5c101ca",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/eb8a73619af4f1c8711e2ce482f5de3643258a1f",
+                "reference": "eb8a73619af4f1c8711e2ce482f5de3643258a1f",
                 "shasum": ""
             },
             "require": {
@@ -318,8 +403,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Cache\\": "lib/"
+                "psr-4": {
+                    "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -354,7 +439,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-08-31 12:36:41"
+            "time": "2015-10-28 11:27:45"
         },
         {
             "name": "doctrine/collections",
@@ -1809,16 +1894,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "a29d9a204efc3ca3f39a9d182a83fd34462fef3f"
+                "reference": "fe13a1f993ea3456e195b7820692f2eb2b6bbb48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/a29d9a204efc3ca3f39a9d182a83fd34462fef3f",
-                "reference": "a29d9a204efc3ca3f39a9d182a83fd34462fef3f",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/fe13a1f993ea3456e195b7820692f2eb2b6bbb48",
+                "reference": "fe13a1f993ea3456e195b7820692f2eb2b6bbb48",
                 "shasum": ""
             },
             "require": {
@@ -1828,6 +1913,9 @@
                 "jms/parser-lib": "1.*",
                 "php": ">=5.4.0",
                 "phpcollection/phpcollection": "~0.1"
+            },
+            "conflict": {
+                "twig/twig": "<1.12"
             },
             "require-dev": {
                 "doctrine/orm": "~2.1",
@@ -1840,7 +1928,7 @@
                 "symfony/translation": "~2.0",
                 "symfony/validator": "~2.0",
                 "symfony/yaml": "2.*",
-                "twig/twig": ">=1.8,<2.0-dev"
+                "twig/twig": "~1.12|~2.0"
             },
             "suggest": {
                 "symfony/yaml": "Required if you'd like to serialize data to YAML format."
@@ -1848,7 +1936,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.17-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -1875,7 +1963,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2015-06-16 11:50:24"
+            "time": "2015-10-27 09:24:41"
         },
         {
             "name": "jms/serializer-bundle",
@@ -3130,17 +3218,17 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v4.0.2",
+            "version": "v4.0.3",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "6f5d663a1a34b5116c69009895feb81fb37a8875"
+                "reference": "2d061c01e708c83ede4720e2551d9449bf606c0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/6f5d663a1a34b5116c69009895feb81fb37a8875",
-                "reference": "6f5d663a1a34b5116c69009895feb81fb37a8875",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/2d061c01e708c83ede4720e2551d9449bf606c0a",
+                "reference": "2d061c01e708c83ede4720e2551d9449bf606c0a",
                 "shasum": ""
             },
             "require": {
@@ -3186,7 +3274,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-10-20 06:54:18"
+            "time": "2015-10-27 18:48:08"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -3528,16 +3616,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.7.5",
+            "version": "v2.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "619528a274647cffc1792063c3ea04c4fa8266a0"
+                "reference": "66b2e9662c44d478b69e48278aa54079a006eb42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/619528a274647cffc1792063c3ea04c4fa8266a0",
-                "reference": "619528a274647cffc1792063c3ea04c4fa8266a0",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/66b2e9662c44d478b69e48278aa54079a006eb42",
+                "reference": "66b2e9662c44d478b69e48278aa54079a006eb42",
                 "shasum": ""
             },
             "require": {
@@ -3600,8 +3688,7 @@
                 "egulias/email-validator": "~1.2",
                 "ircmaxell/password-compat": "~1.0",
                 "monolog/monolog": "~1.11",
-                "ocramius/proxy-manager": "~0.4|~1.0",
-                "symfony/phpunit-bridge": "self.version"
+                "ocramius/proxy-manager": "~0.4|~1.0"
             },
             "type": "library",
             "extra": {
@@ -3646,7 +3733,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-09-25 11:16:52"
+            "time": "2015-10-27 19:07:24"
         },
         {
             "name": "tecnick.com/tcpdf",
@@ -3817,16 +3904,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.22.3",
+            "version": "v1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "ebfc36b7e77b0c1175afe30459cf943010245540"
+                "reference": "5868cd822fd6cf626d5f805439575f9c323cee2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ebfc36b7e77b0c1175afe30459cf943010245540",
-                "reference": "ebfc36b7e77b0c1175afe30459cf943010245540",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/5868cd822fd6cf626d5f805439575f9c323cee2a",
+                "reference": "5868cd822fd6cf626d5f805439575f9c323cee2a",
                 "shasum": ""
             },
             "require": {
@@ -3839,7 +3926,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.22-dev"
+                    "dev-master": "1.23-dev"
                 }
             },
             "autoload": {
@@ -3874,7 +3961,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-10-13 07:07:02"
+            "time": "2015-10-29 23:29:01"
         },
         {
             "name": "twitter/hogan.js",
@@ -5053,7 +5140,9 @@
     "stability-flags": {
         "mopa/bootstrap-bundle": 5,
         "kuleuven/shibboleth-bundle": 20,
-        "bluemesa/core-bundle": 20
+        "bluemesa/core-bundle": 20,
+        "bluemesa/acl-bundle": 20,
+        "bluemesa/storage-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

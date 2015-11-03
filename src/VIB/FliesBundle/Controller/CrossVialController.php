@@ -36,15 +36,8 @@ use VIB\FliesBundle\Form\CrossVialNewType;
  */
 class CrossVialController extends VialController
 {
-
-    /**
-     * Construct CrossVialController
-     */
-    public function __construct()
-    {
-        $this->entityClass = 'VIB\FliesBundle\Entity\CrossVial';
-        $this->entityName = 'cross|crosses';
-    }
+    const ENTITY_CLASS = 'VIB\FliesBundle\Entity\CrossVial';
+    const ENTITY_NAME = 'cross|crosses';
 
     /**
      * {@inheritdoc}

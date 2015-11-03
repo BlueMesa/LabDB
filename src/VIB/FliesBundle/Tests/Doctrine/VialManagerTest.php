@@ -107,7 +107,9 @@ class VialManagerTest extends \PHPUnit_Framework_TestCase
         $this->userProvider = $this->getMock('Symfony\Component\Security\Core\User\UserProviderInterface');
         
         $this->om = new VialManager($mr, $this->userProvider, $this->aclProvider);
-
+        $this->om->setManagerRegistry($mr);
+        $this->om->setUserProvider($this->userProvider);
+        $this->om->setAclProvider($this->aclProvider);
     }
 
     public function vialProvider()

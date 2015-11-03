@@ -20,7 +20,7 @@ namespace VIB\FliesBundle\Label;
 
 use JMS\DiExtraBundle\Annotation as DI;
 
-use VIB\CoreBundle\Doctrine\ObjectManager;
+use Bluemesa\Bundle\CoreBundle\Doctrine\ObjectManager;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\Response;
 use WhiteOctober\TCPDFBundle\Controller\TCPDFController;
@@ -37,7 +37,7 @@ class PDFLabel
 {
 
     /**
-     * @var \VIB\CoreBundle\Doctrine\ObjectManager $om
+     * @var \Bluemesa\Bundle\CoreBundle\Doctrine\ObjectManager $om
      */
     private $om;
 
@@ -60,13 +60,13 @@ class PDFLabel
      * Construct PDFLabel
      *
      * @DI\InjectParams({
-     *     "om" = @DI\Inject("vib.doctrine.manager"),
+     *     "om" = @DI\Inject("bluemesa.acl.doctrine.owned_manager"),
      *     "TCPDF" = @DI\Inject("white_october.tcpdf"),
      *     "printHost" = @DI\Inject("%print_host%"),
      *     "printQueue" = @DI\Inject("%print_queue%")
      * })
      * 
-     * @param \VIB\CoreBundle\Doctrine\ObjectManager               $om
+     * @param \Bluemesa\Bundle\CoreBundle\Doctrine\ObjectManager               $om
      * @param \WhiteOctober\TCPDFBundle\Controller\TCPDFController $TCPDF
      * @param string                                               $printHost
      * @param string                                               $printQueue

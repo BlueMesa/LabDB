@@ -53,8 +53,8 @@ class PrintCommand extends Command
         $file = fopen($filename,'r');
 
         $this->container = $this->getApplication()->getKernel()->getContainer();
-        $om = $this->container->get('vib.doctrine.registry')->getManagerForClass('VIB\CoreBundle\Entity\Entity');
-        $vm = $this->container->get('vib.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\Vial');
+        $om = $this->container->get('bluemesa.core.doctrine.registry')->getManagerForClass('Bluemesa\Bundle\CoreBundle\Entity\Entity');
+        $vm = $this->container->get('bluemesa.core.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\Vial');
 
         $stocks = array();
 

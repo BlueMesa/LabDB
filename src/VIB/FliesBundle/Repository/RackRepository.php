@@ -18,8 +18,8 @@
 
 namespace VIB\FliesBundle\Repository;
 
-use VIB\CoreBundle\Repository\EntityRepository;
-use VIB\CoreBundle\Filter\EntityFilterInterface;
+use Bluemesa\Bundle\CoreBundle\Repository\EntityRepository;
+use Bluemesa\Bundle\CoreBundle\Filter\EntityFilterInterface;
 
 /**
  * RackRepository

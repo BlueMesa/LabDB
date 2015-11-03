@@ -22,8 +22,8 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
-use VIB\StorageBundle\Entity\StorageUnit;
-use VIB\StorageBundle\Entity\TermocontrolledInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\StorageUnit;
+use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
 
 
 /**

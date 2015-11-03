@@ -44,7 +44,9 @@
         "packagist/yuicompressor-bin": "~2.4.8",
         "packagist/cssembed-bin": "~0.4.5",
         "verekia/initializr": "~4.2.0",
-        "bluemesa/core-bundle": "dev-master"
+        "bluemesa/core-bundle": "dev-master",
+        "bluemesa/acl-bundle": "dev-master",
+        "bluemesa/storage-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
@@ -87,6 +89,14 @@
         {
             "type": "vcs",
             "url": "../core-bundle/"
+        },
+        {
+            "type": "vcs",
+            "url": "../acl-bundle/"
+        },
+        {
+            "type": "vcs",
+            "url": "../storage-bundle/"
         },
         {
             "type": "package",

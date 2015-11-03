@@ -48,7 +48,7 @@ class LoadIncubators extends AbstractFixture implements OrderedFixtureInterface,
      */
     public function load(ObjectManager $om)
     {
-        $om = $this->container->get('vib.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\Incubator');
+        $om = $this->container->get('bluemesa.core.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\Incubator');
         $om->disableAutoAcl();
 
         $user = $this->getReference('user');

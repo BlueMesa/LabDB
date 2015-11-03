@@ -19,12 +19,12 @@
 namespace VIB\FliesBundle\Repository;
 
 use Doctrine\ORM\Query;
-use VIB\CoreBundle\Doctrine\ObjectManager;
-use VIB\CoreBundle\Filter\ListFilterInterface;
-use VIB\CoreBundle\Filter\EntityFilterInterface;
-use VIB\CoreBundle\Filter\SecureFilterInterface;
-use VIB\CoreBundle\Filter\SortFilterInterface;
-use VIB\CoreBundle\Repository\EntityRepository;
+use Bluemesa\Bundle\CoreBundle\Doctrine\ObjectManager;
+use Bluemesa\Bundle\CoreBundle\Filter\ListFilterInterface;
+use Bluemesa\Bundle\CoreBundle\Filter\EntityFilterInterface;
+use Bluemesa\Bundle\CoreBundle\Filter\SecureFilterInterface;
+use Bluemesa\Bundle\CoreBundle\Filter\SortFilterInterface;
+use Bluemesa\Bundle\CoreBundle\Repository\EntityRepository;
 use VIB\FliesBundle\Filter\VialFilter;
 
 /**
@@ -70,7 +70,7 @@ class VialRepository extends EntityRepository
     /**
      *
      * @param  Doctrine\ORM\QueryBuilder                  $builder
-     * @param  VIB\CoreBundle\Filter\ListFilterInterface  $filter
+     * @param  Bluemesa\Bundle\CoreBundle\Filter\ListFilterInterface  $filter
      * @return Doctrine\ORM\QueryBuilder
      */
     protected function applyQueryBuilderFilter($builder, ListFilterInterface $filter = null)

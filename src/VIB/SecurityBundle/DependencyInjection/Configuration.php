@@ -36,16 +36,6 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('vib_security');
 
-        $rootNode
-            ->children()
-            ->scalarNode('acl_walker')->defaultValue('VIB\SecurityBundle\Bridge\Doctrine\AclWalker')->end()
-            ->arrayNode('acl_class_mapping')
-                ->prototype('array')
-                    ->prototype('scalar')->end()
-                ->end()
-            ->end()
-        ->end();
-
         return $treeBuilder;
     }
 }

@@ -28,7 +28,6 @@ class AppKernel extends Kernel
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new KULeuven\ShibbolethBundle\ShibbolethBundle(),
-            new VIB\CoreBundle\VIBCoreBundle(),
             new VIB\SiteTemplateBundle\VIBSiteTemplateBundle(),
             new VIB\FormsBundle\VIBFormsBundle(),
             new VIB\FliesBundle\VIBFliesBundle(),
@@ -37,9 +36,11 @@ class AppKernel extends Kernel
             new VIB\WelcomeBundle\VIBWelcomeBundle(),
             new VIB\CalendarBundle\VIBCalendarBundle(),
             new VIB\TestBundle\VIBTestBundle(),
-            new VIB\StorageBundle\VIBStorageBundle(),
             new VIB\AntibodyBundle\VIBAntibodyBundle(),
             new VIB\SearchBundle\VIBSearchBundle(),
+            new Bluemesa\Bundle\CoreBundle\BluemesaCoreBundle(),
+            new Bluemesa\Bundle\AclBundle\BluemesaAclBundle(),
+            new Bluemesa\Bundle\StorageBundle\BluemesaStorageBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'debug'))) {

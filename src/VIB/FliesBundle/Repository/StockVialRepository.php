@@ -18,8 +18,8 @@
 
 namespace VIB\FliesBundle\Repository;
 
-use VIB\CoreBundle\Filter\ListFilterInterface;
-use VIB\CoreBundle\Filter\SecureFilterInterface;
+use Bluemesa\Bundle\CoreBundle\Filter\ListFilterInterface;
+use Bluemesa\Bundle\CoreBundle\Filter\SecureFilterInterface;
 use VIB\FliesBundle\Entity\Stock;
 
 /**
@@ -42,7 +42,7 @@ class StockVialRepository extends VialRepository
     /**
      *
      * @param  VIB\FliesBundle\Entity\Stock              $stock
-     * @param  VIB\CoreBundle\Filter\ListFilterInterface $filter
+     * @param  Bluemesa\Bundle\CoreBundle\Filter\ListFilterInterface $filter
      * @return Doctrine\Common\Collections\Collection
      */
     public function findLivingVialsByStock(Stock $stock, ListFilterInterface $filter = null)
@@ -66,7 +66,7 @@ class StockVialRepository extends VialRepository
     /**
      *
      * @param  VIB\FliesBundle\Entity\Stock              $stock
-     * @param  VIB\CoreBundle\Filter\ListFilterInterface $filter
+     * @param  Bluemesa\Bundle\CoreBundle\Filter\ListFilterInterface $filter
      * @return Doctrine\Common\Collections\Collection
      */
     public function getUsedVialCountByStock(Stock $stock, ListFilterInterface $filter = null)

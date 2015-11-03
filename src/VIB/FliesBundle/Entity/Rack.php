@@ -21,11 +21,13 @@ namespace VIB\FliesBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 
-use VIB\CoreBundle\Entity\SecuredEntityInterface;
-use VIB\StorageBundle\Entity\Rack as BaseRack;
-use VIB\StorageBundle\Entity\StorageUnitInterface;
-use VIB\StorageBundle\Entity\StorageUnitContentInterface;
-use VIB\StorageBundle\Entity\TermocontrolledInterface;
+use Bluemesa\Bundle\CoreBundle\Entity\NamedInterface;
+use Bluemesa\Bundle\CoreBundle\Entity\NamedTrait;
+use Bluemesa\Bundle\AclBundle\Entity\OwnedEntityInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\Rack as BaseRack;
+use Bluemesa\Bundle\StorageBundle\Entity\StorageUnitInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\StorageUnitContentInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
 use VIB\FliesBundle\Label\LabelInterface;
 
 /**
@@ -36,9 +38,15 @@ use VIB\FliesBundle\Label\LabelInterface;
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class Rack extends BaseRack implements SecuredEntityInterface,
-        LabelInterface, StorageUnitContentInterface, TermocontrolledInterface
+class Rack extends BaseRack implements
+    NamedInterface,
+    OwnedEntityInterface,
+    LabelInterface,
+    StorageUnitContentInterface,
+    TermocontrolledInterface
 {
+    use NamedTrait;
+    
     /**
      * @ORM\OneToMany(targetEntity="RackPosition", mappedBy="rack", cascade={"persist", "remove"}, orphanRemoval=true, fetch="EXTRA_LAZY")
      *

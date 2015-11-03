@@ -70,8 +70,10 @@ class CrossVialManagerTest extends \PHPUnit_Framework_TestCase
         $this->aclProvider = $this->getMock('Symfony\Component\Security\Acl\Model\MutableAclProviderInterface');
         $this->userProvider = $this->getMock('Symfony\Component\Security\Core\User\UserProviderInterface');
         
-        $this->om = new CrossVialManager($mr, $this->userProvider, $this->aclProvider);
-
+        $this->om = new CrossVialManager();
+        $this->om->setManagerRegistry($mr);
+        $this->om->setUserProvider($this->userProvider);
+        $this->om->setAclProvider($this->aclProvider);
     }
 
     public function crossProvider()

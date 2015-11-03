@@ -33,7 +33,7 @@ use VIB\FliesBundle\Utils\Genetics;
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class CrossVial extends Vial
+class CrossVial extends Vial implements CrossVialInterface
 {
     /**
      * @ORM\ManyToOne(targetEntity="CrossVial", inversedBy="children")

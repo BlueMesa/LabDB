@@ -25,8 +25,8 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-use VIB\CoreBundle\Controller\CRUDController;
-use VIB\CoreBundle\Filter\RedirectFilterInterface;
+use Bluemesa\Bundle\AclBundle\Controller\SecureCRUDController;
+use Bluemesa\Bundle\CoreBundle\Filter\RedirectFilterInterface;
 
 use VIB\FliesBundle\Label\PDFLabel;
 
@@ -46,18 +46,12 @@ use VIB\FliesBundle\Filter\VialFilter;
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class StockController extends CRUDController
+class StockController extends SecureCRUDController
 {
-    /**
-     * Construct StockController
-     *
-     */
-    public function __construct()
-    {
-        $this->entityClass = 'VIB\FliesBundle\Entity\Stock';
-        $this->entityName  = 'stock|stocks';
-    }
-
+    const ENTITY_CLASS = 'VIB\FliesBundle\Entity\Stock';
+    const ENTITY_NAME = 'stock|stocks';
+    
+    
     /**
      * {@inheritdoc}
      */
@@ -140,7 +134,8 @@ class StockController extends CRUDController
      *
      * @Route("/new")
      * @Template()
-     *
+     * @SatisfiesParentSecurityPolicy
+     * 
      * @return Symfony\Component\HttpFoundation\Response
      */
     public function createAction()

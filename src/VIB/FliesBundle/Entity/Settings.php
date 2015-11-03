@@ -22,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
-use VIB\CoreBundle\Entity\Entity;
+use Bluemesa\Bundle\CoreBundle\Entity\Entity;
 use VIB\UserBundle\Entity\SettingsInterface;
 use VIB\UserBundle\Entity\User;
 

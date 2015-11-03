@@ -36,16 +36,10 @@ use VIB\FliesBundle\Form\InjectionVialNewType;
  */
 class InjectionVialController extends VialController
 {
-
-    /**
-     * Construct InjectionVialController
-     */
-    public function __construct()
-    {
-        $this->entityClass = 'VIB\FliesBundle\Entity\InjectionVial';
-        $this->entityName = 'injection|injections';
-    }
-
+    const ENTITY_CLASS = 'VIB\FliesBundle\Entity\InjectionVial';
+    const ENTITY_NAME = 'injection|injections';
+    
+    
     /**
      * {@inheritdoc}
      */

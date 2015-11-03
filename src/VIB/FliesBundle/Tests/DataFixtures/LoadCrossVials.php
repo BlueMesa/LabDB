@@ -48,7 +48,7 @@ class LoadCrossVials extends AbstractFixture implements OrderedFixtureInterface,
      */
     public function load(ObjectManager $vm)
     {
-        $vm = $this->container->get('vib.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\CrossVial');
+        $vm = $this->container->get('bluemesa.core.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\CrossVial');
         $vm->disableAutoAcl();
         
         $user = $this->getReference('user');

@@ -20,6 +20,7 @@ namespace VIB\FliesBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use JMS\SecurityExtraBundle\Annotation\SatisfiesParentSecurityPolicy;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -35,16 +36,10 @@ use VIB\FliesBundle\Form\StockVialNewType;
  */
 class StockVialController extends VialController
 {
-    /**
-     * Construct StockVialController
-     *
-     */
-    public function __construct()
-    {
-        $this->entityClass = 'VIB\FliesBundle\Entity\StockVial';
-        $this->entityName  = 'stock vial|stock vials';
-    }
+    const ENTITY_CLASS = 'VIB\FliesBundle\Entity\StockVial';
+    const ENTITY_NAME = 'stock vial|stock vials';
 
+    
     /**
      * {@inheritdoc}
      */
@@ -66,7 +61,8 @@ class StockVialController extends VialController
      *
      * @Route("/new/{id}", defaults={"id" = null})
      * @Template()
-     *
+     * @SatisfiesParentSecurityPolicy
+     * 
      * @param  mixed                                      $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -94,7 +90,7 @@ class StockVialController extends VialController
      *
      * @param  mixed                                                         $id
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @return \VIB\CoreBundle\Entity\Entity
+     * @return \Bluemesa\Bundle\CoreBundle\Entity\Entity
      */
     protected function getStockEntity($id)
     {

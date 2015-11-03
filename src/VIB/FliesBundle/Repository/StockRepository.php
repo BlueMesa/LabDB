@@ -18,9 +18,9 @@
 
 namespace VIB\FliesBundle\Repository;
 
-use VIB\CoreBundle\Filter\ListFilterInterface;
-use VIB\CoreBundle\Filter\SecureFilterInterface;
-use VIB\CoreBundle\Filter\SortFilterInterface;
+use Bluemesa\Bundle\CoreBundle\Filter\ListFilterInterface;
+use Bluemesa\Bundle\CoreBundle\Filter\SecureFilterInterface;
+use Bluemesa\Bundle\CoreBundle\Filter\SortFilterInterface;
 use VIB\SearchBundle\Repository\SearchableRepository;
 use VIB\SearchBundle\Search\SearchQueryInterface;
 use VIB\SearchBundle\Search\ACLSearchQueryInterface;

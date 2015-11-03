@@ -22,7 +22,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use VIB\CoreBundle\Form\AclType;
+use Bluemesa\Bundle\AclBundle\Form\AclType;
 
 /**
  * BatchVialAclType class

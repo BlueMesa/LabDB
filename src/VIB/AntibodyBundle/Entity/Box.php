@@ -21,10 +21,10 @@ namespace VIB\AntibodyBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 
-use VIB\StorageBundle\Entity\Rack;
-use VIB\StorageBundle\Entity\StorageUnitInterface;
-use VIB\StorageBundle\Entity\StorageUnitContentInterface;
-use VIB\StorageBundle\Entity\TermocontrolledInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\Rack;
+use Bluemesa\Bundle\StorageBundle\Entity\StorageUnitInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\StorageUnitContentInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
 
 
 /**

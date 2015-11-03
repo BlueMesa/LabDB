@@ -21,7 +21,7 @@ namespace VIB\AntibodyBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use VIB\CoreBundle\Controller\CRUDController;
+use Bluemesa\Bundle\AclBundle\Controller\SecureCRUDController;
 
 use VIB\AntibodyBundle\Form\AntibodyType;
 
@@ -32,7 +32,7 @@ use VIB\AntibodyBundle\Form\AntibodyType;
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class AntibodyController extends CRUDController
+class AntibodyController extends SecureCRUDController
 {
     /**
      * Construct AntibodyController

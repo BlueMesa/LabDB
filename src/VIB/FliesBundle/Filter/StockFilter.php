@@ -21,9 +21,9 @@ namespace VIB\FliesBundle\Filter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
-use VIB\CoreBundle\Filter\SecureListFilter;
-use VIB\CoreBundle\Filter\SortFilterInterface;
-use VIB\CoreBundle\Filter\RedirectFilterInterface;
+use Bluemesa\Bundle\AclBundle\Filter\SecureListFilter;
+use Bluemesa\Bundle\CoreBundle\Filter\SortFilterInterface;
+use Bluemesa\Bundle\CoreBundle\Filter\RedirectFilterInterface;
 
 /**
  * Description of VialFilter

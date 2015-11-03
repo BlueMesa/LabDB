@@ -81,8 +81,8 @@ mopa_bootstrap:
     icons:
         icon_set: fontawesome4
 
-vib_security:
-    acl_walker: VIB\SecurityBundle\Bridge\Doctrine\AclWalker
+bluemesa_acl:
+    walker: Bluemesa\Bundle\AclBundle\Bridge\Doctrine\AclWalker
 
 shibboleth:
     handler_path: /Shibboleth.sso
@@ -97,4 +97,4 @@ fos_user:
 jms_di_extra:
     locations:
         all_bundles: false
-        bundles: [VIBCoreBundle, VIBFliesBundle, VIBFormsBundle, VIBSecurityBundle, VIBUserBundle]
+        bundles: [BluemesaCoreBundle, BluemesaAclBundle, VIBFliesBundle, VIBFormsBundle, VIBSecurityBundle, VIBUserBundle]

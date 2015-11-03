@@ -37,12 +37,6 @@ class VIBSecurityExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-
-        if (isset($config['acl_walker'])) {
-            $container->setParameter('vib.security.acl_walker', $config['acl_walker']);
-        } else {
-            $container->setParameter('vib.security.acl_walker', 'VIB\SecurityBundle\Bridge\Doctrine\AclWalker');
-        }
     }
 
     /**

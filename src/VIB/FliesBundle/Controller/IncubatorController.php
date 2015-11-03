@@ -22,7 +22,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\SatisfiesParentSecurityPolicy;
 
-use VIB\CoreBundle\Controller\CRUDController;
+use Bluemesa\Bundle\AclBundle\Controller\SecureCRUDController;
 
 use VIB\FliesBundle\Form\IncubatorType;
 
@@ -33,17 +33,11 @@ use VIB\FliesBundle\Form\IncubatorType;
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class IncubatorController extends CRUDController
+class IncubatorController extends SecureCRUDController
 {
-    /**
-     * Construct StockController
-     *
-     */
-    public function __construct()
-    {
-        $this->entityClass = 'VIB\FliesBundle\Entity\Incubator';
-        $this->entityName  = 'incubator|incubators';
-    }
+    const ENTITY_CLASS = 'VIB\FliesBundle\Entity\Incubator';
+    const ENTITY_NAME = 'incubator|incubators';
+    
 
     /**
      * {@inheritdoc}
@@ -101,7 +95,7 @@ class IncubatorController extends CRUDController
      */
     public function menuAction()
     {
-        $entities = $this->getObjectManager()->findAll($this->getEntityClass());
+        $entities = $this->getObjectManager(self::ENTITY_CLASS)->findAll($this->getEntityClass());
 
         return array('entities' => $entities);
     }

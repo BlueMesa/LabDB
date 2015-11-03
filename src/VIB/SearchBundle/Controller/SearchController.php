@@ -21,7 +21,7 @@ namespace VIB\SearchBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use VIB\CoreBundle\Controller\AbstractController;
+use Bluemesa\Bundle\CoreBundle\Controller\AbstractController;
 use VIB\SearchBundle\Repository\SearchableRepositoryInterface;
 
 use VIB\SearchBundle\Search\SearchQuery;

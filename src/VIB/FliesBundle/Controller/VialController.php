@@ -30,9 +30,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
-use VIB\CoreBundle\Controller\CRUDController;
-use VIB\CoreBundle\Form\AclType;
-use VIB\CoreBundle\Filter\RedirectFilterInterface;
+use Bluemesa\Bundle\AclBundle\Controller\SecureCRUDController;
+use Bluemesa\Bundle\AclBundle\Form\AclType;
+use Bluemesa\Bundle\CoreBundle\Filter\RedirectFilterInterface;
 
 use VIB\FliesBundle\Filter\VialFilter;
 use VIB\FliesBundle\Label\PDFLabel;
@@ -55,17 +55,11 @@ use VIB\FliesBundle\Entity\Incubator;
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class VialController extends CRUDController
+class VialController extends SecureCRUDController
 {
-    /**
-     * Construct StockVialController
-     *
-     */
-    public function __construct()
-    {
-        $this->entityClass  = 'VIB\FliesBundle\Entity\Vial';
-        $this->entityName   = 'vial|vials';
-    }
+    const ENTITY_CLASS = 'VIB\FliesBundle\Entity\Vial';
+    const ENTITY_NAME = 'vial|vials';
+    
 
     /**
      * {@inheritdoc}
@@ -138,7 +132,8 @@ class VialController extends CRUDController
      *
      * @Route("/new")
      * @Template()
-     *
+     * @SatisfiesParentSecurityPolicy
+     * 
      * @throws Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @return Symfony\Component\HttpFoundation\Response
      */
@@ -146,7 +141,7 @@ class VialController extends CRUDController
     {
         $om = $this->getObjectManager();
         $class = $this->getEntityClass();
-
+        
         if ($class == 'VIB\FliesBundle\Entity\Vial') {
             throw $this->createNotFoundException();
         }

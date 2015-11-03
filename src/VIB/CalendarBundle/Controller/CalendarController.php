@@ -24,7 +24,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 use Sabre\VObject\Component\VCalendar;
-use VIB\CoreBundle\Controller\AbstractController;
+use Bluemesa\Bundle\CoreBundle\Controller\AbstractController;
 
 /**
  * Controller for online ics calendars

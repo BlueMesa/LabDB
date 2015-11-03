@@ -27,7 +27,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Doctrine\ORM\NoResultException;
 
-use VIB\CoreBundle\Controller\AbstractController;
+use Bluemesa\Bundle\CoreBundle\Controller\AbstractController;
+use Bluemesa\Bundle\AclBundle\Controller\SecureController;
 use VIB\FliesBundle\Search\SearchQuery;
 use VIB\FliesBundle\Entity\Vial;
 use VIB\FliesBundle\Entity\StockVial;
@@ -46,12 +47,14 @@ use VIB\FliesBundle\Entity\RackPosition;
  */
 class AJAXController extends AbstractController
 {
+    use SecureController;
+    
     /**
      * {@inheritdoc}
      */
     protected function getObjectManager($object = null)
     {
-        return parent::getObjectManager('VIB\CoreBundle\Entity\Entity');
+        return parent::getObjectManager('Bluemesa\Bundle\AclBundle\Entity\OwnedEntity');
     }
     
     /**
@@ -438,7 +441,7 @@ FLYBASE_SQL;
         } else {
              return new Response('Not found', 404);
         }
-        $status .= '</div>';
+        $status .= '</div>';        
         $owner = $om->getOwner($entity);
         $html = $this->renderView('VIBFliesBundle:AJAX:popover.html.twig',
                 array('type' => $type, 'entity' => $entity, 'owner' => $owner, 'rack' => $rack));

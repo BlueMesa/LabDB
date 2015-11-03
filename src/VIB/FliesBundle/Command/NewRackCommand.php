@@ -79,7 +79,7 @@ class NewRackCommand extends Command
         $this->container = $this->getApplication()->getKernel()->getContainer();
         $user = $this->container->get('user_provider')->loadUserByUsername($input->getArgument('owner'));
 
-        $om = $this->container->get('vib.doctrine.registry')->getManagerForClass('VIB\CoreBundle\Entity\Entity');
+        $om = $this->container->get('bluemesa.core.doctrine.registry')->getManagerForClass('Bluemesa\Bundle\CoreBundle\Entity\Entity');
         $om->disableAutoAcl();
         $om->getConnection()->beginTransaction();
 

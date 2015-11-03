@@ -20,7 +20,7 @@ namespace VIB\FliesBundle\Doctrine;
 
 use JMS\DiExtraBundle\Annotation as DI;
 
-use VIB\CoreBundle\Doctrine\ObjectManager;
+use Bluemesa\Bundle\AclBundle\Doctrine\OwnedObjectManager;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -32,19 +32,16 @@ use VIB\FliesBundle\Repository\VialRepository;
  * VialManager is a class used to manage common operations on vials
  *
  * @DI\Service("vib.doctrine.vial_manager")
- * @DI\Tag("vibcore.object_manager")
+ * @DI\Tag("bluemesa_core.object_manager")
  * 
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class VialManager extends ObjectManager
+class VialManager extends OwnedObjectManager
 {
     /**
-     * {@inheritdoc}
+     * Interface that classes managed by this ObjectManager must implement
      */
-    public function getManagedClass()
-    {
-        return 'VIB\FliesBundle\Entity\Vial';
-    }
+    const MANAGED_INTERFACE = 'VIB\FliesBundle\Entity\VialInterface';
     
     /**
      * {@inheritdoc}
@@ -54,6 +51,7 @@ class VialManager extends ObjectManager
         $repository = parent::getRepository($className);
 
         if (! $repository instanceof VialRepository) {
+            print "\n" . get_class($repository) . "\n";
             throw new \ErrorException('Repository must be an instance of VIB\FliesBundle\Repository\VialRepository');
         }
 

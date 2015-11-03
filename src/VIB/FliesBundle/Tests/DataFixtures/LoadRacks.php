@@ -48,7 +48,7 @@ class LoadRacks extends AbstractFixture implements OrderedFixtureInterface, Cont
      */
     public function load(ObjectManager $om)
     {
-        $om = $this->container->get('vib.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\Rack');
+        $om = $this->container->get('bluemesa.core.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\Rack');
         $om->disableAutoAcl();
 
         $user = $this->getReference('user');

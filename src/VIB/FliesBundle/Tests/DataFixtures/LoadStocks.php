@@ -48,8 +48,8 @@ class LoadStocks extends AbstractFixture implements OrderedFixtureInterface, Con
      */
     public function load(ObjectManager $om)
     {
-        $om = $this->container->get('vib.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\Stock');
-        $vm = $this->container->get('vib.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\Vial');
+        $om = $this->container->get('bluemesa.core.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\Stock');
+        $vm = $this->container->get('bluemesa.core.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\Vial');
         $om->disableAutoAcl();
         $vm->disableAutoAcl();
         

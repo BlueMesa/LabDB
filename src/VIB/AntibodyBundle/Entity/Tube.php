@@ -25,8 +25,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 
-use VIB\StorageBundle\Entity\RackContent;
-use VIB\StorageBundle\Entity\TermocontrolledInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\RackContent;
+use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
 
 /**
  * Tube class

@@ -25,15 +25,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 
-use VIB\CoreBundle\Entity\NamedEntityInterface;
-use VIB\CoreBundle\Entity\SecuredEntityInterface;
-use VIB\StorageBundle\Entity\RackContent;
-use VIB\StorageBundle\Entity\RackInterface;
-use VIB\StorageBundle\Entity\RackPositionInterface;
-use VIB\StorageBundle\Entity\StorageUnitInterface;
-use VIB\StorageBundle\Entity\StorageUnitContentInterface;
-use VIB\StorageBundle\Entity\TermocontrolledInterface;
-use VIB\FliesBundle\Label\LabelDateInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\RackContent;
+use Bluemesa\Bundle\StorageBundle\Entity\RackInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\RackPositionInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\StorageUnitInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\StorageUnitContentInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
 
 /**
  * Vial class
@@ -60,9 +57,7 @@ use VIB\FliesBundle\Label\LabelDateInterface;
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class Vial extends RackContent
-    implements NamedEntityInterface, SecuredEntityInterface,
-        StorageUnitContentInterface, TermocontrolledInterface, LabelDateInterface
+class Vial extends RackContent implements VialInterface
 {
     /**
      * @ORM\Column(type="date")
@@ -590,8 +585,11 @@ class Vial extends RackContent
      */
     public function getStorageUnit() {
         if (($rack = $this->getRack()) instanceof StorageUnitContentInterface) {
+            
             return $rack->getStorageUnit();
+            
         } else {
+            
             return $this->incubator;
         }
     }

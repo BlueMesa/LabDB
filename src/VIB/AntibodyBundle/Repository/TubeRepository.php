@@ -18,7 +18,7 @@
 
 namespace VIB\AntibodyBundle\Repository;
 
-use VIB\CoreBundle\Repository\EntityRepository;
+use Bluemesa\Bundle\CoreBundle\Repository\EntityRepository;
 
 /**
  * TubeRepository

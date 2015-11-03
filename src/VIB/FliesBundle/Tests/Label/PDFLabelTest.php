@@ -49,7 +49,7 @@ class PDFLabelTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->om = $this->getMockBuilder('VIB\CoreBundle\Doctrine\ObjectManager')
+        $this->om = $this->getMockBuilder('Bluemesa\Bundle\AclBundle\Doctrine\OwnedObjectManager')
             ->disableOriginalConstructor()->getMock();
         $this->TCPDFController = $this->getMockBuilder('WhiteOctober\TCPDFBundle\Controller\TCPDFController')
             ->disableOriginalConstructor()->getMock();

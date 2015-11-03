@@ -134,7 +134,7 @@ class IncubatorControllerTest extends WebTestCase
     public static function tearDownAfterClass()
     {
         $client = static::createClient();
-        $om = $client->getContainer()->get('vib.doctrine.registry')->getManagerForClass('VIB\CoreBundle\Entity\Entity');
+        $om = $client->getContainer()->get('bluemesa.core.doctrine.registry')->getManagerForClass('Bluemesa\Bundle\CoreBundle\Entity\Entity');
         $repository = $om->getRepository('VIB\FliesBundle\Entity\Incubator');
         $qb = $repository->createQueryBuilder('s')->where('s.id > 1');
         $incubators = $qb->getQuery()->getResult();

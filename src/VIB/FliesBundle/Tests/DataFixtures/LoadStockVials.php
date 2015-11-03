@@ -48,7 +48,7 @@ class LoadStockVials extends AbstractFixture implements OrderedFixtureInterface,
      */
     public function load(ObjectManager $vm)
     {
-        $vm = $this->container->get('vib.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\StockVial');
+        $vm = $this->container->get('bluemesa.core.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\StockVial');
         $vm->disableAutoAcl();
         
         $user = $this->getReference('user');

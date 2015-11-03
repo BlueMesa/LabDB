@@ -18,7 +18,7 @@
 
 namespace VIB\SearchBundle\Repository;
 
-use VIB\CoreBundle\Repository\EntityRepository;
+use Bluemesa\Bundle\CoreBundle\Repository\EntityRepository;
 use VIB\SearchBundle\Search\SearchQueryInterface;
 use VIB\SearchBundle\Search\ACLSearchQueryInterface;
 

@@ -26,8 +26,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity as UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 
-use VIB\CoreBundle\Entity\NamedEntity;
-use VIB\CoreBundle\Entity\SecuredEntityInterface;
+use Bluemesa\Bundle\CoreBundle\Entity\Entity;
+use Bluemesa\Bundle\CoreBundle\Entity\NamedInterface;
+use Bluemesa\Bundle\CoreBundle\Entity\UniqueNamedTrait;
+use Bluemesa\Bundle\AclBundle\Entity\OwnedEntityInterface;
 
 /**
  * Stock class
@@ -38,15 +40,11 @@ use VIB\CoreBundle\Entity\SecuredEntityInterface;
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class Stock extends NamedEntity implements SecuredEntityInterface
+class Stock extends Entity implements
+    NamedInterface,
+    OwnedEntityInterface
 {
-    /**
-     * @ORM\Column(type="string", length=255, unique=true, nullable=false)
-     * @Serializer\Expose
-     *
-     * @var string
-     */
-    protected $name;
+    use UniqueNamedTrait;
 
     /**
      * @ORM\Column(type="string", length=255)

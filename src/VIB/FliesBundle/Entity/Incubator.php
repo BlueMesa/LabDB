@@ -25,10 +25,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Criteria;
 
-use VIB\CoreBundle\Entity\NamedEntity;
-use VIB\CoreBundle\Entity\SecuredEntityInterface;
-use VIB\StorageBundle\Entity\StorageUnitInterface;
-use VIB\StorageBundle\Entity\TermocontrolledInterface;
+use Bluemesa\Bundle\CoreBundle\Entity\Entity;
+use Bluemesa\Bundle\CoreBundle\Entity\NamedInterface;
+use Bluemesa\Bundle\CoreBundle\Entity\NamedTrait;
+
+use Bluemesa\Bundle\AclBundle\Entity\OwnedEntityInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\StorageUnitInterface;
+use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
 
 /**
  * Incubator class
@@ -38,8 +41,14 @@ use VIB\StorageBundle\Entity\TermocontrolledInterface;
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class Incubator extends NamedEntity implements SecuredEntityInterface, StorageUnitInterface, TermocontrolledInterface
+class Incubator extends Entity implements
+    NamedInterface,
+    OwnedEntityInterface,
+    StorageUnitInterface,
+    TermocontrolledInterface
 {
+    use NamedTrait;
+    
     /**
      * @ORM\OneToMany(targetEntity="Rack", mappedBy="incubator", fetch="EXTRA_LAZY")
      *

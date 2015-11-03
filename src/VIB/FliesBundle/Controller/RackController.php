@@ -22,7 +22,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\SatisfiesParentSecurityPolicy;
 
-use VIB\CoreBundle\Controller\CRUDController;
+use Bluemesa\Bundle\AclBundle\Controller\SecureCRUDController;
 
 use VIB\FliesBundle\Form\RackType;
 use VIB\FliesBundle\Form\SelectType;
@@ -37,17 +37,10 @@ use VIB\FliesBundle\Entity\Incubator;
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class RackController extends CRUDController
+class RackController extends SecureCRUDController
 {
-    /**
-     * Construct StockController
-     *
-     */
-    public function __construct()
-    {
-        $this->entityClass = 'VIB\FliesBundle\Entity\Rack';
-        $this->entityName  = 'rack|racks';
-    }
+    const ENTITY_CLASS = 'VIB\FliesBundle\Entity\Rack';
+    const ENTITY_NAME = 'rack|racks';
 
     /**
      * {@inheritdoc}
@@ -115,7 +108,8 @@ class RackController extends CRUDController
      *
      * @Route("/new")
      * @Template()
-     *
+     * @SatisfiesParentSecurityPolicy
+     * 
      * @return array|\Symfony\Component\HttpFoundation\Response
      */
     public function createAction()

@@ -82,8 +82,8 @@ class NewVialCommand extends Command
         $this->container = $this->getApplication()->getKernel()->getContainer();
         $user = $this->container->get('user_provider')->loadUserByUsername($input->getArgument('owner'));
 
-        $om = $this->container->get('vib.doctrine.registry')->getManagerForClass('VIB\CoreBundle\Entity\Entity');
-        $vm = $this->container->get('vib.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\Vial');
+        $om = $this->container->get('bluemesa.core.doctrine.registry')->getManagerForClass('Bluemesa\Bundle\CoreBundle\Entity\Entity');
+        $vm = $this->container->get('bluemesa.core.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\Vial');
         $om->disableAutoAcl();
         $vm->disableAutoAcl();
         

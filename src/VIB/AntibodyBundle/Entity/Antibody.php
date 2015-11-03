@@ -25,8 +25,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity as UniqueEntity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-use VIB\CoreBundle\Entity\Entity;
-use VIB\StorageBundle\Entity\TermocontrolledInterface;
+use Bluemesa\Bundle\CoreBundle\Entity\Entity;
+use Bluemesa\Bundle\StorageBundle\Entity\TermocontrolledInterface;
 
 /**
  * Antibody class

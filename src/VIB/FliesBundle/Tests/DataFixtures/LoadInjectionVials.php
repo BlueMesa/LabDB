@@ -48,7 +48,7 @@ class LoadInjectionVials extends AbstractFixture implements OrderedFixtureInterf
      */
     public function load(ObjectManager $vm)
     {
-        $vm = $this->container->get('vib.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\InjectionVial');
+        $vm = $this->container->get('bluemesa.core.doctrine.registry')->getManagerForClass('VIB\FliesBundle\Entity\InjectionVial');
         $vm->disableAutoAcl();
 
         $user = $this->getReference('user');
