@@ -18,13 +18,15 @@
 
 namespace VIB\FliesBundle\Repository;
 
+use JMS\DiExtraBundle\Annotation as DI;
+
 use Doctrine\ORM\Query;
 use Bluemesa\Bundle\CoreBundle\Doctrine\ObjectManager;
 use Bluemesa\Bundle\CoreBundle\Filter\ListFilterInterface;
 use Bluemesa\Bundle\CoreBundle\Filter\EntityFilterInterface;
-use Bluemesa\Bundle\CoreBundle\Filter\SecureFilterInterface;
+use Bluemesa\Bundle\AclBundle\Filter\SecureFilterInterface;
 use Bluemesa\Bundle\CoreBundle\Filter\SortFilterInterface;
-use Bluemesa\Bundle\CoreBundle\Repository\EntityRepository;
+use Bluemesa\Bundle\AclBundle\Repository\EntityRepository;
 use VIB\FliesBundle\Filter\VialFilter;
 
 /**
@@ -34,6 +36,16 @@ use VIB\FliesBundle\Filter\VialFilter;
  */
 class VialRepository extends EntityRepository
 {   
+    /**
+     * {@inheritdoc}
+     * 
+     * @DI\InjectParams({ "objectManager" = @DI\Inject("vib.doctrine.vial_manager") })
+     */
+    public function setObjectManager(ObjectManager $objectManager)
+    {
+        parent::setObjectManager($objectManager);
+    }
+    
     /**
      * {@inheritdoc}
      */

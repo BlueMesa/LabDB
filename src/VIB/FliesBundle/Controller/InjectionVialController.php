@@ -77,7 +77,7 @@ class InjectionVialController extends VialController
     public function statsAction($id)
     {
         $injection = $this->getEntity($id);
-        $vials = $this->getObjectManager()->getRepository($this->entityClass)->findSimilar($injection);
+        $vials = $this->getObjectManager()->getRepository(self::ENTITY_CLASS)->findSimilar($injection);
         $sterile = new ArrayCollection();
         $success = new ArrayCollection();
         $fail = new ArrayCollection();

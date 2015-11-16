@@ -67,7 +67,7 @@ class PrintingExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'can_print' => new \Twig_Function_Method($this, 'canPrintFunction')
+            new \Twig_SimpleFunction('can_print', array($this, 'canPrint')),
         );
     }
 
@@ -76,7 +76,7 @@ class PrintingExtension extends \Twig_Extension
      *
      * @return boolean
      */
-    public function canPrintFunction()
+    public function canPrint()
     {
         $host = $this->printHost;
         $queue = $this->printQueue;

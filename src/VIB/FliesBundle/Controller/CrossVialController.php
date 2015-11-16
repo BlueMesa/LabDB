@@ -20,7 +20,6 @@ namespace VIB\FliesBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -76,7 +75,7 @@ class CrossVialController extends VialController
     public function statsAction($id)
     {
         $cross = $this->getEntity($id);
-        $total = $this->getObjectManager()->getRepository($this->entityClass)->findSimilar($cross);
+        $total = $this->getObjectManager()->getRepository(self::ENTITY_CLASS)->findSimilar($cross);
         $sterile = new ArrayCollection();
         $success = new ArrayCollection();
         $fail = new ArrayCollection();

@@ -19,7 +19,7 @@
 namespace VIB\FliesBundle\Repository;
 
 use Bluemesa\Bundle\CoreBundle\Filter\ListFilterInterface;
-use Bluemesa\Bundle\CoreBundle\Filter\SecureFilterInterface;
+use Bluemesa\Bundle\AclBundle\Filter\SecureFilterInterface;
 use Bluemesa\Bundle\CoreBundle\Filter\SortFilterInterface;
 use VIB\SearchBundle\Repository\SearchableRepository;
 use VIB\SearchBundle\Search\SearchQueryInterface;

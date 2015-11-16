@@ -22,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 
 use Bluemesa\Bundle\CoreBundle\Entity\NamedInterface;
-use Bluemesa\Bundle\CoreBundle\Entity\NamedTrait;
+use Bluemesa\Bundle\CoreBundle\Entity\SimpleNamedTrait;
 use Bluemesa\Bundle\AclBundle\Entity\OwnedEntityInterface;
 use Bluemesa\Bundle\StorageBundle\Entity\Rack as BaseRack;
 use Bluemesa\Bundle\StorageBundle\Entity\StorageUnitInterface;
@@ -45,7 +45,7 @@ class Rack extends BaseRack implements
     StorageUnitContentInterface,
     TermocontrolledInterface
 {
-    use NamedTrait;
+    use SimpleNamedTrait;
     
     /**
      * @ORM\OneToMany(targetEntity="RackPosition", mappedBy="rack", cascade={"persist", "remove"}, orphanRemoval=true, fetch="EXTRA_LAZY")
@@ -60,6 +60,16 @@ class Rack extends BaseRack implements
      */
     protected $incubator;
 
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct($rows = null, $columns = null)
+    {
+        parent::__construct($rows, $columns);
+        $this->name = 'New rack';
+    }
+    
     /**
      * {@inheritdoc}
      */

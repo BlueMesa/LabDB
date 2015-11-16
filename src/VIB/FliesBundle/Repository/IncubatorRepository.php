@@ -18,7 +18,7 @@
 
 namespace VIB\FliesBundle\Repository;
 
-use Bluemesa\Bundle\CoreBundle\Repository\EntityRepository;
+use Bluemesa\Bundle\AclBundle\Repository\EntityRepository;
 
 /**
  * IncubatorRepository

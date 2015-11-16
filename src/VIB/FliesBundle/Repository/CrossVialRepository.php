@@ -18,6 +18,9 @@
 
 namespace VIB\FliesBundle\Repository;
 
+use JMS\DiExtraBundle\Annotation as DI;
+
+use Bluemesa\Bundle\CoreBundle\Doctrine\ObjectManager;
 use Bluemesa\Bundle\CoreBundle\Filter\ListFilterInterface;
 use VIB\SearchBundle\Search\SearchQueryInterface;
 use VIB\FliesBundle\Filter\VialFilter;
@@ -31,6 +34,16 @@ use VIB\FliesBundle\Entity\CrossVial;
  */
 class CrossVialRepository extends SearchableVialRepository
 {
+    /**
+     * {@inheritdoc}
+     * 
+     * @DI\InjectParams({ "objectManager" = @DI\Inject("vib.doctrine.crossvial_manager") })
+     */
+    public function setObjectManager(ObjectManager $objectManager)
+    {
+        parent::setObjectManager($objectManager);
+    }
+    
     /**
      * {@inheritdoc}
      */

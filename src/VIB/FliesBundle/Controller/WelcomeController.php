@@ -23,6 +23,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Bluemesa\Bundle\CoreBundle\Controller\AbstractController;
+use Bluemesa\Bundle\AclBundle\Controller\SecureController;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -35,6 +37,8 @@ use VIB\FliesBundle\Filter\VialFilter;
  */
 class WelcomeController extends AbstractController
 {
+    use SecureController;
+    
     /**
      * Print panel
      *
