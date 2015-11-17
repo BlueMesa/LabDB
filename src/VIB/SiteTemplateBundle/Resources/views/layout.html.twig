@@ -70,7 +70,7 @@
   {% endblock head_style %}
   {% block head_scripts %}
     {% javascripts
-        '../vendor/verekia/initializr/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js'
+        '../vendor/verekia/initializr/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js'
         output='js/head.js'
     %}
       <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -162,10 +162,8 @@
     </script>
     {% endif %}
     {% javascripts output='js/main.js'
-      '../vendor/jquery/jquery/jquery-1.10.2.min.js'
-      '../vendor/jquery/jquery-ui/ui/minified/jquery.ui.core.min.js'
-      '../vendor/jquery/jquery-ui/ui/minified/jquery.ui.effect.min.js'
-      '../vendor/jquery/jquery-ui/ui/minified/jquery.ui.effect-highlight.min.js'
+      '../vendor/jquery/jquery/jquery-1.11.3.min.js'
+      '../vendor/jquery/jquery-ui/jquery-ui.min.js'
       '../vendor/twbs/bootstrap/js/transition.js'
       '../vendor/twbs/bootstrap/js/modal.js'
       '../vendor/twbs/bootstrap/js/scrollspy.js'

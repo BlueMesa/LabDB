@@ -39,6 +39,8 @@ use VIB\SearchBundle\Form\AdvancedSearchType;
  */
 abstract class SearchController extends AbstractController
 {
+    
+    
     /**
      * Render advanced search form
      *

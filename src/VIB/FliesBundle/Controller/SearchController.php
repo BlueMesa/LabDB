@@ -21,10 +21,10 @@ namespace VIB\FliesBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use Bluemesa\Bundle\AclBundle\DependencyInjection\SecurityContextAwareTrait;
+
 use VIB\SearchBundle\Controller\SearchController as BaseSearchController;
-
 use VIB\FliesBundle\Search\SearchQuery;
-
 use VIB\FliesBundle\Form\SearchType;
 use VIB\FliesBundle\Form\AdvancedSearchType;
 
@@ -37,6 +37,8 @@ use VIB\FliesBundle\Form\AdvancedSearchType;
  */
 class SearchController extends BaseSearchController
 {
+    use SecurityContextAwareTrait;
+    
     /**
      * {@inheritdoc}
      */
