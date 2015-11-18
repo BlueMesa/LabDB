@@ -412,11 +412,16 @@ $(document).ready(function() {
       var url = $this.data('link') + '?vendor=%QUERY';
       var template = Hogan.compile('<p>{{stock_center}}</p>');
       var source = new Bloodhound({
-        datumTokenizer: function(d) { 
+        datumTokenizer: function(d) {
           return Bloodhound.tokenizers.whitespace(d.stock_center); 
         },
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        remote: url
+        remote: {
+          url: url,
+          replace: function(url, query) {
+            return url.replace('%QUERY', query);
+          }
+        }
       });
       source.initialize();
       $this.typeahead(null,{
@@ -463,11 +468,11 @@ $(document).ready(function() {
       var $this = $(this);
       var url = $this.data('link');
       $this.select2({
-        width: 'resolve',
-        initSelection : function (element, callback) {
-          var data = {id: element.val(), text: element.val()};
-          callback(data);
-        },
+//        width: 'resolve',
+//        initSelection : function (element, callback) {
+//          var data = {id: element.val(), text: element.val()};
+//          callback(data);
+//        },
         ajax: {
           url: url,
           dataType: 'json',
@@ -482,7 +487,9 @@ $(document).ready(function() {
             };
           }
         }
-      }).on('select2-open', function() {
+      })
+      /*
+              .on('select2-open', function() {
         $('.select2-search').each(function() {
           var $search = $(this);
           if ($search.children('i.fa').length === 0) {
@@ -490,6 +497,7 @@ $(document).ready(function() {
           }
         });
       });
+      */
     });
     $('.genotype-typeahead').each(function() {
       var $this = $(this);
