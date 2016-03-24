@@ -19,7 +19,8 @@
 namespace VIB\FliesBundle\Filter;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 use Bluemesa\Bundle\AclBundle\Filter\SecureListFilter;
 use Bluemesa\Bundle\CoreBundle\Filter\SortFilterInterface;
@@ -37,16 +38,15 @@ class StockFilter extends SecureListFilter implements SortFilterInterface, Redir
     protected $order;
     
     protected $redirect;
-    
+
     /**
-     * Construct StockFilter
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Symfony\Component\Security\Core\SecurityContext $securityContext
+     * {@inheritdoc}
      */
-    public function __construct(Request $request = null, SecurityContextInterface $securityContext = null)
+    public function __construct(Request $request = null,
+                                AuthorizationCheckerInterface $authorizationChecker = null,
+                                TokenStorageInterface $tokenStorage = null)
     {
-        parent::__construct($request, $securityContext);
+        parent::__construct($request, $authorizationChecker, $tokenStorage);
 
         if (null !== $request) {
             $this->setAccess($request->get('access', 'mtnt'));

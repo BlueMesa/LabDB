@@ -1,9 +1,7 @@
 {% use "VIBSiteTemplateBundle:Form:modal.html.twig" %}
 
 {% block form_header %}
-<form action="{{ app.request.requestUri }}"
-      method="post" {{ form_enctype(form) }}
-      class="form-horizontal">
+  {{ form_start(form, {'attr': {'class': 'form-horizontal'} }) }}
 {% endblock form_header %}
 
 {% block modal_body %}

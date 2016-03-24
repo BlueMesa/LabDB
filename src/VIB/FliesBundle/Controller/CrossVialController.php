@@ -18,11 +18,14 @@
 
 namespace VIB\FliesBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use VIB\FliesBundle\Doctrine\CrossVialManager;
+use VIB\FliesBundle\Entity\CrossVial;
 use VIB\FliesBundle\Form\CrossVialType;
 use VIB\FliesBundle\Form\CrossVialNewType;
 
@@ -57,7 +60,7 @@ class CrossVialController extends VialController
     /**
      * {@inheritdoc}
      */
-    public function expandAction($id = null)
+    public function expandAction(Request $request, $id = null)
     {
         throw $this->createNotFoundException();
     }
@@ -70,10 +73,11 @@ class CrossVialController extends VialController
      *
      * @param mixed $id
      *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function statsAction($id)
     {
+        /** @var CrossVial $cross */
         $cross = $this->getEntity($id);
         $total = $this->getObjectManager()->getRepository(self::ENTITY_CLASS)->findSimilar($cross);
         $sterile = new ArrayCollection();
@@ -88,6 +92,7 @@ class CrossVialController extends VialController
             throw $this->createNotFoundException();
         }
 
+        /** @var CrossVial $vial */
         foreach ($total as $vial) {
             $temp = (float) $vial->getTemperature();
             if (! $temps->contains($temp)) {
@@ -133,27 +138,26 @@ class CrossVialController extends VialController
     /**
      * {@inheritdoc}
      */
-    public function handleBatchAction($data)
+    public function handleBatchAction(Request $request, $data)
     {
         $action = $data['action'];
         $vials = new ArrayCollection($data['items']);
-        $response = $this->getDefaultBatchResponse();
 
         switch ($action) {
             case 'marksterile':
                 $this->markSterile($vials);
-                $response = $this->getBackBatchResponse();
+                $response = $this->getBackBatchResponse($request);
                 break;
             case 'marksuccessful':
                 $this->markSuccessful($vials);
-                $response = $this->getBackBatchResponse();
+                $response = $this->getBackBatchResponse($request);
                 break;
             case 'markfailed':
                 $this->markFailed($vials);
-                $response = $this->getBackBatchResponse();
+                $response = $this->getBackBatchResponse($request);
                 break;
             default:
-                return parent::handleBatchAction($data);
+                return parent::handleBatchAction($request, $data);
         }
 
         return $response;
@@ -166,6 +170,7 @@ class CrossVialController extends VialController
      */
     public function markSterile(Collection $vials)
     {
+        /** @var CrossVialManager $om */
         $om = $this->getObjectManager();
         $om->markSterile($vials);
         $om->flush();
@@ -183,6 +188,7 @@ class CrossVialController extends VialController
      */
     public function markSuccessful(Collection $vials)
     {
+        /** @var CrossVialManager $om */
         $om = $this->getObjectManager();
         $om->markSuccessful($vials);
         $om->flush();
@@ -200,6 +206,7 @@ class CrossVialController extends VialController
      */
     public function markFailed(Collection $vials)
     {
+        /** @var CrossVialManager $om */
         $om = $this->getObjectManager();
         $om->markFailed($vials);
         $om->flush();

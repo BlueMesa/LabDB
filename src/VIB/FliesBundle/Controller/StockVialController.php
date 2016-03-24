@@ -22,8 +22,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\SatisfiesParentSecurityPolicy;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+use VIB\FliesBundle\Entity\StockVial;
 use VIB\FliesBundle\Form\StockVialType;
 use VIB\FliesBundle\Form\StockVialNewType;
 
@@ -62,15 +64,16 @@ class StockVialController extends VialController
      * @Route("/new/{id}", defaults={"id" = null})
      * @Template()
      * @SatisfiesParentSecurityPolicy
-     * 
-     * @param  mixed                                      $id
+     *
+     * @param  \Symfony\Component\HttpFoundation\Request   $request
+     * @param  mixed                                       $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function createAction($id = null)
+    public function createAction(Request $request, $id = null)
     {
-        $request = $this->getRequest();
         if ($request->getMethod() != 'POST') {
             $class = $this->getEntityClass();
+            /** @var StockVial $vial */
             $vial = new $class();
             if (null !== $id) {
                 $stock = $this->getStockEntity($id);
@@ -81,14 +84,14 @@ class StockVialController extends VialController
 
             return array('form' => $form->createView());
         } else {
-            return parent::createAction();
+            return parent::createAction($request);
         }
     }
 
     /**
      * Get stock entity
      *
-     * @param  mixed                                                         $id
+     * @param  mixed                                                          $id
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @return \Bluemesa\Bundle\CoreBundle\Entity\Entity
      */
@@ -105,7 +108,5 @@ class StockVialController extends VialController
         } else {
             throw new NotFoundHttpException();
         }
-
-        return null;
     }
 }

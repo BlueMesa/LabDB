@@ -41,14 +41,15 @@ class PrintController extends Controller
      *
      * @Template()
      *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request   $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function printPanelAction()
+    public function printPanelAction(Request $request)
     {
-        $setting = $this->get('request')->getSession()->get('autoprint') == 'enabled';
+        $setting = $request->getSession()->get('autoprint') == 'enabled';
         $canPrint = $this->canPrint();
         $autoprint = $canPrint ? $setting : $canPrint;
-        $labelmode = $this->get('request')->getSession()->get('labelmode');
+        $labelmode = $request->getSession()->get('labelmode');
 
         return array('autoprint' => $autoprint, 'labelmode' => $labelmode);
     }
@@ -59,7 +60,8 @@ class PrintController extends Controller
      * @Route("/_ajax/autoprint/")
      * @Method("POST")
      *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request   $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function setAutoPrintAction(Request $request)
     {
@@ -78,7 +80,8 @@ class PrintController extends Controller
      * @Route("/_ajax/labelmode/")
      * @Method("POST")
      *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request   $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function setLabelModeAction(Request $request)
     {
@@ -96,8 +99,8 @@ class PrintController extends Controller
      */
     protected function canPrint()
     {
-        $host = $this->container->getParameter('print_host', null);
-        $queue = $this->container->getParameter('print_queue', null);
+        $host = $this->container->getParameter('print_host');
+        $queue = $this->container->getParameter('print_queue');
         if ((null !== $host)&&(null !== $queue)) {
             try {
                 $ipp = new CupsPrintIPP();

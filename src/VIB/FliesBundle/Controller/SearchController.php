@@ -18,10 +18,9 @@
 
 namespace VIB\FliesBundle\Controller;
 
+use Bluemesa\Bundle\AclBundle\DependencyInjection\AuthorizationCheckerAwareTrait;
+use Bluemesa\Bundle\AclBundle\DependencyInjection\TokenStorageAwareTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
-use Bluemesa\Bundle\AclBundle\DependencyInjection\SecurityContextAwareTrait;
 
 use VIB\SearchBundle\Controller\SearchController as BaseSearchController;
 use VIB\FliesBundle\Search\SearchQuery;
@@ -37,7 +36,7 @@ use VIB\FliesBundle\Form\AdvancedSearchType;
  */
 class SearchController extends BaseSearchController
 {
-    use SecurityContextAwareTrait;
+    use TokenStorageAwareTrait, AuthorizationCheckerAwareTrait;
     
     /**
      * {@inheritdoc}
@@ -118,7 +117,8 @@ class SearchController extends BaseSearchController
     protected function createSearchQuery($advanced = false)
     {
         $searchQuery = new SearchQuery($advanced);
-        $searchQuery->setSecurityContext($this->getSecurityContext());
+        $searchQuery->setTokenStorage($this->getTokenStorage());
+        $searchQuery->setAuthorizationChecker($this->getAuthorizationChecker());
         
         return $searchQuery;
     }
@@ -134,8 +134,9 @@ class SearchController extends BaseSearchController
             throw $this->createNotFoundException();
         }
         
-        $searchQuery->setSecurityContext($this->getSecurityContext());
-        
+        $searchQuery->setTokenStorage($this->getTokenStorage());
+        $searchQuery->setAuthorizationChecker($this->getAuthorizationChecker());
+
         return $searchQuery;
     }
 }

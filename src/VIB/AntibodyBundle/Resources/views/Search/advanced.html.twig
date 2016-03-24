@@ -3,9 +3,11 @@
 
 {% block headline %}Search{% endblock headline %}
 {% block form_header %}
-<form action="{{ path('vib_antibody_search_result') }}"
-      method="post" {{ form_enctype(form) }}
-      class="form-horizontal">
+  {{ form_start(form, {
+    'action': path('vib_antibody_search_result'),
+    'method': 'POST',
+    'attr': {'class': 'form-horizontal'} 
+    }) }}
 {% endblock form_header %}
 {% block modal_header %}Advanced search{% endblock modal_header %}
 {% block modal_footer %}

@@ -67,7 +67,7 @@ class SearchController extends BaseSearchController
     protected function createSearchQuery($advanced = false)
     {
         $searchQuery = new SearchQuery($advanced);
-        $searchQuery->setSecurityContext($this->getSecurityContext());
+        $searchQuery->setTokenStorage($this->getSecurityContext());
         
         return $searchQuery;
     }
@@ -83,7 +83,7 @@ class SearchController extends BaseSearchController
             throw $this->createNotFoundException();
         }
         
-        $searchQuery->setSecurityContext($this->getSecurityContext());
+        $searchQuery->setTokenStorage($this->getSecurityContext());
         
         return $searchQuery;
     }

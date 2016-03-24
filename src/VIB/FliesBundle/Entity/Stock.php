@@ -99,7 +99,7 @@ class Stock extends Entity implements
     /**
      * @ORM\OneToMany(targetEntity="StockVial", mappedBy="stock", cascade={"persist", "remove"}, fetch="EXTRA_LAZY")
      *
-     * @var Doctrine\Common\Collections\Collection
+     * @var \Doctrine\Common\Collections\Collection
      */
     protected $vials;
 
@@ -107,7 +107,7 @@ class Stock extends Entity implements
      * @ORM\ManyToOne(targetEntity="CrossVial", inversedBy="stocks")
      * @ORM\JoinColumn(onDelete="SET NULL")
      *
-     * @var VIB\FliesBundle\Entity\CrossVial
+     * @var \VIB\FliesBundle\Entity\CrossVial
      */
     protected $sourceCross;
 
@@ -217,7 +217,7 @@ class Stock extends Entity implements
     /**
      * Get info URL
      *
-     * @return type
+     * @return string
      */
     public function getInfoURL()
     {
@@ -227,7 +227,7 @@ class Stock extends Entity implements
     /**
      * Set info URL
      *
-     * @return type
+     * @param string  $infoURL
      */
     public function setInfoURL($infoURL)
     {
@@ -237,7 +237,7 @@ class Stock extends Entity implements
     /**
      * Is stock verified
      *
-     * @return type
+     * @return boolean
      */
     public function isVerified()
     {
@@ -247,7 +247,7 @@ class Stock extends Entity implements
     /**
      * Set verified
      *
-     * @return type
+     * @param boolean  $verified
      */
     public function setVerified($verified)
     {
@@ -257,7 +257,7 @@ class Stock extends Entity implements
     /**
      * Add vial
      *
-     * @param VIB\FliesBundle\Entity\Vial $vial
+     * @param \VIB\FliesBundle\Entity\Vial $vial
      */
     public function addVial(Vial $vial)
     {
@@ -275,7 +275,7 @@ class Stock extends Entity implements
     /**
      * Remove vial
      *
-     * @param VIB\FliesBundle\Entity\Vial $vial
+     * @param \VIB\FliesBundle\Entity\Vial $vial
      */
     public function removeVial(Vial $vial)
     {
@@ -285,7 +285,7 @@ class Stock extends Entity implements
     /**
      * Get vials
      *
-     * @return Doctrine\Common\Collections\ArrayCollection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getVials()
     {
@@ -295,7 +295,7 @@ class Stock extends Entity implements
     /**
      * Get living vials
      *
-     * @return Doctrine\Common\Collections\ArrayCollection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getLivingVials()
     {
@@ -311,7 +311,7 @@ class Stock extends Entity implements
     /**
      * Get living vials
      *
-     * @return Doctrine\Common\Collections\ArrayCollection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getLivingVialsCount()
     {
@@ -321,7 +321,7 @@ class Stock extends Entity implements
     /**
      * Set sourceCross
      *
-     * @param VIB\FliesBundle\Entity\CrossVial $sourceCross
+     * @param \VIB\FliesBundle\Entity\CrossVial $sourceCross
      */
     public function setSourceCross(CrossVial $sourceCross = null)
     {
@@ -331,7 +331,7 @@ class Stock extends Entity implements
     /**
      * Get sourceCross
      *
-     * @return VIB\FliesBundle\Entity\CrossVial
+     * @return \VIB\FliesBundle\Entity\CrossVial
      */
     public function getSourceCross()
     {

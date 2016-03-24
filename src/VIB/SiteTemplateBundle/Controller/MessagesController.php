@@ -19,6 +19,7 @@
 namespace VIB\SiteTemplateBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
@@ -36,10 +37,9 @@ class MessagesController extends Controller
      *
      * @return array
      */
-    public function msieAction()
+    public function msieAction(Request $request)
     {
         $msie_version = 10;
-        $request = $this->get('request');
         $user_agent = $request->headers->get('User-Agent');
         $is_msie = strpos($user_agent, 'MSIE') !== false;
         if ($is_msie) {

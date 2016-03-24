@@ -28,20 +28,24 @@ use JMS\Serializer\Annotation as Serializer;
 abstract class ACLSearchQuery extends SearchQuery implements ACLSearchQueryInterface
 {
     /**
-     * Security context
-     * 
      * @Serializer\Exclude
-     * 
-     * @var string
+     * @var \Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface
      */
-    protected $securityContext;
-    
+    protected $tokenStorage;
+
+    /**
+     * @Serializer\Exclude
+     * @var \Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface
+     */
+    protected $authorizationChecker;
+
+
     /**
      * {@inheritdoc}
      */
     public function getUser()
     {
-        if (null === $token = $this->securityContext->getToken()) {
+        if (null === $token = $this->tokenStorage->getToken()) {
             return null;
         }
 
@@ -55,15 +59,24 @@ abstract class ACLSearchQuery extends SearchQuery implements ACLSearchQueryInter
     /**
      * {@inheritdoc}
      */
-    public function getPermissions() {
-        return $this->securityContext->isGranted('ROLE_ADMIN') ? false : array('VIEW');
+    public function getPermissions()
+    {
+        return $this->authorizationChecker->isGranted('ROLE_ADMIN') ? false : array('VIEW');
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setSecurityContext($securityContext)
+    public function setTokenStorage($tokenStorage)
     {
-        $this->securityContext = $securityContext;
+        $this->tokenStorage = $tokenStorage;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAuthorizationChecker($authorizationChecker)
+    {
+        $this->authorizationChecker = $authorizationChecker;
     }
 }

@@ -18,6 +18,7 @@
 
 namespace VIB\FliesBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\SatisfiesParentSecurityPolicy;
@@ -52,7 +53,7 @@ class IncubatorController extends SecureCRUDController
      *
      * @SatisfiesParentSecurityPolicy
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
         throw $this->createNotFoundException();
     }
@@ -63,12 +64,13 @@ class IncubatorController extends SecureCRUDController
      * @Route("/delete/{id}")
      * @Template()
      *
-     * @param  mixed                                     $id
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request   $request
+     * @param  mixed                                       $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function deleteAction($id)
+    public function deleteAction(Request $request, $id)
     {
-        $response = parent::deleteAction($id);
+        $response = parent::deleteAction($request, $id);
         $url = $this->generateUrl('vib_flies_welcome_index');
 
         return is_array($response) ? $response : $this->redirect($url);

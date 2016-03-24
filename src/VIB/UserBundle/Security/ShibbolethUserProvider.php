@@ -81,7 +81,7 @@ class ShibbolethUserProvider extends BaseUserProvider implements ShibbolethUserP
     /**
      * Set user data using shibboleth heders as data source
      *
-     * @param \FOS\UserBundle\Entity\User                             $user
+     * @param \FOS\UserBundle\Model\User                             $user
      * @param \KULeuven\ShibbolethBundle\Security\ShibbolethUserToken $token
      */
     private function setUserData(BaseUser $user, ShibbolethUserToken $token)

@@ -27,12 +27,19 @@ interface ACLSearchQueryInterface
 {
     
     /**
-     * Set the Security Context
+     * Set the Token storage
      * 
-     * @param Symfony\Component\Security\Core\SecurityContextInterface $securityContext
+     * @param \\Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface  $tokenStorage
      */
-    public function setSecurityContext($securityContext);
-    
+    public function setTokenStorage($tokenStorage);
+
+    /**
+     * Set the Authorization checker
+     *
+     * @param \Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface  $authorizationChecker
+     */
+    public function setAuthorizationChecker($authorizationChecker);
+
     /**
      * Get a user from the Security Context
      *

@@ -18,16 +18,17 @@
 
 namespace VIB\FliesBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\SatisfiesParentSecurityPolicy;
-use JMS\SecurityExtraBundle\Annotation\Secure;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
 use Bluemesa\Bundle\AclBundle\Controller\SecureCRUDController;
 use Bluemesa\Bundle\CoreBundle\Filter\RedirectFilterInterface;
 
+use VIB\FliesBundle\Doctrine\VialManager;
 use VIB\FliesBundle\Label\PDFLabel;
 
 use VIB\FliesBundle\Form\StockType;
@@ -77,11 +78,12 @@ class StockController extends SecureCRUDController
      * @Template()
      * @SatisfiesParentSecurityPolicy
      *
+     * @param  \Symfony\Component\HttpFoundation\Request   $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
-        return parent::listAction();
+        return parent::listAction($request);
     }
     
     /**
@@ -90,17 +92,18 @@ class StockController extends SecureCRUDController
      * @Route("/show/{id}")
      * @Template()
      *
-     * @param mixed $id
-     *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request           $request
+     * @param  mixed                                               $id
+     * @return \Symfony\Component\HttpFoundation\Response | array
      */
-    public function showAction($id)
+    public function showAction(Request $request, $id)
     {
+        /** @var Stock $stock */
         $stock = $this->getEntity($id);
-        $response = parent::showAction($stock);
+        $response = parent::showAction($request, $stock);
         $om = $this->getObjectManager();
         
-        $filter = new VialFilter(null, $this->getSecurityContext());
+        $filter = new VialFilter(null, $this->getAuthorizationChecker(), $this->getTokenStorage());
         $filter->setAccess('private');
         
         $myVials = $om->getRepository('VIB\FliesBundle\Entity\StockVial')
@@ -110,6 +113,7 @@ class StockController extends SecureCRUDController
         $medium = new ArrayCollection();
         $large = new ArrayCollection();
 
+        /** @var StockVial $vial */
         foreach ($myVials as $vial) {
             switch ($vial->getSize()) {
                 case 'small':
@@ -135,64 +139,64 @@ class StockController extends SecureCRUDController
      * @Route("/new")
      * @Template()
      * @SatisfiesParentSecurityPolicy
-     * 
-     * @return Symfony\Component\HttpFoundation\Response
+     *
+     * @param  \Symfony\Component\HttpFoundation\Request           $request
+     * @return \Symfony\Component\HttpFoundation\Response | array
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
         $om = $this->getObjectManager();
+        /** @var VialManager $vm */
         $vm = $this->getObjectManager('VIB\FliesBundle\Entity\Vial');
         $class = $this->getEntityClass();
         $stock = new $class();
         $existingStock = null;
         $data = array('stock' => $stock, 'number' => 1, 'size' => 'medium');
         $form = $this->createForm($this->getCreateForm(), $data);
-        $request = $this->getRequest();
 
-        if ($request->getMethod() == 'POST') {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
-                $stock = $data['stock'];
-                $number = $data['number'];
-                $size = $data['size'];
-                $food = $data['food'];
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+            /** @var Stock $stock */
+            $stock = $data['stock'];
+            $number = $data['number'];
+            $size = $data['size'];
+            $food = $data['food'];
 
-                for ($i = 0; $i < $number - 1; $i++) {
-                    $vial = new StockVial();
-                    $stock->addVial($vial);
-                }
-                
-                $vials = $stock->getVials();
-                
-                foreach ($vials as $vial) {
-                    $vial->setSize($size);
-                    $vial->setFood($food);
-                }
-                
-                $om->persist($stock);
-                $om->flush();
-
-                $this->addSessionFlash('success', 'Stock ' . $stock . ' was created.');
-
-                if ($this->getSession()->get('autoprint') == 'enabled') {
-                    $labelMode = ($this->getSession()->get('labelmode','std') == 'alt');
-                    $pdf = $this->get('vibfolks.pdflabel');
-                    $pdf->addLabel($vials, $labelMode);
-                    if ($this->submitPrintJob($pdf)) {
-                        $vm->markPrinted($vials);
-                        $vm->flush();
-                    }
-                }
-
-                $route = str_replace("_create", "_show", $request->attributes->get('_route'));
-                $url = $this->generateUrl($route,array('id' => $stock->getId()));
-
-                return $this->redirect($url);
-            } elseif ($stock instanceof Stock) {
-                $existingStock = $om->getRepository($this->getEntityClass())
-                                    ->findOneBy(array('name' => $stock->getName()));
+            for ($i = 0; $i < $number - 1; $i++) {
+                $vial = new StockVial();
+                $stock->addVial($vial);
             }
+
+            $vials = $stock->getVials();
+
+            foreach ($vials as $vial) {
+                $vial->setSize($size);
+                $vial->setFood($food);
+            }
+
+            $om->persist($stock);
+            $om->flush();
+
+            $this->addSessionFlash('success', 'Stock ' . $stock . ' was created.');
+
+            if ($this->getSession()->get('autoprint') == 'enabled') {
+                $labelMode = ($this->getSession()->get('labelmode','std') == 'alt');
+                $pdf = $this->get('vibfolks.pdflabel');
+                $pdf->addLabel($vials, $labelMode);
+                if ($this->submitPrintJob($pdf)) {
+                    $vm->markPrinted($vials);
+                    $vm->flush();
+                }
+            }
+
+            $route = str_replace("_create", "_show", $request->attributes->get('_route'));
+            $url = $this->generateUrl($route,array('id' => $stock->getId()));
+
+            return $this->redirect($url);
+        } elseif ($stock instanceof Stock) {
+            $existingStock = $om->getRepository($this->getEntityClass())
+                                ->findOneBy(array('name' => $stock->getName()));
         }
 
         return array('form' => $form->createView(), 'existingStock' => $existingStock);
@@ -204,21 +208,22 @@ class StockController extends SecureCRUDController
      * @Route("/edit/{id}")
      * @Template()
      *
-     * @param  mixed                                     $id
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request           $request
+     * @param  mixed                                               $id
+     * @return \Symfony\Component\HttpFoundation\Response | array
      */
-    public function editAction($id)
+    public function editAction(Request $request, $id)
     {
-        $response = parent::editAction($id);
+        $response = parent::editAction($request, $id);
         
         if (is_array($response)) {
             $om = $this->getObjectManager();
-            $filter = new VialFilter(null, $this->getSecurityContext());
+            $filter = new VialFilter(null, $this->getAuthorizationChecker(), $this->getTokenStorage());
             $filter->setAccess('insecure');
             $stock = isset($response['form']) ? $response['form']->vars['value'] : $this->getEntity($id);
             $used = $om->getRepository('VIB\FliesBundle\Entity\StockVial')
                         ->getUsedVialCountByStock($stock, $filter);
-            $canDelete = $this->getSecurityContext()->isGranted('ROLE_ADMIN') || ($used == 0);
+            $canDelete = $this->getAuthorizationChecker()->isGranted('ROLE_ADMIN') || ($used == 0);
             
             return array_merge($response, array('can_delete' => $canDelete));
         }
@@ -229,8 +234,8 @@ class StockController extends SecureCRUDController
     /**
      * Submit print job
      *
-     * @param  VIB\FliesBundle\Utils\PDFLabel $pdf
-     * @param  integer                        $count
+     * @param  \VIB\FliesBundle\Label\PDFLabel  $pdf
+     * @param  integer                          $count
      * @return boolean
      */
     protected function submitPrintJob(PDFLabel $pdf, $count = 1)
@@ -257,9 +262,8 @@ class StockController extends SecureCRUDController
     /**
      * {@inheritdoc}
      */
-    protected function getFilterRedirect(RedirectFilterInterface $filter)
+    protected function getFilterRedirect(Request $request, RedirectFilterInterface $filter)
     {
-        $request = $this->getRequest();
         $currentRoute = $request->attributes->get('_route');
         
         if ($currentRoute == '') {
@@ -287,8 +291,8 @@ class StockController extends SecureCRUDController
     /**
      * {@inheritdoc}
      */
-    protected function getFilter()
+    protected function getFilter(Request $request)
     {
-        return new StockFilter($this->getRequest(), $this->getSecurityContext());
+        return new StockFilter($request, $this->getAuthorizationChecker(), $this->getTokenStorage());
     }
 }

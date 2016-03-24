@@ -84,7 +84,7 @@
                   <li><a href="{{ path('vib_flies_rack_create') }}">New rack</a></li>
                 </ul>
               </li>
-              {% render(controller("VIBFliesBundle:Incubator:menu")) %}
+              {{ render(controller("VIBFliesBundle:Incubator:menu")) }}
               <li class="divider"></li>
               <li><a href="{{ path('vib_flies_search_advanced') }}">Search</a></li>
             </ul>
@@ -109,7 +109,7 @@
           </li>
         </ul>
         {% endif %}
-        {% render(controller("VIBFliesBundle:Search:form")) %}
+        {{ render(controller("VIBFliesBundle:Search:form")) }}
       </div>
     </div>
   </div>

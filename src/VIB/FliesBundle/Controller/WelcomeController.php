@@ -19,16 +19,13 @@
 namespace VIB\FliesBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Bluemesa\Bundle\CoreBundle\Controller\AbstractController;
 use Bluemesa\Bundle\AclBundle\Controller\SecureController;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-
 use VIB\FliesBundle\Filter\VialFilter;
+use VIB\FliesBundle\Repository\VialRepository;
 
 /**
  * Default controller for FliesBundle
@@ -45,7 +42,7 @@ class WelcomeController extends AbstractController
      * @Route("/")
      * @Template()
      *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -73,9 +70,10 @@ class WelcomeController extends AbstractController
     protected function getVialStatistics($class)
     {
         $om = $this->getObjectManager();
+        /** @var VialRepository $repository */
         $repository = $om->getRepository($class);
 
-        $filter = new VialFilter(null, $this->getSecurityContext());
+        $filter = new VialFilter(null, $this->getAuthorizationChecker(), $this->getTokenStorage());
         $filter->setAccess('shared');        
         $vials = $repository->getList($filter);
         $stats = array();

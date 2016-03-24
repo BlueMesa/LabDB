@@ -24,8 +24,9 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Exception\InvalidArgumentException;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use VIB\FormsBundle\Form\DataTransformer\EntityToTextTransformer;
 
@@ -39,7 +40,7 @@ use VIB\FormsBundle\Form\DataTransformer\EntityToTextTransformer;
 class TextEntityType extends AbstractType
 {
     /**
-     * @var Doctrine\Common\Persistence\ManagerRegistry
+     * @var \Doctrine\Common\Persistence\ManagerRegistry
      */
     protected $registry;
 
@@ -50,7 +51,7 @@ class TextEntityType extends AbstractType
      *     "registry" = @DI\Inject("doctrine")
      * })
      * 
-     * @param Doctrine\Common\Persistence\ManagerRegistry $registry
+     * @param \Doctrine\Common\Persistence\ManagerRegistry $registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -74,7 +75,7 @@ class TextEntityType extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $registry = $this->registry;
 
@@ -87,7 +88,7 @@ class TextEntityType extends AbstractType
             $em = $registry->getManagerForClass($options['class']);
 
             if (null === $em) {
-                throw new FormException(sprintf(
+                throw new InvalidArgumentException(sprintf(
                     'Class "%s" seems not to be a managed Doctrine entity. ' .
                     'Did you forget to map it?',
                     $options['class']
@@ -105,10 +106,7 @@ class TextEntityType extends AbstractType
         ));
 
         $resolver->setRequired(array('class'));
-
-        $resolver->setNormalizers(array(
-            'em' => $emNormalizer,
-        ));
+        $resolver->setNormalizer('em', $emNormalizer);
     }
 
     /**

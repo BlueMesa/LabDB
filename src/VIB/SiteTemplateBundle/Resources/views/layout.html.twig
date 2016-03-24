@@ -108,7 +108,7 @@
             {% endif %}
             {% endblock flashes %}
             {% block msie_info %}
-            {% render(controller("VIBSiteTemplateBundle:Messages:msie")) %}
+            {{ render(controller("VIBSiteTemplateBundle:Messages:msie")) }}
             {% endblock msie_info %}
             {% block info_messages %}{% endblock info_messages %}
           </div>

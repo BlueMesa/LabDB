@@ -61,16 +61,17 @@ class VialManager extends OwnedObjectManager
     /**
      * Flip vial(s)
      *
-     * @param  VIB\FliesBundle\Entity\Vial|\Doctrine\Common\Collections\Collection $vials
-     * @param  boolean                                                              $setSource
-     * @param  boolean                                                              $trashSource
-     * @return VIB\FliesBundle\Entity\Vial|\Doctrine\Common\Collections\Collection
+     * @param  \VIB\FliesBundle\Entity\Vial|\Doctrine\Common\Collections\Collection  $vials
+     * @param  boolean                                                               $setSource
+     * @param  boolean                                                               $trashSource
+     * @return \VIB\FliesBundle\Entity\Vial|\Doctrine\Common\Collections\Collection
      * @throws \ErrorException
      */
     public function flip($vials, $setSource = true, $trashSource = false)
     {
         if (($vial = $vials) instanceof Vial) {
             $vialClass = str_replace("Proxies\\__CG__\\", "", get_class($vial));
+            /** @var Vial $newVial */
             $newVial = new $vialClass($vial, $setSource);
             if ($trashSource) {
                 $newVial->setPosition($vial->getPosition());
@@ -98,7 +99,7 @@ class VialManager extends OwnedObjectManager
     /**
      * Trash vial(s)
      *
-     * @param  VIB\FliesBundle\Entity\Vial|\Doctrine\Common\Collections\Collection $vials
+     * @param  \VIB\FliesBundle\Entity\Vial|\Doctrine\Common\Collections\Collection  $vials
      * @throws \ErrorException
      */
     public function trash($vials)
@@ -121,7 +122,7 @@ class VialManager extends OwnedObjectManager
     /**
      * UnTrash vial(s)
      *
-     * @param  VIB\FliesBundle\Entity\Vial|\Doctrine\Common\Collections\Collection $vials
+     * @param  \VIB\FliesBundle\Entity\Vial|\Doctrine\Common\Collections\Collection  $vials
      * @throws \ErrorException
      */
     public function untrash($vials)
@@ -144,7 +145,7 @@ class VialManager extends OwnedObjectManager
     /**
      * Mark vial(s) as having their label printed
      *
-     * @param  VIB\FliesBundle\Entity\Vial|\Doctrine\Common\Collections\Collection $vials
+     * @param  \VIB\FliesBundle\Entity\Vial|\Doctrine\Common\Collections\Collection  $vials
      * @throws \ErrorException
      */
     public function markPrinted($vials)
@@ -167,8 +168,8 @@ class VialManager extends OwnedObjectManager
     /**
      * Put vials into $incubator
      *
-     * @param VIB\FliesBundle\Entity\Vial|\Doctrine\Common\Collections\Collection $vials
-     * @param VIB\FliesBundle\Entity\Incubator
+     * @param \VIB\FliesBundle\Entity\Vial|\Doctrine\Common\Collections\Collection  $vials
+     * @param \VIB\FliesBundle\Entity\Incubator
      * @throws \ErrorException
      */
     public function incubate($vials, Incubator $incubator = null)
@@ -191,11 +192,12 @@ class VialManager extends OwnedObjectManager
     /**
      * Expand a vial into multiple vials of arbitrary size
      *
-     * @param  VIB\FliesBundle\Doctrine\Vial          $vial
-     * @param  integer                                 $count
-     * @param  boolean                                 $setSource
-     * @param  string                                  $size
-     * @return Doctrine\Common\Collections\Collection
+     * @param  \VIB\FliesBundle\Entity\Vial             $vial
+     * @param  integer                                  $count
+     * @param  boolean                                  $setSource
+     * @param  string                                   $size
+     * @param  string                                   $food
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function expand(Vial $vial, $count = 1, $setSource = true, $size = null, $food = null)
     {
@@ -219,8 +221,8 @@ class VialManager extends OwnedObjectManager
     
     /**
      * 
-     * @param type $object
-     * @return type
+     * @param  mixed  $object
+     * @return array
      */
     public function getDefaultACL($object = null, $user = null)
     {
@@ -228,7 +230,7 @@ class VialManager extends OwnedObjectManager
         
         if (($vial = $object) instanceof Vial) {
             $sourceVial = $vial->getParent();
-            $acl = ((null !== $sourceVial)&&($this->securityContext->isGranted('OPERATOR', $sourceVial))) ?
+            $acl = ((null !== $sourceVial)&&($this->authorizationChecker->isGranted('OPERATOR', $sourceVial))) ?
                 $this->getACL($sourceVial) : $acl;
         }
         

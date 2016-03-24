@@ -18,6 +18,8 @@
 
 namespace VIB\FliesBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\SatisfiesParentSecurityPolicy;
@@ -29,6 +31,7 @@ use VIB\FliesBundle\Form\SelectType;
 
 use VIB\FliesBundle\Entity\Rack;
 use VIB\FliesBundle\Entity\Incubator;
+use VIB\FliesBundle\Label\PDFLabel;
 
 /**
  * RackController class
@@ -55,7 +58,7 @@ class RackController extends SecureCRUDController
      *
      * @SatisfiesParentSecurityPolicy
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
         throw $this->createNotFoundException();
     }
@@ -66,29 +69,29 @@ class RackController extends SecureCRUDController
      * @Route("/show/{id}")
      * @Template()
      *
-     * @param mixed $id
-     *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request           $request
+     * @param  mixed                                               $id
+     * @return \Symfony\Component\HttpFoundation\Response | array
      */
-    public function showAction($id)
+    public function showAction(Request $request, $id)
     {
+        /** @var Rack $rack */
         $rack = $this->getEntity($id);
-        $response = parent::showAction($rack);
+        $response = parent::showAction($request, $rack);
 
         $form = $this->createForm(new SelectType('VIB\FliesBundle\Entity\Vial'));
-        $request = $this->getRequest();
 
         if ($request->getMethod() == 'POST') {
             $postForm = $request->request->get('select');
             $action = is_array($postForm) ? $postForm['action'] : '';
             if ($action == 'incubate') {
-                $form->bind($request);
+                $form->handleRequest($request);
                 if ($form->isValid()) {
                     $data = $form->getData();
                     $this->incubateRack($rack, $data['incubator']);
                 }
             } else {
-                $this->setBatchActionRedirect();
+                $this->setBatchActionRedirect($request);
                 $selectResponse = $this->forward('VIBFliesBundle:Vial:select');
                 
                 if (($action == 'flip')||($action == 'label')||
@@ -109,38 +112,37 @@ class RackController extends SecureCRUDController
      * @Route("/new")
      * @Template()
      * @SatisfiesParentSecurityPolicy
-     * 
-     * @return array|\Symfony\Component\HttpFoundation\Response
+     *
+     * @param  \Symfony\Component\HttpFoundation\Request           $request
+     * @return \Symfony\Component\HttpFoundation\Response | array
      */
-    public function createAction()
+    public function createAction(Request $request)
     {
         $om = $this->getObjectManager();
+        /** @var Rack $rack */
         $rack = new Rack();
         $data = array('rack' => $rack, 'rows' => 10, 'columns' => 10);
         $form = $this->createForm($this->getCreateForm(), $data);
-        $request = $this->getRequest();
 
-        if ($request->getMethod() == 'POST') {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
-                $rack = $data['rack'];
-                $rows = $data['rows'];
-                $columns = $data['columns'];
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $rack = $data['rack'];
+            $rows = $data['rows'];
+            $columns = $data['columns'];
 
-                $rack->setGeometry($rows, $columns);
-                $om->persist($rack);
-                $om->flush();
+            $rack->setGeometry($rows, $columns);
+            $om->persist($rack);
+            $om->flush();
 
-                $this->addSessionFlash('success', 'Rack ' . $rack . ' was created.');
+            $this->addSessionFlash('success', 'Rack ' . $rack . ' was created.');
 
-                if ($this->getSession()->get('autoprint') == 'enabled') {
-                    return $this->printLabelAction($rack);
-                } else {
-                    $url = $this->generateUrl('vib_flies_rack_show',array('id' => $rack->getId()));
+            if ($this->getSession()->get('autoprint') == 'enabled') {
+                return $this->printLabelAction($rack);
+            } else {
+                $url = $this->generateUrl('vib_flies_rack_show',array('id' => $rack->getId()));
 
-                    return $this->redirect($url);
-                }
+                return $this->redirect($url);
             }
         }
 
@@ -153,41 +155,41 @@ class RackController extends SecureCRUDController
      * @Route("/edit/{id}")
      * @Template()
      *
-     * @param  mixed                                     $id
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request                         $request
+     * @param  mixed                                                             $id
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     * @return \Symfony\Component\HttpFoundation\Response | array
      */
-    public function editAction($id)
+    public function editAction(Request $request, $id)
     {
         $om = $this->getObjectManager();
+        /** @var Rack $rack */
         $rack = $this->getEntity($id);
-        $securityContext = $this->get('security.context');
+        $authorizationChecker = $this->getAuthorizationChecker();
 
-        if (!($securityContext->isGranted('ROLE_ADMIN')||$securityContext->isGranted('EDIT', $rack))) {
+        if (!($authorizationChecker->isGranted('ROLE_ADMIN')||$authorizationChecker->isGranted('EDIT', $rack))) {
             throw new AccessDeniedException();
         }
 
         $data = array('rack' => $rack, 'rows' => $rack->getRows(), 'columns' => $rack->getColumns());
         $form = $this->createForm($this->getCreateForm(), $data);
-        $request = $this->getRequest();
 
-        if ($request->getMethod() == 'POST') {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $data = $form->getData();
-                $rack = $data['rack'];
-                $rows = $data['rows'];
-                $columns = $data['columns'];
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $data = $form->getData();
+            $rack = $data['rack'];
+            $rows = $data['rows'];
+            $columns = $data['columns'];
 
-                $rack->setGeometry($rows, $columns);
-                $om->persist($rack);
-                $om->flush();
+            $rack->setGeometry($rows, $columns);
+            $om->persist($rack);
+            $om->flush();
 
-                $this->addSessionFlash('success', 'Changes to rack ' . $rack . ' were saved.');
+            $this->addSessionFlash('success', 'Changes to rack ' . $rack . ' were saved.');
 
-                $url = $this->generateUrl('vib_flies_rack_show',array('id' => $rack->getId()));
+            $url = $this->generateUrl('vib_flies_rack_show',array('id' => $rack->getId()));
 
-                return $this->redirect($url);
-            }
+            return $this->redirect($url);
         }
 
         return array('form' => $form->createView());
@@ -199,12 +201,13 @@ class RackController extends SecureCRUDController
      * @Route("/delete/{id}")
      * @Template()
      *
-     * @param  mixed                                     $id
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request           $request
+     * @param  mixed                                               $id
+     * @return \Symfony\Component\HttpFoundation\Response | array
      */
-    public function deleteAction($id)
+    public function deleteAction(Request $request, $id)
     {
-        $response = parent::deleteAction($id);
+        $response = parent::deleteAction($request, $id);
         $url = $this->generateUrl('vib_flies_welcome_index');
 
         return is_array($response) ? $response : $this->redirect($url);
@@ -213,8 +216,8 @@ class RackController extends SecureCRUDController
     /**
      * Prepare label
      *
-     * @param  VIB\FliesBundle\Entity\Rack                $rack
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  \VIB\FliesBundle\Entity\Rack     $rack
+     * @return \VIB\FliesBundle\Label\PDFLabel
      */
     public function prepareLabel(Rack $rack)
     {
@@ -229,11 +232,12 @@ class RackController extends SecureCRUDController
      *
      * @Route("/label/{id}/download")
      *
-     * @param  mixed                                      $id
+     * @param  mixed                                       $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function downloadLabelAction($id)
     {
+        /** @var Rack $rack */
         $rack = $this->getEntity($id);
         $pdf = $this->prepareLabel($rack);
 
@@ -245,11 +249,12 @@ class RackController extends SecureCRUDController
      *
      * @Route("/label/{id}/print")
      *
-     * @param  mixed                                      $id
+     * @param  mixed                                       $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function printLabelAction($id)
     {
+        /** @var Rack $rack */
         $rack = $this->getEntity($id);
         $pdf = $this->prepareLabel($rack);
         $jobStatus = $pdf->printPDF();
@@ -258,7 +263,6 @@ class RackController extends SecureCRUDController
         } else {
             $this->addSessionFlash('error', 'There was an error printing labels. The print server said: ' . $jobStatus);
         }
-
         $url = $this->generateUrl('vib_flies_rack_show',array('id' => $rack->getId()));
 
         return $this->redirect($url);
@@ -267,8 +271,8 @@ class RackController extends SecureCRUDController
     /**
      * Incubate rack
      *
-     * @param \VIB\FliesBundle\Entity\Rack      $rack
-     * @param \VIB\FliesBundle\Entity\Incubator $incubator
+     * @param \VIB\FliesBundle\Entity\Rack       $rack
+     * @param \VIB\FliesBundle\Entity\Incubator  $incubator
      */
     public function incubateRack(Rack $rack, Incubator $incubator)
     {
@@ -280,10 +284,9 @@ class RackController extends SecureCRUDController
     }
 
     
-    protected function setBatchActionRedirect($redirect = null)
+    protected function setBatchActionRedirect(Request $request, $redirect = null)
     {
         if (null === $redirect) {
-            $request = $this->getRequest();
             $currentRoute = $request->attributes->get('_route');
             $routeArguments = $request->attributes->get('_route_params', null);
             $redirect = $this->generateUrl($currentRoute, $routeArguments);

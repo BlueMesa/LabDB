@@ -18,6 +18,7 @@
 
 namespace VIB\FliesBundle\Controller;
 
+use Bluemesa\Bundle\AclBundle\Doctrine\OwnedObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -59,7 +60,9 @@ class AJAXController extends AbstractController
     
     /**
      * @Route("/foods")
-     * @Template()
+     *
+     * @param  \Symfony\Component\HttpFoundation\Request       $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function foodsAction(Request $request)
     {
@@ -86,7 +89,9 @@ class AJAXController extends AbstractController
     
     /**
      * @Route("/genotypes")
-     * @Template()
+     *
+     * @param  \Symfony\Component\HttpFoundation\Request       $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function genotypesAction(Request $request)
     {
@@ -121,7 +126,9 @@ class AJAXController extends AbstractController
     
     /**
      * @Route("/fbstock")
-     * @Template()
+     *
+     * @param  \Symfony\Component\HttpFoundation\Request       $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function flybaseStockAction(Request $request)
     {
@@ -157,7 +164,9 @@ FLYBASE_SQL;
     
     /**
      * @Route("/fbvendor")
-     * @Template()
+     *
+     * @param  \Symfony\Component\HttpFoundation\Request       $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function flybaseVendorAction(Request $request)
     {
@@ -182,7 +191,8 @@ FLYBASE_SQL;
      * @Route("/vials")
      * @Template()
      *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request   $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function vialAction(Request $request)
     {
@@ -192,7 +202,7 @@ FLYBASE_SQL;
         $order = $request->query->get('order', null);
 
         $om = $this->getObjectManager();
-        $securityContext = $this->getSecurityContext();
+        $authorizationChecker = $this->getAuthorizationChecker();
         try {
             $vial = $om->find('VIBFliesBundle:Vial', $id);
         } catch (NoResultException $e) {
@@ -202,7 +212,7 @@ FLYBASE_SQL;
 
         if ((! $vial instanceof Vial)||(($filter !== null)&&($vial->getType() != $filter))) {
             return new Response('The' . $type . ' vial ' . sprintf("%06d",$id) . ' does not exist', 404);
-        } elseif (!($securityContext->isGranted('ROLE_ADMIN') || $securityContext->isGranted('VIEW', $vial))) {
+        } elseif (!($authorizationChecker->isGranted('ROLE_ADMIN') || $authorizationChecker->isGranted('VIEW', $vial))) {
             return new Response('Access to' . $type . ' vial ' . sprintf("%06d",$id) . ' denied', 401);
         }
 
@@ -220,7 +230,8 @@ FLYBASE_SQL;
      *
      * @Route("/racks/vials")
      *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request   $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function rackVialAction(Request $request)
     {
@@ -230,7 +241,7 @@ FLYBASE_SQL;
         $order = $request->query->get('order',null);
 
         $om = $this->getObjectManager();
-        $securityContext = $this->getSecurityContext();
+        $authorizationChecker = $this->getAuthorizationChecker();
         try {
             $vial = $om->find('VIBFliesBundle:Vial', $vialID);
         } catch (NoResultException $e) {
@@ -244,7 +255,7 @@ FLYBASE_SQL;
 
         if (! $vial instanceof Vial) {
             return new Response('The vial ' . sprintf("%06d",$vialID) . ' does not exist', 404);
-        } elseif (!($securityContext->isGranted('ROLE_ADMIN') || $securityContext->isGranted('VIEW', $vial))) {
+        } elseif (!($authorizationChecker->isGranted('ROLE_ADMIN') || $authorizationChecker->isGranted('VIEW', $vial))) {
             return new Response('Access to vial ' . sprintf("%06d",$vialID) . ' denied', 401);
         }
 
@@ -282,9 +293,9 @@ FLYBASE_SQL;
      * Handle rack vial AJAX request
      *
      * @Route("/racks/vials/remove")
-     * @Template()
      *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request   $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function rackVialRemoveAction(Request $request)
     {
@@ -292,7 +303,7 @@ FLYBASE_SQL;
         $rackID = $request->query->get('rackID');
 
         $om = $this->getObjectManager();
-        $securityContext = $this->getSecurityContext();
+        $authorizationChecker = $this->getAuthorizationChecker();
 
         try {
             $vial = (null !== $vialID) ? $om->find('VIBFliesBundle:Vial', $vialID) : null;
@@ -307,7 +318,7 @@ FLYBASE_SQL;
 
         if ((null !== $vialID)&&(! $vial instanceof Vial)) {
             return new Response('The vial ' . sprintf("%06d",$vialID) . ' does not exist', 404);
-        } elseif (!($securityContext->isGranted('ROLE_ADMIN') || $securityContext->isGranted('VIEW', $vial))) {
+        } elseif (!($authorizationChecker->isGranted('ROLE_ADMIN') || $authorizationChecker->isGranted('VIEW', $vial))) {
             return new Response('Access to vial ' . sprintf("%06d",$vialID) . ' denied', 401);
         }
 
@@ -337,18 +348,20 @@ FLYBASE_SQL;
      *
      * @Route("/stocks/search")
      *
-     * @param  Symfony\Component\HttpFoundation\Request  $request
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function stockSearchAction(Request $request)
     {
         $searchQuery = new SearchQuery();
-        $searchQuery->setSecurityContext($this->getSecurityContext());
+        $searchQuery->setTokenStorage($this->getTokenStorage());
+        $searchQuery->setAuthorizationChecker($this->getAuthorizationChecker());
         $searchQuery->setTerms($request->query->get('query'));
         $query = $this->getObjectManager()->getRepository('VIBFliesBundle:Stock')->getSearchQuery($searchQuery);
         $found = $query->getResult();
 
         $stockNames = array();
+        /** @var Stock $stock */
         foreach ($found as $stock) {
             $stockNames[] = $stock->getName();
         }
@@ -365,14 +378,15 @@ FLYBASE_SQL;
      * @Route("/popover")
      * @Template()
      *
-     * @param  Symfony\Component\HttpFoundation\Request  $request
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  \Symfony\Component\HttpFoundation\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function popoverAction(Request $request)
     {
         $type = $request->query->get('type');
         $id = $request->query->get('id');
         $rack = $request->query->get('rack');
+        /** @var OwnedObjectManager $om */
         $om = $this->getObjectManager();
 
         try {
@@ -389,6 +403,7 @@ FLYBASE_SQL;
                     return new Response('Unrecognized type', 406);
             }
         } catch (NoResultException $e) {
+            $etype = null;
             $entity = null;
         }
 

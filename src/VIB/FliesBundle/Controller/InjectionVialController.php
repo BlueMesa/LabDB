@@ -18,12 +18,13 @@
 
 namespace VIB\FliesBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use VIB\FliesBundle\Entity\InjectionVial;
 use VIB\FliesBundle\Form\InjectionVialType;
 use VIB\FliesBundle\Form\InjectionVialNewType;
 
@@ -38,7 +39,6 @@ class InjectionVialController extends VialController
 {
     const ENTITY_CLASS = 'VIB\FliesBundle\Entity\InjectionVial';
     const ENTITY_NAME = 'injection|injections';
-    
     
     /**
      * {@inheritdoc}
@@ -59,7 +59,7 @@ class InjectionVialController extends VialController
     /**
      * {@inheritdoc}
      */
-    public function expandAction($id = null)
+    public function expandAction(Request $request, $id = null)
     {
         throw $this->createNotFoundException();
     }
@@ -70,12 +70,12 @@ class InjectionVialController extends VialController
      * @Route("/stats/{id}")
      * @Template()
      *
-     * @param mixed $id
-     *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @param  mixed                                       $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function statsAction($id)
     {
+        /** @var InjectionVial $injection */
         $injection = $this->getEntity($id);
         $vials = $this->getObjectManager()->getRepository(self::ENTITY_CLASS)->findSimilar($injection);
         $sterile = new ArrayCollection();
@@ -91,6 +91,7 @@ class InjectionVialController extends VialController
             throw $this->createNotFoundException();
         }
 
+        /** @var InjectionVial $vial */
         foreach ($vials as $vial) {
             $temp = (float) $vial->getTemperature();
             if (! $temps->contains($temp)) {
