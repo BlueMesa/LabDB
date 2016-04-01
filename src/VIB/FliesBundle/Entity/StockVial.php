@@ -113,7 +113,7 @@ class StockVial extends Vial implements AltLabelInterface
     /**
      * {@inheritdoc}
      *
-     * @Assert\True(message = "Parent vial must hold a stock")
+     * @Assert\IsTrue(message = "Parent vial must hold a stock")
      */
     public function isParentValid()
     {

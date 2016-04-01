@@ -1,5 +1,10 @@
+vib_imap_user:
+    resource: "@VIBImapUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 default:
-    pattern:  /
+    path:  /
     defaults: { _controller: VIBWelcomeBundle:Default:index }
     
 vib_search:
@@ -37,9 +42,9 @@ fos_user_profile:
     prefix:   /profile
 
 login:
-    pattern:   /login
+    path:   /login
     defaults:  { _controller: VIBSecurityBundle:Security:login }
 login_check:
-    pattern:   /login_check
+    path:   /login_check
 logout:
-    pattern:   /logout
+    path:   /logout

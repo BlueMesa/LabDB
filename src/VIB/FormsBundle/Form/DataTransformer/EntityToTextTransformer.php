@@ -56,10 +56,10 @@ class EntityToTextTransformer implements DataTransformerInterface
     /**
      * Construct EntityToTextTransformer
      *
-     * @param Doctrine\Common\Persistence\ObjectManager $om       The object manager to use
-     * @param string                                    $class    Class of the entity
-     * @param string                                    $property Property to lookup
-     * @param string                                    $format   sprintf-compatible format string
+     * @param \Doctrine\Common\Persistence\ObjectManager $om       The object manager to use
+     * @param string                                     $class    Class of the entity
+     * @param string                                     $property Property to lookup
+     * @param string                                     $format   sprintf-compatible format string
      */
     public function __construct(ObjectManager $om, $class, $property = null, $format = null)
     {
@@ -87,7 +87,7 @@ class EntityToTextTransformer implements DataTransformerInterface
         }
 
         if (null !== $this->propertyPath) {
-            $propertyAccessor = PropertyAccess::getPropertyAccessor();
+            $propertyAccessor = PropertyAccess::createPropertyAccessor();
             $value = (string) ($propertyAccessor->getValue($entity, $this->propertyPath));
         } else {
             $value = (string) ($entity);

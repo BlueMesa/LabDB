@@ -19,10 +19,11 @@
 namespace VIB\AntibodyBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Bluemesa\Bundle\AclBundle\Controller\SecureCRUDController;
 
+use VIB\AntibodyBundle\Entity\Antibody;
+use VIB\AntibodyBundle\Entity\Application;
 use VIB\AntibodyBundle\Form\AntibodyType;
 
 /**
@@ -34,17 +35,17 @@ use VIB\AntibodyBundle\Form\AntibodyType;
  */
 class AntibodyController extends SecureCRUDController
 {
+    const ENTITY_CLASS = 'VIB\AntibodyBundle\Entity\Antibody';
+    const ENTITY_NAME = 'antibody|antibodies';
+
     /**
      * Construct AntibodyController
      *
      */
     public function __construct()
     {
-        $this->entityClass = 'VIB\AntibodyBundle\Entity\Antibody';
-        $this->entityName  = 'antibody|antibodies';
-        
-        $antibody = new \VIB\AntibodyBundle\Entity\Antibody;
-        $application = new \VIB\AntibodyBundle\Entity\Application;
+        $antibody = new Antibody;
+        $application = new Application;
         
         $antibody->addApplication($application);
     }

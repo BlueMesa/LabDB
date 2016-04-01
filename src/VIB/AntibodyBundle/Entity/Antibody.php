@@ -21,7 +21,6 @@ namespace VIB\AntibodyBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity as UniqueEntity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -135,14 +134,14 @@ class Antibody extends Entity implements TermocontrolledInterface
     /**
      * @ORM\OneToMany(targetEntity="Tube", mappedBy="antibody", cascade={"persist"}, fetch="EXTRA_LAZY")
      *
-     * @var Doctrine\Common\Collections\Collection
+     * @var \Doctrine\Common\Collections\Collection
      */
     protected $tubes;
 
     /**
      * @ORM\OneToMany(targetEntity="Application", mappedBy="antibody", cascade={"persist", "remove"}, orphanRemoval=true)
      *
-     * @var Doctrine\Common\Collections\ArrayCollection
+     * @var \Doctrine\Common\Collections\ArrayCollection
      */
     protected $applications;
     
@@ -157,7 +156,6 @@ class Antibody extends Entity implements TermocontrolledInterface
      */
     public function __construct()
     {
-        $this->verified = false;
         $this->tubes = new ArrayCollection();
         $this->applications = new ArrayCollection();        
         $this->class = 'IgG';
@@ -170,7 +168,7 @@ class Antibody extends Entity implements TermocontrolledInterface
         return $this->getAntigen() . " " . 
                $this->getOrder() . " " .
                $this->getType() . " " .
-               $this->getCLass();
+               $this->getClass();
     }
     
     /**
@@ -360,7 +358,7 @@ class Antibody extends Entity implements TermocontrolledInterface
     /**
      * Get info URL
      *
-     * @return type
+     * @return string
      */
     public function getInfoURL()
     {
@@ -370,7 +368,7 @@ class Antibody extends Entity implements TermocontrolledInterface
     /**
      * Set info URL
      *
-     * @return type
+     * @param string  $infoURL
      */
     public function setInfoURL($infoURL)
     {
@@ -380,7 +378,7 @@ class Antibody extends Entity implements TermocontrolledInterface
     /**
      * Get applications
      *
-     * @return Doctrine\Common\Collections\ArrayCollection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getApplications()
     {
@@ -390,7 +388,7 @@ class Antibody extends Entity implements TermocontrolledInterface
     /**
      * Add application
      *
-     * @param VIB\AntibodyBundle\Entity\Application $application
+     * @param \VIB\AntibodyBundle\Entity\Application $application
      */
     public function addApplication(Application $application)
     {
@@ -406,7 +404,7 @@ class Antibody extends Entity implements TermocontrolledInterface
     /**
      * Remove application
      *
-     * @param VIB\AntibodyBundle\Entity\Application $application
+     * @param \VIB\AntibodyBundle\Entity\Application $application
      */
     public function removeApplication(Application $application)
     {
@@ -416,7 +414,7 @@ class Antibody extends Entity implements TermocontrolledInterface
     /**
      * Get tubes
      *
-     * @return Doctrine\Common\Collections\ArrayCollection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getTubes()
     {
@@ -426,7 +424,7 @@ class Antibody extends Entity implements TermocontrolledInterface
     /**
      * Add tube
      *
-     * @param VIB\AntibodyBundle\Entity\Tube $tube
+     * @param \VIB\AntibodyBundle\Entity\Tube $tube
      */
     public function addTube(Tube $tube)
     {
@@ -444,7 +442,7 @@ class Antibody extends Entity implements TermocontrolledInterface
     /**
      * Remove tube
      *
-     * @param VIB\AntibodyBundle\Entity\Tube $tube
+     * @param \VIB\AntibodyBundle\Entity\Tube $tube
      */
     public function removeTube(Tube $tube)
     {
@@ -456,7 +454,7 @@ class Antibody extends Entity implements TermocontrolledInterface
      */
     public function getTemperature()
     {
-        ($this->temperature !== null) ? $this->temperature : 21.00;
+        return ($this->temperature !== null) ? $this->temperature : 21.00;
     }
     
     /**

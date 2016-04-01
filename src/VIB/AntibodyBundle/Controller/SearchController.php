@@ -19,12 +19,11 @@
 namespace VIB\AntibodyBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
+use Bluemesa\Bundle\AclBundle\Controller\SecureController;
 
 use VIB\SearchBundle\Controller\SearchController as BaseSearchController;
-
 use VIB\AntibodyBundle\Search\SearchQuery;
-
 use VIB\AntibodyBundle\Form\SearchType;
 use VIB\AntibodyBundle\Form\AdvancedSearchType;
 
@@ -36,7 +35,9 @@ use VIB\AntibodyBundle\Form\AdvancedSearchType;
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
 class SearchController extends BaseSearchController
-{    
+{
+    use SecureController;
+
     /**
      * {@inheritdoc}
      */
@@ -67,7 +68,7 @@ class SearchController extends BaseSearchController
     protected function createSearchQuery($advanced = false)
     {
         $searchQuery = new SearchQuery($advanced);
-        $searchQuery->setTokenStorage($this->getSecurityContext());
+        $searchQuery->setTokenStorage($this->getTokenStorage());
         
         return $searchQuery;
     }
@@ -83,7 +84,7 @@ class SearchController extends BaseSearchController
             throw $this->createNotFoundException();
         }
         
-        $searchQuery->setTokenStorage($this->getSecurityContext());
+        $searchQuery->setTokenStorage($this->getTokenStorage());
         
         return $searchQuery;
     }

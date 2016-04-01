@@ -20,7 +20,7 @@ namespace VIB\FliesBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * CrossVialType class
@@ -54,7 +54,7 @@ class CrossVialType extends AbstractType
                     )
                 )
                 ->add('virgin', 'text_entity', array(
-                        'property' => 'id',
+                        'choice_label' => 'id',
                         'class'    => 'VIBFliesBundle:Vial',
                         'format'   => '%06d',
                         'label'    => 'Virgin vial',
@@ -76,7 +76,7 @@ class CrossVialType extends AbstractType
                     )
                 )
                 ->add('male', 'text_entity', array(
-                        'property' => 'id',
+                        'choice_label' => 'id',
                         'class'    => 'VIBFliesBundle:Vial',
                         'format'   => '%06d',
                         'label'    => 'Male vial',
@@ -108,7 +108,7 @@ class CrossVialType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
                  'inherit_data' => true

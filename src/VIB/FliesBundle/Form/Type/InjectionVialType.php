@@ -20,7 +20,7 @@ namespace VIB\FliesBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * InjectionVialSimpleType class
@@ -70,7 +70,7 @@ class InjectionVialType extends AbstractType
                     )
                 )
                 ->add('targetStock', 'entity_typeahead', array(
-                        'property'  => 'name',
+                        'choice_label'  => 'name',
                         'class'     => 'VIBFliesBundle:Stock',
                         'label'     => 'Target stock',
                         'required'  => false,
@@ -78,7 +78,7 @@ class InjectionVialType extends AbstractType
                     )
                 )
                 ->add('targetStockVial', 'text_entity', array(
-                        'property'  => 'id',
+                        'choice_label'  => 'id',
                         'class'     => 'VIBFliesBundle:StockVial',
                         'format'    => '%06d',
                         'required'  => false,
@@ -124,7 +124,7 @@ class InjectionVialType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
                  'inherit_data' => true

@@ -21,7 +21,7 @@ namespace VIB\FormsBundle\Form\Type;
 use JMS\DiExtraBundle\Annotation as DI;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Bootstrap datepicker form control
@@ -35,7 +35,7 @@ class DatePickerType extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'widget_addon_append' => array(

@@ -22,7 +22,7 @@ use JMS\DiExtraBundle\Annotation as DI;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Routing\Router;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Bootstrap user typeahead form control
@@ -36,13 +36,13 @@ class UserTypeaheadType extends EntityTypeaheadType
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
             'class' => 'VIB\UserBundle\Entity\User',
-            'property' => 'username',
+            'choice_label' => 'username',
             'data_route' => 'vib_user_ajax_choices'
         ));
     }

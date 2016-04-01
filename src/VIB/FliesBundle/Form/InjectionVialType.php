@@ -20,7 +20,7 @@ namespace VIB\FliesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * InjectionVialType class
@@ -49,7 +49,7 @@ class InjectionVialType extends AbstractType
                     )
                 )
                 ->add('sourceVial', 'text_entity', array(
-                        'property'  => 'id',
+                        'choice_label'  => 'id',
                         'class'     => 'VIBFliesBundle:InjectionVial',
                         'format'    => '%06d',
                         'required'  => false,
@@ -76,7 +76,7 @@ class InjectionVialType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'VIB\FliesBundle\Entity\InjectionVial',

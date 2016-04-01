@@ -1,6 +1,6 @@
 {% block content %}
 {% if form is defined %}
-<form action="{{ app.request.requestUri }}" method="post" {{ form_enctype(form)}} class="select">
+<form action="{{ app.request.requestUri }}" method="post" class="select">
 {% endif %}
 <div class="col-sm-12">
   {% block list_selector %}{% endblock list_selector %}

@@ -44,7 +44,7 @@ class VialExpandType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('source', 'text_entity', array(
-                        'property' => 'id',
+                        'choice_label' => 'id',
                         'class'    => 'VIBFliesBundle:Vial',
                         'format'   => '%06d',
                         'label'    => 'Source',

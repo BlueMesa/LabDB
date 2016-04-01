@@ -45,7 +45,7 @@ class VialGiveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('source', 'text_entity', array(
-                        'property' => 'id',
+                        'choice_label' => 'id',
                         'class'    => 'VIBFliesBundle:Vial',
                         'format'   => '%06d',
                         'label'    => 'Source',
@@ -75,7 +75,7 @@ class VialGiveType extends AbstractType
                         'label'       => 'Flip',
                         'expanded'    => true,
                         'required'    => false,
-                        'empty_value' => false,
+                        'placeholder' => false,
                     )
                 )
                 ->add('options', new Type\VialOptionsType(), array(

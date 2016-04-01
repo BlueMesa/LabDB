@@ -20,7 +20,7 @@ namespace VIB\FliesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * CrossVialSimpleType class
@@ -55,7 +55,7 @@ class CrossVialSimpleType extends AbstractType
                     )
                 )
                 ->add('storageUnit', 'entity', array(
-                        'property' => 'name',
+                        'choice_label' => 'name',
                         'class'    => 'VIBFliesBundle:Incubator',
                         'label'    => 'Incubator',
                         'horizontal' => true
@@ -66,7 +66,7 @@ class CrossVialSimpleType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
                 'data_class' => 'VIB\FliesBundle\Entity\CrossVial',

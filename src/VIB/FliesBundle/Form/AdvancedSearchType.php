@@ -20,7 +20,7 @@ namespace VIB\FliesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * AdvancedSearchType class
@@ -67,7 +67,7 @@ class AdvancedSearchType extends AbstractType
                             'injectionvial' => 'Injections'
                         ),
                         'expanded'    => true,
-                        'empty_value' => 'Stocks',
+                        'placeholder' => 'Stocks',
                         'empty_data'  => 'stock',
                         'required'    => false
                     )
@@ -90,7 +90,7 @@ class AdvancedSearchType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
                 'data_class' => 'VIB\FliesBundle\Search\SearchQuery'

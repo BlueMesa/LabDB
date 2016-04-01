@@ -66,8 +66,8 @@ $(document).ready(function () {
     width: 'resolve',
     minimumResultsForSearch: -1
   });
-  $('body').off('click.collection.data-api', '[data-collection-add-btn]');
-  $('body').on('click.collection.data-api', '[data-collection-add-btn]', function ( e ) {
+  $('body').off('click.collection.data-api', '[data-collection-add-btn]'
+    ).on('click.collection.data-api', '[data-collection-add-btn]', function ( e ) {
     var $btn = $(e.target);
     if (!$btn.hasClass('btn')){
         $btn = $btn.closest('.btn');

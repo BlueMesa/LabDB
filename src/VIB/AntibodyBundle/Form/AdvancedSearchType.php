@@ -20,7 +20,7 @@ namespace VIB\AntibodyBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * AdvancedSearchType class
@@ -65,7 +65,7 @@ class AdvancedSearchType extends AbstractType
                     'secondary' => 'Secondary'
                 ),
                 'expanded' => true,
-                'empty_value' => 'All',
+                'placeholder' => 'All',
                 'empty_data' => 'all',
                 'required' => false
             )
@@ -75,7 +75,7 @@ class AdvancedSearchType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
                 'data_class' => 'VIB\AntibodyBundle\Search\SearchQuery'

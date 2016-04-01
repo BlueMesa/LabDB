@@ -20,7 +20,7 @@ namespace VIB\FliesBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * VialOptionsType class
@@ -51,7 +51,7 @@ class VialOptionsType extends AbstractType
                         'expanded'    => true,
                         'label'       => 'Vial size',
                         'required'    => false,
-                        'empty_value' => false,
+                        'placeholder' => false,
                         'horizontal' => true
                     )
                 )
@@ -66,7 +66,7 @@ class VialOptionsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'inherit_data' => true

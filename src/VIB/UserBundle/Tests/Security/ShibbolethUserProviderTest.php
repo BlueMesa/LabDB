@@ -49,7 +49,7 @@ class ShibbolethUserProviderTest extends \PHPUnit_Framework_TestCase
         $this->userManager->expects($this->once())
             ->method('findUserByUsername')
             ->will($this->returnValue(null));
-        $this->setExpectedException('Symfony\Component\Security\Core\Exception\UsernameNotFoundException');
+        $this->expectException('Symfony\Component\Security\Core\Exception\UsernameNotFoundException');
         $this->userProvider->updateUser($this->userToken);
     }
 

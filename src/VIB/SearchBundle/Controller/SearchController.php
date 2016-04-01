@@ -90,8 +90,8 @@ abstract class SearchController extends AbstractController
         
         if ($request->getMethod() == 'POST') {
             
-            $form->bind($request);
-            $advancedForm->bind($request);
+            $form->handleRequest($request);
+            $advancedForm->handleRequest($request);
             
             if ($form->isValid()) {
                 $searchQuery = $form->getData();
@@ -114,8 +114,6 @@ abstract class SearchController extends AbstractController
         } else {
             return $this->handleNonSearchableRepository($repository, $searchQuery);
         }
-        
-        throw $this->createNotFoundException();
     }
     
     /**

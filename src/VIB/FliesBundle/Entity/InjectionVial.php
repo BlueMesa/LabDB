@@ -197,7 +197,7 @@ class InjectionVial extends Vial implements AltLabelInterface
     /**
      * {@inheritdoc}
      *
-     * @Assert\True(message = "Parent vial must hold injected flies")
+     * @Assert\IsTrue(message = "Parent vial must hold injected flies")
      */
     public function isParentValid()
     {

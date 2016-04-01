@@ -237,8 +237,8 @@ function clearRack(e,rackID) {
           type: 'get',
           data: {rackID: rackID},
           success: function() {
-            var cells = $('.rack-display').find('td')
-            cells.html('').removeClass('info success warning danger').addClass('empty')
+            var cells = $('.rack-display').find('td');
+            cells.html('').removeClass('info success warning danger').addClass('empty');
             $(cells[0]).addClass('info');
             cells.stop().css("background-color","")
                 .effect("highlight", {color: "red"}, 5000);
@@ -256,7 +256,7 @@ function clearRack(e,rackID) {
 function setAutoPrint(e) {
   var element = $(e);
   var checked = element.prop("checked");
-  var setting = checked ? 'enabled' : 'disabled'
+  var setting = checked ? 'enabled' : 'disabled';
   $.ajax({
           url: element.data('link'),
           type: 'post',
@@ -363,11 +363,11 @@ function preventEnterSubmit(e) {
 function form_error(message) {
     var error_html = "";
     error_html += '<div class="ui-widget">';
-    error_html += '<div class="ui-state-error ui-corner-all" style="padding: 3px 5px;">'
-    error_html += '<span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>'
+    error_html += '<div class="ui-state-error ui-corner-all" style="padding: 3px 5px;">';
+    error_html += '<span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>';
     error_html += message;
-    error_html += '</div>'
-    error_html += '</div>'
+    error_html += '</div>';
+    error_html += '</div>';
     return error_html;
 }
 
@@ -487,7 +487,7 @@ $(document).ready(function() {
             };
           }
         }
-      })
+      });
       /*
               .on('select2-open', function() {
         $('.select2-search').each(function() {

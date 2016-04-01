@@ -66,7 +66,7 @@ class SelectType extends AbstractType
                     )
                 )
                 ->add('incubator', 'hidden_entity', array(
-                        'property'     => 'name',
+                        'choice_label'     => 'name',
                         'class' => 'VIBFliesBundle:Incubator',
                     )
                 );

@@ -69,7 +69,7 @@ class CalendarController extends AbstractController
             $event = $calendar->createComponent('VEVENT');
             $calendar->add($event);
             $event->SUMMARY = 'Check crosses';
-            $calendar->createProperty('DTSTART');
+            $dtstart = $calendar->createProperty('DTSTART');
             $dtstart->setDateTime($crossDate);
             $event->DTSTART = $dtstart;
             $alarm = $calendar->createComponent('VALARM');

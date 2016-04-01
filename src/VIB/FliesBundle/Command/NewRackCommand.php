@@ -99,7 +99,7 @@ class NewRackCommand extends Command
         $om->createACL($racks, $user);
         $message = 'Everything seems to be OK. Commit?';
         if ($dialog->askConfirmation($output, '<question>' . $message . '</question>', true)) {
-            $em->getConnection()->commit();
+            $om->getConnection()->commit();
             if ($input->getOption('print')) {
                 echo "Will print labels now.\n";
                 $pdf = $this->container->get('vibfolks.pdflabel');

@@ -109,7 +109,7 @@ class User extends BaseUser
         if (($this->getSurname() != "")&&($this->getGivenName() != "")) {
             return (string) $this->getGivenName() . " " . $this->getSurname();
         } else {
-            return $this->getUsername();;
+            return $this->getUsername();
         }
     }
 

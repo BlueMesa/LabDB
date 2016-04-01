@@ -20,7 +20,7 @@ namespace VIB\FliesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * IncubatorType class
@@ -48,7 +48,7 @@ class IncubatorType extends AbstractType
                     )
                 )
                 ->add('temperature', 'number', array(
-                        'precision' => 2,
+                        'scale'     => 2,
                         'label'     => 'Temperature',
                         'required'  => false,
                         'widget_addon_append' => array(
@@ -61,7 +61,7 @@ class IncubatorType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array('data_class' => 'VIB\FliesBundle\Entity\Incubator'));
     }

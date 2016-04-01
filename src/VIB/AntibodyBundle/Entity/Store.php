@@ -64,7 +64,6 @@ class Store extends StorageUnit implements TermocontrolledInterface
     public function __construct($temperature = 4)
     {
         parent::__construct();
-        $this->name = 'New store';
         $this->temperature = $temperature;
     }
     

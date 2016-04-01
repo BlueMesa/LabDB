@@ -20,7 +20,7 @@ namespace VIB\FliesBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * StockVialType class
@@ -49,7 +49,7 @@ class StockVialType extends AbstractType
                     )
                 )
                 ->add('stock', 'entity_typeahead', array(
-                        'property'  => 'name',
+                        'choice_label'  => 'name',
                         'class'     => 'VIBFliesBundle:Stock',
                         'label'     => 'Stock',
                         'horizontal' => true
@@ -66,7 +66,7 @@ class StockVialType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
                  'inherit_data' => true

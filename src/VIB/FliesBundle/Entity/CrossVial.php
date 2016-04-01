@@ -274,7 +274,7 @@ class CrossVial extends Vial implements CrossVialInterface
     /**
      * {@inheritdoc}
      *
-     * @Assert\True(message = "Parent vial must hold a cross")
+     * @Assert\IsTrue(message = "Parent vial must hold a cross")
      */
     public function isParentValid()
     {
@@ -361,7 +361,7 @@ class CrossVial extends Vial implements CrossVialInterface
     /**
      * Check if male name is specified when male source is a cross
      *
-     * @Assert\True(message = "Male genotype must be specified")
+     * @Assert\IsTrue(message = "Male genotype must be specified")
      *
      * @return boolean
      */
@@ -436,7 +436,7 @@ class CrossVial extends Vial implements CrossVialInterface
     /**
      * Check if virgin name is specified when virgin source is a cross
      *
-     * @Assert\True(message = "Virgin genotype must be specified")
+     * @Assert\IsTrue(message = "Virgin genotype must be specified")
      *
      * @return boolean
      */

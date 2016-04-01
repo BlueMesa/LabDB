@@ -185,7 +185,7 @@ class CrossVialTest extends \PHPUnit_Framework_TestCase
         $vial->setMaleName('');
         $this->assertEmpty($vial->getMaleName());
         $vial->setMale($male);
-        if ((empty($maleName))&&(null != male)&&(!$male->getGenotype())) {
+        if ((empty($maleName))&&(null != $male)&&(!$male->getGenotype())) {
             $this->assertEquals($male->getGenotype(), $vial->getVirginName());
         }
         $vial->setMaleName($maleName);

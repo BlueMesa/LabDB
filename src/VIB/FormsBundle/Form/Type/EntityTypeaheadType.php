@@ -21,11 +21,10 @@ namespace VIB\FormsBundle\Form\Type;
 use JMS\DiExtraBundle\Annotation as DI;
 
 use Symfony\Component\Form\AbstractType;
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Bootstrap entity typeahead form control
@@ -37,7 +36,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class EntityTypeaheadType extends AbstractType
 {
     /**
-     * @var Symfony\Component\Routing\Router
+     * @var \Symfony\Component\Routing\Router
      */
     protected $router;
 
@@ -48,7 +47,7 @@ class EntityTypeaheadType extends AbstractType
      *     "router" = @DI\Inject("router")
      * })
      * 
-     * @param Symfony\Component\Routing\Router            $router
+     * @param \Symfony\Component\Routing\Router  $router
      */
     public function __construct(Router $router)
     {
@@ -68,7 +67,7 @@ class EntityTypeaheadType extends AbstractType
             if (null === $data_route) {
                 $data_link = $this->router->generate('VIBFormsBundle_ajax_choices',
                     array('class' => $options['class'],
-                          'property' => $options['property']));
+                          'property' => $options['choice_label']));
             } else {
                 $data_link = $this->router->generate($data_route, $data_route_options);
             }
@@ -80,9 +79,9 @@ class EntityTypeaheadType extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
             'data_link' => null,

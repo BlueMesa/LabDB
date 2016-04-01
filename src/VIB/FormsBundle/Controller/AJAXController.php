@@ -59,7 +59,7 @@ class AJAXController extends Controller
         $found = $qb->getQuery()->getResult();
 
         $propertyPath = (null !== $property) ? new PropertyPath($property) : null;
-        $propertyAccessor = PropertyAccess::getPropertyAccessor();
+        $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         
         $options = array();

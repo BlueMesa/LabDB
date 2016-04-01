@@ -11,7 +11,7 @@
 
 {% block content %}
 {% if form is defined %}
-<form action="{{ app.request.requestUri }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ app.request.requestUri }}" method="post">
 {% endif %}
 <div class="col-sm-12">
   {% block list_selector %}

@@ -21,7 +21,7 @@ namespace VIB\FormsBundle\Form\Type;
 use JMS\DiExtraBundle\Annotation as DI;
 
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use VIB\FormsBundle\Form\DataTransformer\RoleToTextTransformer;
 
@@ -47,9 +47,9 @@ class RoleTypeaheadType extends TypeaheadType
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
             'data_route' => 'vib_role_ajax_choices'

@@ -66,7 +66,7 @@ class TextEntityType extends AbstractType
         $transformer = new EntityToTextTransformer(
                 $options['em'],
                 $options['class'],
-                $options['property'],
+                $options['choice_label'],
                 $options['format']);
 
         $builder->addModelTransformer($transformer);
@@ -100,7 +100,7 @@ class TextEntityType extends AbstractType
 
         $resolver->setDefaults(array(
             'em'                => null,
-            'property'          => null,
+            'choice_label'      => null,
             'query_builder'     => null,
             'format'            => null
         ));
