@@ -47,7 +47,7 @@ abstract class SearchController extends AbstractController
      * @Template()
      * @Route("/") 
      *
-     * @return Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function advancedAction()
     {
@@ -61,9 +61,10 @@ abstract class SearchController extends AbstractController
     /**
      * Render quick search form
      *
+     * @Route("/simple/")
      * @Template()
      * 
-     * @return Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function searchAction()
     {

@@ -79,7 +79,7 @@ class RackController extends SecureCRUDController
         $rack = $this->getEntity($id);
         $response = parent::showAction($request, $rack);
 
-        $form = $this->createForm(new SelectType('VIB\FliesBundle\Entity\Vial'));
+        $form = $this->createForm(SelectType::class, null, array('class' => 'VIB\FliesBundle\Entity\Vial'));
 
         if ($request->getMethod() == 'POST') {
             $postForm = $request->request->get('select');

@@ -29,21 +29,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 class SelectType extends AbstractType
 {
     /**
-     * @var string
-     */
-    protected $entityClass;
-
-    /**
-     * Construct SelectType
-     *
-     * @param string $entityClass
-     */
-    public function __construct($entityClass = null)
-    {
-        $this->entityClass = $entityClass;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getName()
@@ -61,7 +46,7 @@ class SelectType extends AbstractType
                         'type'   => 'text_entity',
                         'allow_add' => true,
                         'options' => array(
-                            'class' =>  $this->entityClass
+                            'class' =>  $options['class']
                         )
                     )
                 )
