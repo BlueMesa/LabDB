@@ -10,10 +10,11 @@
         {
             "name": "bluemesa/acl-bundle",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "../acl-bundle/",
-                "reference": "42c2a7be6262c6f2a665ef7af9f3928680655d5f"
+            "dist": {
+                "type": "path",
+                "url": "/Users/radoslaw.ejsmont/src/web/bluemesa/acl-bundle/",
+                "reference": "2d25edd897d7dc07ce2f058d3b4321779f6bccc8",
+                "shasum": null
             },
             "require": {
                 "bluemesa/core-bundle": "dev-master",
@@ -55,18 +56,22 @@
                 "ACL",
                 "bluemesa"
             ],
-            "time": "2016-04-01 13:18:03"
+            "transport-options": {
+                "symlink": true
+            }
         },
         {
             "name": "bluemesa/core-bundle",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "../core-bundle/",
-                "reference": "fe61b1a271e04c3830f636162bc89e59608d7fc2"
+            "dist": {
+                "type": "path",
+                "url": "/Users/radoslaw.ejsmont/src/web/bluemesa/core-bundle/",
+                "reference": "a5216980f0b7e6e4728204c93cea0c8a63e9ea5d",
+                "shasum": null
             },
             "require": {
                 "doctrine/common": "~2.5",
+                "doctrine/doctrine-bundle": "~1.4",
                 "doctrine/orm": "~2.5",
                 "jms/di-extra-bundle": "~1.6",
                 "jms/serializer-bundle": "~1.0",
@@ -105,15 +110,18 @@
                 "bluemesa",
                 "core"
             ],
-            "time": "2016-04-01 13:16:31"
+            "transport-options": {
+                "symlink": true
+            }
         },
         {
             "name": "bluemesa/storage-bundle",
             "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "../storage-bundle/",
-                "reference": "5faa8c0db3dbc1aa981b895b64e699445b76dcf1"
+            "dist": {
+                "type": "path",
+                "url": "/Users/radoslaw.ejsmont/src/web/bluemesa/storage-bundle/",
+                "reference": "5faa8c0db3dbc1aa981b895b64e699445b76dcf1",
+                "shasum": null
             },
             "require": {
                 "bluemesa/core-bundle": "dev-master",
@@ -147,7 +155,9 @@
                 "bluemesa",
                 "storage"
             ],
-            "time": "2016-04-01 13:20:00"
+            "transport-options": {
+                "symlink": true
+            }
         },
         {
             "name": "components/bootstrap",
@@ -2210,7 +2220,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "Knplabs",
+                    "name": "KnpLabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
