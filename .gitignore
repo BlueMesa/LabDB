@@ -14,7 +14,6 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/bin/
 /components/
 web/bundles/
 web/media/
@@ -39,9 +38,6 @@ nbproject/
 .buildpath
 .project
 .settings/
-
-# envvars
-bin/envvars
 
 # to have the possibility to have an own htaccess e.g. with protection (as on prod)
 web/.htaccess

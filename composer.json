@@ -98,18 +98,6 @@
     },
     "repositories": [
         {
-            "type": "vcs",
-            "url": "../core-bundle/"
-        },
-        {
-            "type": "vcs",
-            "url": "../acl-bundle/"
-        },
-        {
-            "type": "vcs",
-            "url": "../storage-bundle/"
-        },
-        {
             "type": "package",
             "package": {
                 "name": "verekia/initializr",
