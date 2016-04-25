@@ -3,21 +3,21 @@ imports:
     - { resource: assets.yml }
 
 framework:
-    secret:          %secret%
+    secret:          "%secret%"
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    default_locale:  %locale%
+    default_locale:  "%locale%"
     session:         ~
 
 # Twig Configuration
 twig:
-    debug:            %kernel.debug%
-    strict_variables: %kernel.debug%
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
     form_themes:
-        - 'VIBFormsBundle:Form:fields.html.twig'
+        - 'BluemesaFormsBundle:Form:fields.html.twig'
         - 'VIBFliesBundle:Form:fields.html.twig'
 
 # Doctrine Configuration
@@ -26,12 +26,12 @@ doctrine:
         default_connection:   default
         connections:
             default:
-                driver:   %database_driver%
-                host:     %database_host%
-                port:     %database_port%
-                dbname:   %database_name%
-                user:     %database_user%
-                password: %database_password%
+                driver:   "%database_driver%"
+                host:     "%database_host%"
+                port:     "%database_port%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                password: "%database_password%"
                 charset:  UTF8
             flybase:
                 driver:   pdo_pgsql
@@ -41,15 +41,15 @@ doctrine:
                 user:     flybase
                 password: ~
     orm:
-        auto_generate_proxy_classes: %kernel.debug%
+        auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %mailer_transport%
-    host:      %mailer_host%
-    username:  %mailer_user%
-    password:  %mailer_password%
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
     spool:     { type: memory }
 
 mopa_bootstrap:
@@ -65,8 +65,8 @@ mopa_bootstrap:
         dns_prefetch:
             - '//ajax.googleapis.com'
         google:
-            wt:          %google_verification%
-            analytics:   %google_analytics%
+            wt:          "%google_verification%"
+            analytics:   "%google_analytics%"
     form:
         horizontal_label_class:  col-sm-3 control-label
         horizontal_label_offset_class:  col-sm-offset-3
@@ -96,4 +96,4 @@ fos_user:
 jms_di_extra:
     locations:
         all_bundles: false
-        bundles: [BluemesaCoreBundle, BluemesaAclBundle, VIBFliesBundle, VIBFormsBundle, VIBSecurityBundle, VIBUserBundle]
+        bundles: [BluemesaCoreBundle, BluemesaAclBundle, BluemesaFormsBundle, VIBFliesBundle, VIBSecurityBundle, VIBUserBundle]

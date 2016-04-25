@@ -20,6 +20,8 @@ namespace VIB\FliesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -32,17 +34,9 @@ class AdvancedSearchType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "advanced_search_form";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('terms', 'text', array(
+        $builder->add('terms', TextType::class, array(
                         'label'    => 'Include terms',
                         'required' => false,
                         'attr' => array(
@@ -51,7 +45,7 @@ class AdvancedSearchType extends AbstractType
                         )
                     )
                 )
-                ->add('excluded', 'text', array(
+                ->add('excluded', TextType::class, array(
                         'label'    => 'Exclude terms',
                         'required' => false,
                         'attr' => array(
@@ -60,7 +54,7 @@ class AdvancedSearchType extends AbstractType
                         )
                     )
                 )
-                ->add('filter', 'choice', array(
+                ->add('filter', ChoiceType::class, array(
                         'label' => 'Scope',
                         'choices' => array(
                             'crossvial'     => 'Crosses',
@@ -72,7 +66,7 @@ class AdvancedSearchType extends AbstractType
                         'required'    => false
                     )
                 )
-                ->add('opts', 'choice', array(
+                ->add('opts', ChoiceType::class, array(
                         'label'     => 'Options',
                         'choices' => array(
                             'private' => 'Only private',

@@ -51,7 +51,7 @@ abstract class SearchController extends AbstractController
      */
     public function advancedAction()
     {
-        $form = $this->createForm($this->createAdvancedSearchForm());
+        $form = $this->createForm($this->getAdvancedSearchForm());
         return array(
             'form' => $form->createView(),
             'realm' => $this->getSearchRealm()
@@ -68,7 +68,7 @@ abstract class SearchController extends AbstractController
      */
     public function searchAction()
     {
-        $form = $this->createForm($this->createSearchForm());
+        $form = $this->createForm($this->getSearchForm());
         return array(
             'form' => $form->createView(),
             'realm' => $this->getSearchRealm()
@@ -85,8 +85,8 @@ abstract class SearchController extends AbstractController
      */
     public function resultAction()
     {
-        $form = $this->createForm($this->createSearchForm(), $this->createSearchQuery());
-        $advancedForm = $this->createForm($this->createAdvancedSearchForm(), $this->createSearchQuery(true));
+        $form = $this->createForm($this->getSearchForm(), $this->createSearchQuery());
+        $advancedForm = $this->createForm($this->getAdvancedSearchForm(), $this->createSearchQuery(true));
         $request = $this->get('request');
         
         if ($request->getMethod() == 'POST') {
@@ -203,9 +203,9 @@ abstract class SearchController extends AbstractController
      * 
      * @return \VIB\SearchBundle\Form\SearchType
      */
-    protected function createSearchForm()
+    protected function getSearchForm()
     {
-        return new SearchType();
+        return SearchType::class;
     }
     
     /**
@@ -213,9 +213,9 @@ abstract class SearchController extends AbstractController
      * 
      * @return \VIB\SearchBundle\Form\AdvancedSearchType
      */
-    protected function createAdvancedSearchForm()
+    protected function getAdvancedSearchForm()
     {
-        return new AdvancedSearchType();
+        return AdvancedSearchType::class;
     }
     
     /**

@@ -18,6 +18,7 @@
 
 namespace VIB\FliesBundle\Controller;
 
+use InvalidArgumentException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\SatisfiesParentSecurityPolicy;
@@ -25,6 +26,7 @@ use JMS\SecurityExtraBundle\Annotation\SatisfiesParentSecurityPolicy;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -88,14 +90,16 @@ class VialController extends SecureCRUDController
      * @Template()
      * @SatisfiesParentSecurityPolicy
      *
-     * @param  \Symfony\Component\HttpFoundation\Request   $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request   $request
+     * @return Response
      */
     public function listAction(Request $request)
     {
         $response = parent::listAction($request);
         $this->setBatchActionRedirect($request);
-        $formResponse = $this->handleSelectForm($request, new SelectType($this->getEntityClass()));
+        $formResponse = $this->handleSelectForm($request,
+            SelectType::class,
+            array('class' => $this->getEntityClass()));
 
         if ($response instanceof Response) {
             
@@ -117,9 +121,9 @@ class VialController extends SecureCRUDController
      * @Route("/show/{id}")
      * @Template()
      *
-     * @param   \Symfony\Component\HttpFoundation\Request   $request
-     * @param   mixed                                       $id
-     * @return  \Symfony\Component\HttpFoundation\Response
+     * @param   Request   $request
+     * @param   mixed     $id
+     * @return  Response
      */
     public function showAction(Request $request, $id)
     {
@@ -141,9 +145,9 @@ class VialController extends SecureCRUDController
      * @Template()
      * @SatisfiesParentSecurityPolicy
      *
-     * @param  \Symfony\Component\HttpFoundation\Request                      $request
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request  $request
+     * @throws NotFoundHttpException
+     * @return Response
      */
     public function createAction(Request $request)
     {
@@ -198,9 +202,9 @@ class VialController extends SecureCRUDController
      * @Route("/edit/{id}")
      * @Template()
      *
-     * @param  \Symfony\Component\HttpFoundation\Request   $request
+     * @param  Request $request
      * @param  mixed                                       $id
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function editAction(Request $request, $id)
     {
@@ -219,9 +223,9 @@ class VialController extends SecureCRUDController
      * @Route("/expand/{id}", defaults={"id" = null})
      * @Template()
      *
-     * @param  \Symfony\Component\HttpFoundation\Request         $request
+     * @param  Request $request
      * @param  mixed                                             $id
-     * @return \Symfony\Component\HttpFoundation\Response|array
+     * @return Response|array
      */
     public function expandAction(Request $request, $id = null)
     {
@@ -270,17 +274,16 @@ class VialController extends SecureCRUDController
      * @Route("/give/{id}", defaults={"id" = null})
      * @Template()
      *
-     * @param  \Symfony\Component\HttpFoundation\Request                         $request
+     * @param  Request $request
      * @param  mixed                                                             $id
-     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
-     * @throws \InvalidArgumentException
-     * @return \Symfony\Component\HttpFoundation\Response|array
+     * @throws AccessDeniedException
+     * @throws InvalidArgumentException
+     * @return Response|array
      */
     public function giveAction(Request $request, $id = null)
     {
         /** @var VialManager $om */
         $om = $this->getObjectManager();
-        $authorizationChecker = $this->getAuthorizationChecker();
         /** @var Vial $source */
         $source = (null !== $id) ? $this->getEntity($id) : null;
         $data = array(
@@ -302,10 +305,10 @@ class VialController extends SecureCRUDController
             $food = $data['food'];
 
             if (! $user instanceof User) {
-                throw new \InvalidArgumentException(sprintf("User object must be an instance of VIB\\UserBundle\\Entity\\User"));
+                throw new InvalidArgumentException(sprintf("User object must be an instance of VIB\\UserBundle\\Entity\\User"));
             }
 
-            if (!($authorizationChecker->isGranted('OWNER', $source)||$authorizationChecker->isGranted('ROLE_ADMIN'))) {
+            if (!($this->isGranted('OWNER', $source)||$this->isGranted('ROLE_ADMIN'))) {
                 throw new AccessDeniedException();
             }
             
@@ -352,7 +355,7 @@ class VialController extends SecureCRUDController
                     $given = $vial;
                     break;
                 default:
-                    throw new \InvalidArgumentException(sprintf("Invalid operation type '%s' - valid types are 'flip', 'give' and 'flipped'", $type));
+                    throw new InvalidArgumentException(sprintf("Invalid operation type '%s' - valid types are 'flip', 'give' and 'flipped'", $type));
             }
             
             $om->enableAutoAcl();
@@ -381,14 +384,16 @@ class VialController extends SecureCRUDController
      * @Route("/select")
      * @Template()
      *
-     * @param  \Symfony\Component\HttpFoundation\Request   $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request $request
+     * @return Response
      */
     public function selectAction(Request $request)
     {
         $response = array();
         $this->setBatchActionRedirect($request, null);
-        $formResponse = $this->handleSelectForm($request, new SelectType('VIB\FliesBundle\Entity\Vial'));
+        $formResponse = $this->handleSelectForm($request,
+            SelectType::class,
+            array('class' => Vial::class));
 
         return is_array($formResponse) ? array_merge($response, $formResponse) : $formResponse;
     }
@@ -396,9 +401,9 @@ class VialController extends SecureCRUDController
     /**
      * Handle batch action
      *
-     * @param  \Symfony\Component\HttpFoundation\Request   $request
-     * @param  array                                       $data
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request $request
+     * @param  array   $data
+     * @return Response
      */
     protected function handleBatchAction(Request $request, $data)
     {
@@ -446,13 +451,14 @@ class VialController extends SecureCRUDController
     /**
      * Handle selection form
      *
-     * @param  \Symfony\Component\HttpFoundation\Request         $request
-     * @param  \Symfony\Component\Form\AbstractType              $formType
-     * @return array|\Symfony\Component\HttpFoundation\Response
+     * @param  Request  $request
+     * @param  string   $form
+     * @param  array    $options
+     * @return array|Response
      */
-    protected function handleSelectForm(Request $request, AbstractType $formType)
+    protected function handleSelectForm(Request $request, $form, $options)
     {
-        $form = $this->createForm($formType);
+        $form = $this->createForm($form, null, $options);
         $form->handleRequest($request);
         if ($form->isValid()) {
 
@@ -465,13 +471,13 @@ class VialController extends SecureCRUDController
     /**
      * Prepare vial labels
      *
-     * @param  mixed                            $vials
-     * @return \VIB\FliesBundle\Label\PDFLabel
+     * @param  mixed     $vials
+     * @return PDFLabel
      */
     protected function prepareLabels($vials)
     {
         $labelMode = ($this->getSession()->get('labelmode','std') == 'alt');
-        /** @var \VIB\FliesBundle\Label\PDFLabel $pdf */
+        /** @var PDFLabel $pdf */
         $pdf = $this->get('vibfolks.pdflabel');
         $pdf->addLabel($vials, $labelMode);
 
@@ -481,8 +487,8 @@ class VialController extends SecureCRUDController
     /**
      * Submit print job
      *
-     * @param  \VIB\FliesBundle\Label\PDFLabel $pdf
-     * @param  integer                        $count
+     * @param  PDFLabel $pdf
+     * @param  integer  $count
      * @return boolean
      */
     protected function submitPrintJob(PDFLabel $pdf, $count = 1)
@@ -506,9 +512,9 @@ class VialController extends SecureCRUDController
     /**
      * Generate vial labels
      *
-     * @param  \Symfony\Component\HttpFoundation\Request   $request
-     * @param  mixed                                       $vials
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request  $request
+     * @param  mixed    $vials
+     * @return Response
      */
     protected function downloadLabels(Request $request, $vials)
     {
@@ -558,8 +564,8 @@ class VialController extends SecureCRUDController
     /**
      * Flip vials
      *
-     * @param \Doctrine\Common\Collections\Collection $vials
-     * @param boolean                                 $trash
+     * @param Collection $vials
+     * @param boolean    $trash
      */
     public function flipVials(Collection $vials, $trash = false)
     {
@@ -581,7 +587,7 @@ class VialController extends SecureCRUDController
     /**
      * Trash vials
      *
-     * @param \Doctrine\Common\Collections\Collection $vials
+     * @param Collection $vials
      */
     public function trashVials(Collection $vials)
     {
@@ -599,7 +605,7 @@ class VialController extends SecureCRUDController
     /**
      * Untrash vials
      *
-     * @param \Doctrine\Common\Collections\Collection $vials
+     * @param Collection $vials
      */
     public function untrashVials(Collection $vials)
     {
@@ -617,8 +623,8 @@ class VialController extends SecureCRUDController
     /**
      * Incubate vials
      *
-     * @param \Doctrine\Common\Collections\Collection $vials
-     * @param \VIB\FliesBundle\Entity\Incubator       $incubator
+     * @param Collection $vials
+     * @param Incubator  $incubator
      */
     public function incubateVials(Collection $vials, Incubator $incubator)
     {
@@ -638,15 +644,14 @@ class VialController extends SecureCRUDController
      *
      * @Route("/batch/edit")
      *
-     * @param  \Symfony\Component\HttpFoundation\Request   $request
-     * @param \Doctrine\Common\Collections\Collection      $vials
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request     $request
+     * @param  Collection  $vials
+     * @return Response
      */
     public function editVials(Request $request, Collection $vials = null)
     {
         /** @var VialManager $om */
         $om = $this->getObjectManager();
-        $authorizationChecker = $this->getAuthorizationChecker();
         $template = array(
             'setupDate' => null,
             'flipDate' => null,
@@ -656,7 +661,7 @@ class VialController extends SecureCRUDController
         $removed = 0;
         if (null !== $vials) {
             foreach ($vials as $vial) {
-                if (!($authorizationChecker->isGranted('ROLE_ADMIN')||$authorizationChecker->isGranted('EDIT', $vial))) {
+                if (!($this->isGranted('ROLE_ADMIN')||$this->isGranted('EDIT', $vial))) {
                     $vials->removeElement($vial);
                     $removed++;
                 }
@@ -737,20 +742,19 @@ class VialController extends SecureCRUDController
      *
      * @Route("/batch/permissions")
      *
-     * @param  \Symfony\Component\HttpFoundation\Request   $request
-     * @param  \Doctrine\Common\Collections\Collection     $vials
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request     $request
+     * @param  Collection  $vials
+     * @return Response
      */
     public function permissionsVials(Request $request, Collection $vials = null)
     {
         /** @var VialManager $om */
         $om = $this->getObjectManager();
         $acl_array = $om->getDefaultACL();
-        $authorizationChecker = $this->getAuthorizationChecker();
         $removed = 0;
         if (null !== $vials) {
             foreach ($vials as $vial) {
-                if (!($authorizationChecker->isGranted('ROLE_ADMIN')||$authorizationChecker->isGranted('MASTER', $vial))) {
+                if (!($this->isGranted('ROLE_ADMIN')||$this->isGranted('MASTER', $vial))) {
                     $vials->removeElement($vial);
                     $removed++;
                 }
@@ -829,8 +833,8 @@ class VialController extends SecureCRUDController
     /**
      * Get default batch action response
      *
-     * @param  \Symfony\Component\HttpFoundation\Request   $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request   $request
+     * @return Response
      */
     protected function getDefaultBatchResponse($request)
     {
@@ -856,9 +860,8 @@ class VialController extends SecureCRUDController
     
     /**
      * Get back to where batch job has started
-
-     * @param  \Symfony\Component\HttpFoundation\Request   $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request   $request
+     * @return Response
      */
     protected function getBackBatchResponse(Request $request)
     {
@@ -887,6 +890,10 @@ class VialController extends SecureCRUDController
         return $this->redirect($url);
     }
 
+    /**
+     * @param  Request  $request
+     * @return string
+     */
     protected function getCurrentController(Request $request)
     {        
         $pattern = "/Controller\\\([a-zA-Z]*)Controller/";
@@ -901,7 +908,11 @@ class VialController extends SecureCRUDController
         
         return $controller;
     }
-    
+
+    /**
+     * @param Request  $request
+     * @param bool     $redirect
+     */
     protected function setBatchActionRedirect(Request $request, $redirect = false)
     {        
         if (false === $redirect) {
@@ -923,9 +934,9 @@ class VialController extends SecureCRUDController
     /**
      *
      *
-     * @param  \Symfony\Component\HttpFoundation\Request   $request
-     * @param  \VIB\FliesBundle\Entity\Vial                $vial
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  Request   $request
+     * @param  Vial      $vial
+     * @return Response
      */
     private function getVialRedirect(Request $request, Vial $vial)
     {

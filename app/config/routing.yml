@@ -12,8 +12,8 @@ vib_search:
     type:     annotation
     prefix:   /
     
-vib_forms:
-    resource: "@VIBFormsBundle/Controller/"
+bluemesa_acl:
+    resource: "@BluemesaAclBundle/Controller/"
     type:     annotation
     prefix:   /_ajax
 

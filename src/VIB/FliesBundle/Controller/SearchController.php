@@ -90,17 +90,17 @@ class SearchController extends BaseSearchController
     /**
      * {@inheritdoc}
      */
-    protected function createSearchForm()
+    protected function getSearchForm()
     {
-        return new SearchType();
+        return SearchType::class;
     }
     
     /**
      * {@inheritdoc}
      */
-    protected function createAdvancedSearchForm()
+    protected function getAdvancedSearchForm()
     {
-        return new AdvancedSearchType();
+        return AdvancedSearchType::class;
     }
     
     /**

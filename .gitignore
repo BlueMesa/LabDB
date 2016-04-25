@@ -6,7 +6,6 @@
 /var/cache/*
 !var/cache/.gitkeep
 !/var/logs
-/src/bluemesa
 /var/logs/*
 !var/logs/.gitkeep
 !/var/sessions

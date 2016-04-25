@@ -21,6 +21,7 @@ namespace VIB\SearchBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * SearchType class
@@ -32,17 +33,9 @@ class SearchType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "search_form";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('terms', 'text', array(
+        $builder->add('terms', TextType::class, array(
                 'required' => false,
                 'horizontal' => false,
                 'label_render' => false,

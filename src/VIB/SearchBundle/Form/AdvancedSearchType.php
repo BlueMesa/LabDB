@@ -21,6 +21,7 @@ namespace VIB\SearchBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * AdvancedSearchType class
@@ -32,17 +33,9 @@ class AdvancedSearchType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "advanced_search_form";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('terms', 'text', array(
+        $builder->add('terms', TextType::class, array(
                 'label' => 'Include terms',
                 'required' => false,
                 'attr' => array(
@@ -50,7 +43,7 @@ class AdvancedSearchType extends AbstractType
                     'placeholder' => 'separate terms with space'
                 )
             )
-        )->add('excluded', 'text', array(
+        )->add('excluded', TextType::class, array(
                 'label' => 'Exclude terms',
                 'required' => false,
                 'attr' => array(

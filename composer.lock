@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3faddd718eec0250b4c963eb255b7e7a",
-    "content-hash": "fab7f6432b2bcf8d4c97d54964e936e9",
+    "hash": "daf247233b06f182b0e022718250c3e6",
+    "content-hash": "e09eb2f99e895006c1edc221749df457",
     "packages": [
         {
             "name": "bluemesa/acl-bundle",
@@ -66,10 +66,11 @@
             "dist": {
                 "type": "path",
                 "url": "/Users/radoslaw.ejsmont/src/web/bluemesa/core-bundle/",
-                "reference": "a5216980f0b7e6e4728204c93cea0c8a63e9ea5d",
+                "reference": "19d208c1c7359e902e0376452252e5689e9f6836",
                 "shasum": null
             },
             "require": {
+                "bluemesa/forms-bundle": "dev-master",
                 "doctrine/common": "~2.5",
                 "doctrine/doctrine-bundle": "~1.4",
                 "doctrine/orm": "~2.5",
@@ -109,6 +110,52 @@
                 "CRUD",
                 "bluemesa",
                 "core"
+            ],
+            "transport-options": {
+                "symlink": true
+            }
+        },
+        {
+            "name": "bluemesa/forms-bundle",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "/Users/radoslaw.ejsmont/src/web/bluemesa/forms-bundle/",
+                "reference": "206dae67572a65991836a4e00e75ab7f03bac691",
+                "shasum": null
+            },
+            "require": {
+                "jms/di-extra-bundle": "~1.6",
+                "php": ">=5.6.0",
+                "symfony/form": "~3.0",
+                "symfony/framework-bundle": "~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Bluemesa\\Bundle\\FormsBundle\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Radoslaw Kamil Ejsmont",
+                    "email": "radoslaw@ejsmont.net"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/BlueMesa/FormsBundle/graphs/contributors"
+                }
+            ],
+            "description": "Forms bundle for BlueMesa projects",
+            "keywords": [
+                "bluemesa",
+                "forms"
             ],
             "transport-options": {
                 "symlink": true
@@ -1649,21 +1696,22 @@
         },
         {
             "name": "jms/di-extra-bundle",
-            "version": "1.7.0",
+            "version": "1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSDiExtraBundle.git",
-                "reference": "85a989bedcf22495c03bf94339ddc5e856bd9b46"
+                "reference": "27c3fc7150550ccc0731290b2c1ceb57449f909d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/JMSDiExtraBundle/zipball/85a989bedcf22495c03bf94339ddc5e856bd9b46",
-                "reference": "85a989bedcf22495c03bf94339ddc5e856bd9b46",
+                "url": "https://api.github.com/repos/schmittjoh/JMSDiExtraBundle/zipball/27c3fc7150550ccc0731290b2c1ceb57449f909d",
+                "reference": "27c3fc7150550ccc0731290b2c1ceb57449f909d",
                 "shasum": ""
             },
             "require": {
                 "jms/aop-bundle": "~1.1",
                 "jms/metadata": "~1.0",
+                "php": "~5.3|~7.0",
                 "symfony/dependency-injection": "~2.3|~3.0",
                 "symfony/finder": "~2.3|~3.0",
                 "symfony/framework-bundle": "~2.3|~3.0",
@@ -1674,7 +1722,7 @@
             "require-dev": {
                 "doctrine/doctrine-bundle": "~1.5",
                 "doctrine/orm": "~2.3",
-                "jms/security-extra-bundle": "~1.0@dev",
+                "jms/security-extra-bundle": "~1.0",
                 "phpcollection/phpcollection": ">=0.2,<0.3-dev",
                 "sensio/framework-extra-bundle": "~2.0|~3.0",
                 "symfony/browser-kit": "~2.3|~3.0",
@@ -1713,7 +1761,7 @@
                 "annotations",
                 "dependency injection"
             ],
-            "time": "2016-02-21 22:14:09"
+            "time": "2016-04-18 22:27:09"
         },
         {
             "name": "jms/metadata",
@@ -2236,16 +2284,16 @@
         },
         {
             "name": "knplabs/knp-paginator-bundle",
-            "version": "2.5.1",
+            "version": "2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpPaginatorBundle.git",
-                "reference": "5147740faff4d32e6f42acf64475314c35320fa4"
+                "reference": "c988761005504007c6c87d6a557641281194a0e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/5147740faff4d32e6f42acf64475314c35320fa4",
-                "reference": "5147740faff4d32e6f42acf64475314c35320fa4",
+                "url": "https://api.github.com/repos/KnpLabs/KnpPaginatorBundle/zipball/c988761005504007c6c87d6a557641281194a0e5",
+                "reference": "c988761005504007c6c87d6a557641281194a0e5",
                 "shasum": ""
             },
             "require": {
@@ -2260,7 +2308,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4.x-dev"
+                    "dev-master": "2.5.x-dev"
                 }
             },
             "autoload": {
@@ -2293,7 +2341,7 @@
                 "pagination",
                 "paginator"
             ],
-            "time": "2015-11-23 17:51:40"
+            "time": "2016-04-20 11:40:30"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -2467,16 +2515,16 @@
         },
         {
             "name": "liuggio/ExcelBundle",
-            "version": "v2.0.4",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liuggio/ExcelBundle.git",
-                "reference": "a6424eef60d5a9201146d6820de7d75bb2be79bc"
+                "reference": "728c2bf7a39ab38e73c8b58d0ac2088dcf0f8412"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liuggio/ExcelBundle/zipball/a6424eef60d5a9201146d6820de7d75bb2be79bc",
-                "reference": "a6424eef60d5a9201146d6820de7d75bb2be79bc",
+                "url": "https://api.github.com/repos/liuggio/ExcelBundle/zipball/728c2bf7a39ab38e73c8b58d0ac2088dcf0f8412",
+                "reference": "728c2bf7a39ab38e73c8b58d0ac2088dcf0f8412",
                 "shasum": ""
             },
             "require": {
@@ -2500,6 +2548,9 @@
                 }
             },
             "autoload": {
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ],
                 "psr-4": {
                     "Liuggio\\ExcelBundle\\": ""
                 }
@@ -2526,7 +2577,7 @@
                 "excel",
                 "xls"
             ],
-            "time": "2015-12-22 11:22:03"
+            "time": "2016-04-20 09:58:50"
         },
         {
             "name": "monolog/monolog",
@@ -5006,16 +5057,16 @@
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "3.1.2",
+            "version": "3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "7c34c9bdde4131b824086457a3145e27dba10ca1"
+                "reference": "151c96874bff6fe61a25039df60e776613a61489"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/7c34c9bdde4131b824086457a3145e27dba10ca1",
-                "reference": "7c34c9bdde4131b824086457a3145e27dba10ca1",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/151c96874bff6fe61a25039df60e776613a61489",
+                "reference": "151c96874bff6fe61a25039df60e776613a61489",
                 "shasum": ""
             },
             "require": {
@@ -5058,7 +5109,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2016-03-24 05:58:25"
+            "time": "2016-04-20 14:39:26"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -5688,7 +5739,8 @@
         "kuleuven/shibboleth-bundle": 20,
         "bluemesa/core-bundle": 20,
         "bluemesa/acl-bundle": 20,
-        "bluemesa/storage-bundle": 20
+        "bluemesa/storage-bundle": 20,
+        "bluemesa/forms-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -18,8 +18,13 @@
 
 namespace VIB\FliesBundle\Form;
 
+use Bluemesa\Bundle\CoreBundle\Form\HiddenEntityType;
+use Bluemesa\Bundle\CoreBundle\Form\TextEntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * SelectType class
@@ -31,29 +36,32 @@ class SelectType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        return "select";
+        $builder->add('action', HiddenType::class)
+                ->add('items', CollectionType::class, array(
+                        'allow_add' => true,
+                        'entry_type'   => TextEntityType::class,
+                        'entry_options' => array(
+                            'class' =>  $options['class']
+                        )
+                    )
+                )
+                ->add('incubator', HiddenEntityType::class, array(
+                        'choice_label'     => 'name',
+                        'class' => 'VIBFliesBundle:Incubator',
+                    )
+                );
     }
 
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        $builder->add('action', 'hidden')
-                ->add('items', 'collection', array(
-                        'type'   => 'text_entity',
-                        'allow_add' => true,
-                        'options' => array(
-                            'class' =>  $options['class']
-                        )
-                    )
-                )
-                ->add('incubator', 'hidden_entity', array(
-                        'choice_label'     => 'name',
-                        'class' => 'VIBFliesBundle:Incubator',
-                    )
-                );
+        $resolver->setDefaults(array(
+                'class' => null
+            )
+        );
     }
 }

@@ -5,15 +5,15 @@ imports:
 doctrine:
     orm:
         metadata_cache_driver:
-            type: memcache
+            type: memcached
             host: %memcached_host%
             port: %memcached_port%
         result_cache_driver:
-            type: memcache
+            type: memcached
             host: %memcached_host%
             port: %memcached_port%
         query_cache_driver:
-            type: memcache
+            type: memcached
             host: %memcached_host%
             port: %memcached_port%
 

@@ -41,7 +41,7 @@ class SearchController extends BaseSearchController
     /**
      * {@inheritdoc}
      */
-    protected function createSearchForm()
+    protected function getSearchForm()
     {
         return new SearchType();
     }
@@ -49,7 +49,7 @@ class SearchController extends BaseSearchController
     /**
      * {@inheritdoc}
      */
-    protected function createAdvancedSearchForm()
+    protected function getAdvancedSearchForm()
     {
         return new AdvancedSearchType();
     }
