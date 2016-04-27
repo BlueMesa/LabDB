@@ -21,6 +21,7 @@ namespace VIB\FliesBundle\Form\Type;
 use JMS\DiExtraBundle\Annotation as DI;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * Bootstrap typeahead form control
@@ -36,14 +37,6 @@ class FoodType extends AbstractType
      */
     public function getParent()
     {
-        return 'text';
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function getName()
-    {
-        return 'food';
+        return TextType::class;
     }
 }

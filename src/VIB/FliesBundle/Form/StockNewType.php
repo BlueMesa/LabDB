@@ -19,6 +19,7 @@
 namespace VIB\FliesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Range;
 
@@ -32,33 +33,23 @@ class StockNewType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "stock_new";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('stock', new StockType(), array(
-                         'horizontal' => false,
-                         'label_render' => false,
+        $builder->add('stock', StockType::class, array(
+                         'horizontal'        => false,
+                         'label_render'      => false,
                          'widget_form_group' => false,
                     )
                 )
-                ->add('options', new Type\VialOptionsType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+                ->add('options', Type\VialOptionsType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('number','number', array(
+                ->add('number', NumberType::class, array(
                         'label'       => 'Number of vials',
-                        'constraints' => array(
-                            new Range(array('min' => 1))
-                        )
+                        'constraints' => array(new Range(array('min' => 1)))
                     )
                 );
     }

@@ -40,7 +40,7 @@ class SearchType extends AbstractType
                         'required'     => false,
                         'horizontal'   => false,
                         'label_render' => false,
-                        'attr' => array(
+                        'attr'         => array(
                             'form'        => 'search-form',
                             'placeholder' => 'Search'
                         )

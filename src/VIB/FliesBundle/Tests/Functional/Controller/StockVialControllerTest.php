@@ -57,8 +57,8 @@ class StockVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/stocks/vials/new');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['stockvial_new[vial][basic][stock]'] = 'stock 4';
-        $form['stockvial_new[number]'] = 1;
+        $form['stock_vial_new[vial][basic][stock]'] = 'stock 4';
+        $form['stock_vial_new[number]'] = 1;
 
         $client->submit($form);
         $this->assertEquals(302,$client->getResponse()->getStatusCode());
@@ -73,8 +73,8 @@ class StockVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/stocks/vials/new');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['stockvial_new[vial][basic][stock]'] = 'stock 1';
-        $form['stockvial_new[number]'] = 2;
+        $form['stock_vial_new[vial][basic][stock]'] = 'stock 1';
+        $form['stock_vial_new[number]'] = 2;
 
         $client->submit($form);
         $this->assertEquals(302,$client->getResponse()->getStatusCode());
@@ -89,8 +89,8 @@ class StockVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/stocks/vials/new');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['stockvial_new[vial][basic][stock]'] = '';
-        $form['stockvial_new[number]'] = 0;
+        $form['stock_vial_new[vial][basic][stock]'] = '';
+        $form['stock_vial_new[number]'] = 0;
 
         $result = $client->submit($form);
         $this->assertTrue($client->getResponse()->isSuccessful());
@@ -132,7 +132,7 @@ class StockVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/stocks/vials/edit/5');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['stockvial[basic][notes]'] = 'This is a test note.';
+        $form['stock_vial[basic][notes]'] = 'This is a test note.';
 
         $client->submit($form);
         $this->assertEquals(302,$client->getResponse()->getStatusCode());

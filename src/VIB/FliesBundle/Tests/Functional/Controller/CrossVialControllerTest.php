@@ -67,9 +67,9 @@ class CrossVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/crosses/new');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['crossvial_new[vial][basic][virgin]'] = '1';
-        $form['crossvial_new[vial][basic][male]'] = '5';
-        $form['crossvial_new[number]'] = 1;
+        $form['cross_vial_new[vial][basic][virgin]'] = '1';
+        $form['cross_vial_new[vial][basic][male]'] = '5';
+        $form['cross_vial_new[number]'] = 1;
 
         $client->submit($form);
         $this->assertEquals(302,$client->getResponse()->getStatusCode());
@@ -84,9 +84,9 @@ class CrossVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/crosses/new');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['crossvial_new[vial][basic][virgin]'] = '1';
-        $form['crossvial_new[vial][basic][male]'] = '2';
-        $form['crossvial_new[number]'] = 5;
+        $form['cross_vial_new[vial][basic][virgin]'] = '1';
+        $form['cross_vial_new[vial][basic][male]'] = '2';
+        $form['cross_vial_new[number]'] = 5;
 
         $client->submit($form);
         $this->assertEquals(302,$client->getResponse()->getStatusCode());
@@ -101,7 +101,7 @@ class CrossVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/crosses/new');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['crossvial_new[number]'] = 0;
+        $form['cross_vial_new[number]'] = 0;
 
         $result = $client->submit($form);
         $this->assertTrue($client->getResponse()->isSuccessful());
@@ -117,8 +117,8 @@ class CrossVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/crosses/new');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['crossvial_new[vial][basic][virgin]'] = '12';
-        $form['crossvial_new[vial][basic][male]'] = '13';
+        $form['cross_vial_new[vial][basic][virgin]'] = '12';
+        $form['cross_vial_new[vial][basic][male]'] = '13';
 
         $result = $client->submit($form);
         $this->assertTrue($client->getResponse()->isSuccessful());
@@ -238,7 +238,7 @@ class CrossVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/crosses/edit/8');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['crossvial[basic][notes]'] = 'This is a test note.';
+        $form['cross_vial[basic][notes]'] = 'This is a test note.';
 
         $client->submit($form);
         $this->assertEquals(302,$client->getResponse()->getStatusCode());

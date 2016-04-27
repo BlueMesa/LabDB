@@ -18,7 +18,9 @@
 
 namespace VIB\FliesBundle\Form;
 
+use Bluemesa\Bundle\CoreBundle\Form\TextEntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\NotNull;
@@ -33,41 +35,27 @@ class VialExpandType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "vial_expand";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('source', 'text_entity', array(
-                        'choice_label' => 'id',
-                        'class'    => 'VIBFliesBundle:Vial',
-                        'format'   => '%06d',
-                        'label'    => 'Source',
-                        'attr' => array('class' => 'barcode'),
-                        'widget_addon_append' => array(
-                            'icon' => 'qrcode'
-                        ),
-                        'constraints' => array(
-                            new NotNull()
-                        )
+        $builder->add('source', TextEntityType::class, array(
+                        'choice_label'        => 'id',
+                        'class'               => 'VIBFliesBundle:Vial',
+                        'format'              => '%06d',
+                        'label'               => 'Source',
+                        'attr'                => array('class' => 'barcode'),
+                        'widget_addon_append' => array('icon' => 'qrcode'),
+                        'constraints'         => array(new NotNull())
                     )
                 )
-                ->add('options', new Type\VialOptionsType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+                ->add('options', Type\VialOptionsType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('number', 'number', array(
+                ->add('number', NumberType::class, array(
                         'label'       => 'Number of vials',
-                        'constraints' => array(
-                            new Range(array('min' => 1))
-                        )
+                        'constraints' => array(new Range(array('min' => 1)))
                     )
                 );
     }

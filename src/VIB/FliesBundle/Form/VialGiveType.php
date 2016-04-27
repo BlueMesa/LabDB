@@ -18,9 +18,11 @@
 
 namespace VIB\FliesBundle\Form;
 
+use Bluemesa\Bundle\AclBundle\Form\UserTypeaheadType;
+use Bluemesa\Bundle\CoreBundle\Form\TextEntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\NotNull;
 
 
@@ -34,43 +36,29 @@ class VialGiveType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "vial_give";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('source', 'text_entity', array(
-                        'choice_label' => 'id',
-                        'class'    => 'VIBFliesBundle:Vial',
-                        'format'   => '%06d',
-                        'label'    => 'Source',
-                        'attr' => array('class' => 'barcode'),
-                        'widget_addon_append' => array(
-                            'icon' => 'qrcode'
-                        ),
-                        'constraints' => array(
-                            new NotNull()
-                        )
+        $builder->add('source', TextEntityType::class, array(
+                        'choice_label'        => 'id',
+                        'class'               => 'VIBFliesBundle:Vial',
+                        'format'              => '%06d',
+                        'label'               => 'Source',
+                        'attr'                => array('class' => 'barcode'),
+                        'widget_addon_append' => array('icon' => 'qrcode'),
+                        'constraints'         => array(new NotNull())
                     )
                 )
-                ->add('user', 'user_typeahead', array(
-                        'label'     => 'Recipient',
-                        'required'  => true,
-                        'widget_addon_append' => array(
-                            'icon' => 'user'
-                        )
+                ->add('user', UserTypeaheadType::class, array(
+                        'label'               => 'Recipient',
+                        'required'            => true,
+                        'widget_addon_append' => array('icon' => 'user')
                     )
                 )
-                ->add('type', 'choice', array(
-                        'choices' => array(
-                            'give'    => 'Just give this vial',
-                            'flip'    => 'Flip and give this vial',
-                            'flipped' => 'Flip this vial and give the flipped vial'
+                ->add('type', ChoiceType::class, array(
+                        'choices'     => array(
+                            'give'       => 'Just give this vial',
+                            'flip'       => 'Flip and give this vial',
+                            'flipped'    => 'Flip this vial and give the flipped vial'
                         ),
                         'label'       => 'Flip',
                         'expanded'    => true,
@@ -78,9 +66,9 @@ class VialGiveType extends AbstractType
                         'placeholder' => false,
                     )
                 )
-                ->add('options', new Type\VialOptionsType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+                ->add('options', Type\VialOptionsType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 );

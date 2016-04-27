@@ -18,7 +18,9 @@
 
 namespace VIB\FliesBundle\Form;
 
+use Bluemesa\Bundle\CoreBundle\Form\TextEntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,40 +34,32 @@ class VialSimpleType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "vial_simple";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dates', new VialDatesType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+        $builder->add('dates', VialDatesType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('notes', 'textarea', array(
+                ->add('notes', TextareaType::class, array(
                         'label'     => 'Notes',
                         'required'  => false
                     )
                 )
-                ->add('sourceVial', 'text_entity', array(
-                        'choice_label'  => 'id',
-                        'class'     => 'VIBFliesBundle:Vial',
-                        'format'    => '%06d',
-                        'required'  => false,
-                        'label'     => 'Flipped from',
-                        'attr'      => array('class' => 'barcode'),
+                ->add('sourceVial', TextEntityType::class, array(
+                        'choice_label'        => 'id',
+                        'class'               => 'VIBFliesBundle:Vial',
+                        'format'              => '%06d',
+                        'required'            => false,
+                        'label'               => 'Flipped from',
+                        'attr'                => array('class' => 'barcode'),
                         'widget_addon_append' => array('icon' => 'qrcode')
                     )
                 )
-                ->add('options', new Type\VialOptionsType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+                ->add('options', Type\VialOptionsType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 );

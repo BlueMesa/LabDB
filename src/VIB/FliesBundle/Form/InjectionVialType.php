@@ -18,7 +18,9 @@
 
 namespace VIB\FliesBundle\Form;
 
+use Bluemesa\Bundle\CoreBundle\Form\TextEntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,42 +34,32 @@ class InjectionVialType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "injectionvial";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('basic', new Type\InjectionVialType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+        $builder->add('basic', Type\InjectionVialType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('sourceVial', 'text_entity', array(
-                        'choice_label'  => 'id',
-                        'class'     => 'VIBFliesBundle:InjectionVial',
-                        'format'    => '%06d',
-                        'required'  => false,
-                        'label'     => 'Flipped from',
-                        'attr' => array('class' => 'barcode'),
-                        'widget_addon_append' => array(
-                            'icon' => 'qrcode'
-                         )
+                ->add('sourceVial', TextEntityType::class, array(
+                        'choice_label'        => 'id',
+                        'class'               => 'VIBFliesBundle:InjectionVial',
+                        'format'              => '%06d',
+                        'required'            => false,
+                        'label'               => 'Flipped from',
+                        'attr'                => array('class' => 'barcode'),
+                        'widget_addon_append' => array('icon' => 'qrcode')
                     )
                 )
-                ->add('options', new Type\VialOptionsType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+                ->add('options', Type\VialOptionsType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('trashed', 'checkbox', array(
-                        'label' => '',
+                ->add('trashed', CheckboxType::class, array(
+                        'label'    => '',
                         'required' => false
                     )
                 );

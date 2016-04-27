@@ -40,16 +40,14 @@ class SelectType extends AbstractType
     {
         $builder->add('action', HiddenType::class)
                 ->add('items', CollectionType::class, array(
-                        'allow_add' => true,
-                        'entry_type'   => TextEntityType::class,
-                        'entry_options' => array(
-                            'class' =>  $options['class']
-                        )
+                        'allow_add'     => true,
+                        'entry_type'    => TextEntityType::class,
+                        'entry_options' => array('class' =>  $options['class'])
                     )
                 )
                 ->add('incubator', HiddenEntityType::class, array(
-                        'choice_label'     => 'name',
-                        'class' => 'VIBFliesBundle:Incubator',
+                        'choice_label' => 'name',
+                        'class'        => 'VIBFliesBundle:Incubator',
                     )
                 );
     }

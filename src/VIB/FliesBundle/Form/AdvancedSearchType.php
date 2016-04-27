@@ -39,7 +39,7 @@ class AdvancedSearchType extends AbstractType
         $builder->add('terms', TextType::class, array(
                         'label'    => 'Include terms',
                         'required' => false,
-                        'attr' => array(
+                        'attr'     => array(
                             'class'       => 'input-block-level',
                             'placeholder' => 'separate terms with space'
                         )
@@ -48,15 +48,15 @@ class AdvancedSearchType extends AbstractType
                 ->add('excluded', TextType::class, array(
                         'label'    => 'Exclude terms',
                         'required' => false,
-                        'attr' => array(
+                        'attr'     => array(
                             'class'       => 'input-block-level',
                             'placeholder' => 'separate terms with space'
                         )
                     )
                 )
                 ->add('filter', ChoiceType::class, array(
-                        'label' => 'Scope',
-                        'choices' => array(
+                        'label'       => 'Scope',
+                        'choices'     => array(
                             'crossvial'     => 'Crosses',
                             'injectionvial' => 'Injections'
                         ),
@@ -68,15 +68,15 @@ class AdvancedSearchType extends AbstractType
                 )
                 ->add('opts', ChoiceType::class, array(
                         'label'     => 'Options',
-                        'choices' => array(
+                        'choices'   => array(
                             'private' => 'Only private',
                             'dead'    => 'Include dead',
                             'notes'   => 'Include comments',
                             'vendor'  => 'Include vendor ID',
                         ),
-                        'expanded' => true,
-                        'multiple' => true,
-                        'required' => false
+                        'expanded'  => true,
+                        'multiple'  => true,
+                        'required'  => false
                     )
                 );
     }

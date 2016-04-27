@@ -18,7 +18,9 @@
 
 namespace VIB\FliesBundle\Form\Type;
 
+use Bluemesa\Bundle\CoreBundle\Form\EntityTypeaheadType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,32 +34,24 @@ class StockVialType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "stockvial_basic";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('dates', new VialDatesType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+        $builder->add('dates', VialDatesType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('stock', 'entity_typeahead', array(
+                ->add('stock', EntityTypeaheadType::class, array(
                         'choice_label'  => 'name',
-                        'class'     => 'VIBFliesBundle:Stock',
-                        'label'     => 'Stock',
-                        'horizontal' => true
+                        'class'         => 'VIBFliesBundle:Stock',
+                        'label'         => 'Stock',
+                        'horizontal'    => true
                     )
                 )
-                ->add('notes', 'textarea', array(
-                        'label' => 'Notes',
-                        'required' => false,
+                ->add('notes', TextareaType::class, array(
+                        'label'      => 'Notes',
+                        'required'   => false,
                         'horizontal' => true
                     )
                 );

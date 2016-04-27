@@ -17,6 +17,11 @@ bluemesa_acl:
     type:     annotation
     prefix:   /_ajax
 
+bluemesa_core:
+    resource: "@BluemesaCoreBundle/Controller/"
+    type:     annotation
+    prefix:   /_ajax
+
 vib_flies:
     resource: "@VIBFliesBundle/Controller/"
     type:     annotation

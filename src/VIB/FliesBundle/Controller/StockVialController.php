@@ -47,7 +47,7 @@ class StockVialController extends VialController
      */
     protected function getCreateForm()
     {
-        return new StockVialNewType();
+        return StockVialNewType::class;
     }
 
     /**
@@ -55,7 +55,7 @@ class StockVialController extends VialController
      */
     protected function getEditForm()
     {
-        return new StockVialType();
+        return StockVialType::class;
     }
 
     /**

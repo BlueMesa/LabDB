@@ -32,25 +32,17 @@ class InjectionVialSimpleType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "injectionvial_simple";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('basic', new Type\InjectionVialType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+        $builder->add('basic', Type\InjectionVialType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('options', new Type\VialOptionsType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+                ->add('options', Type\VialOptionsType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 );

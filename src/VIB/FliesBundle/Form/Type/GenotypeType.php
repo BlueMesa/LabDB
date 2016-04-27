@@ -18,12 +18,13 @@
 
 namespace VIB\FliesBundle\Form\Type;
 
+use Bluemesa\Bundle\FormsBundle\Form\Type\TypeaheadType;
 use JMS\DiExtraBundle\Annotation as DI;
 
 use Symfony\Component\Form\AbstractType;
 
 /**
- * Bootstrap typeahead form control
+ * Bootstrap typeahead form control for genotypes
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  * 
@@ -36,14 +37,6 @@ class GenotypeType extends AbstractType
      */
     public function getParent()
     {
-        return 'typeahead';
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function getName()
-    {
-        return 'genotype_typeahead';
+        return TypeaheadType::class;
     }
 }

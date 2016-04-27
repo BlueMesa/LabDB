@@ -18,7 +18,10 @@
 
 namespace VIB\FliesBundle\Form\Type;
 
+use Bluemesa\Bundle\CoreBundle\Form\TextEntityType;
+use Bluemesa\Bundle\FormsBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,74 +35,58 @@ class CrossVialType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "crossvial_basic";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('setupDate', 'datepicker', array(
-                        'label' => 'Setup date',
+        $builder->add('setupDate', DatePickerType::class, array(
+                        'label'      => 'Setup date',
                         'horizontal' => true
                     )
                 )
-                ->add('storedFlipDate', 'datepicker', array(
-                        'label'    => 'Check date',
-                        'required' => false,
+                ->add('storedFlipDate', DatePickerType::class, array(
+                        'label'      => 'Check date',
+                        'required'   => false,
                         'horizontal' => true
                     )
                 )
-                ->add('virgin', 'text_entity', array(
-                        'choice_label' => 'id',
-                        'class'    => 'VIBFliesBundle:Vial',
-                        'format'   => '%06d',
-                        'label'    => 'Virgin vial',
-                        'attr'     => array('class' => 'barcode virgin-id'),
-                        'widget_addon_append' => array(
-                            'icon' => 'qrcode'
-                        ),
-                        'horizontal' => true
+                ->add('virgin', TextEntityType::class, array(
+                        'choice_label'        => 'id',
+                        'class'               => 'VIBFliesBundle:Vial',
+                        'format'              => '%06d',
+                        'label'               => 'Virgin vial',
+                        'attr'                => array('class' => 'barcode virgin-id'),
+                        'widget_addon_append' => array('icon' => 'qrcode'),
+                        'horizontal'          => true
                     )
                 )
-                ->add('virginName', 'genotype_typeahead', array(
-                        'label'    => 'Virgin genotype',
-                        'attr'     => array(
-                            'data-id-source' => 'virgin-id'
-                        ),
-                        'data_route' => 'vib_flies_ajax_genotypes',
-                        'required' => false,
-                        'horizontal' => true
-                    )
-                )
-                ->add('male', 'text_entity', array(
-                        'choice_label' => 'id',
-                        'class'    => 'VIBFliesBundle:Vial',
-                        'format'   => '%06d',
-                        'label'    => 'Male vial',
-                        'attr'     => array('class' => 'barcode male-id'),
-                        'widget_addon_append' => array(
-                            'icon' => 'qrcode'
-                        ),
-                        'horizontal' => true
-                    )
-                )
-                ->add('maleName', 'genotype_typeahead', array(
-                        'label'    => 'Male genotype',
-                        'attr'     => array(
-                            'data-id-source' => 'male-id'
-                        ),
+                ->add('virginName', GenotypeType::class, array(
+                        'label'      => 'Virgin genotype',
+                        'attr'       => array('data-id-source' => 'virgin-id'),
                         'data_route' => 'vib_flies_ajax_genotypes',
                         'required'   => false,
                         'horizontal' => true
                     )
                 )
-                ->add('notes', 'textarea', array(
-                        'label'    => 'Notes',
-                        'required' => false,
+                ->add('male', TextEntityType::class, array(
+                        'choice_label'        => 'id',
+                        'class'               => 'VIBFliesBundle:Vial',
+                        'format'              => '%06d',
+                        'label'               => 'Male vial',
+                        'attr'                => array('class' => 'barcode male-id'),
+                        'widget_addon_append' => array('icon' => 'qrcode'),
+                        'horizontal'          => true
+                    )
+                )
+                ->add('maleName', GenotypeType::class, array(
+                        'label'      => 'Male genotype',
+                        'attr'       => array('data-id-source' => 'male-id'),
+                        'data_route' => 'vib_flies_ajax_genotypes',
+                        'required'   => false,
+                        'horizontal' => true
+                    )
+                )
+                ->add('notes', TextareaType::class, array(
+                        'label'      => 'Notes',
+                        'required'   => false,
                         'horizontal' => true
                     )
                 );

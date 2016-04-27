@@ -70,7 +70,7 @@ class VialController extends SecureCRUDController
      */
     protected function getCreateForm()
     {
-        return new VialNewType();
+        return VialNewType::class;
     }
 
     /**
@@ -78,7 +78,7 @@ class VialController extends SecureCRUDController
      */
     protected function getEditForm()
     {
-        return new VialType();
+        return VialType::class;
     }
 
     /**
@@ -239,7 +239,7 @@ class VialController extends SecureCRUDController
             'size' => null !== $source ? $source->getSize() : 'medium',
             'food' => null !== $source ? $source->getFood() : 'Normal'
         );
-        $form = $this->createForm(new VialExpandType(), $data);
+        $form = $this->createForm(VialExpandType::class, $data);
 
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -293,7 +293,7 @@ class VialController extends SecureCRUDController
             'size' => null !== $source ? $source->getSize() : 'medium',
             'food' => null !== $source ? $source->getFood() : 'Normal'
         );
-        $form = $this->createForm(new VialGiveType(), $data);
+        $form = $this->createForm(VialGiveType::class, $data);
         
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -685,7 +685,7 @@ class VialController extends SecureCRUDController
             'vials' => $vials
         );
         
-        $form = $this->createForm(new BatchVialType(), $data);
+        $form = $this->createForm(BatchVialType::class, $data);
         $action = 'editvials';
         
         if (substr($request->get('_route'), -strlen($action)) === $action) {
@@ -792,7 +792,7 @@ class VialController extends SecureCRUDController
             'vials' => $vials
         );
         
-        $form = $this->createForm(new BatchVialAclType(), $data);
+        $form = $this->createForm(BatchVialAclType::class, $data);
         
         $action = 'permissionsvials';
         

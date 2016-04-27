@@ -19,6 +19,7 @@
 namespace VIB\FliesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Range;
 
@@ -42,24 +43,20 @@ class RackType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('rack', new RackSimpleType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+        $builder->add('rack', RackSimpleType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('rows', 'number', array(
+                ->add('rows', NumberType::class, array(
                         'label'       => 'Rows',
-                        'constraints' => array(
-                            new Range(array('min' => 1))
-                        )
+                        'constraints' => array(new Range(array('min' => 1)))
                     )
                 )
-                ->add('columns', 'number', array(
+                ->add('columns', NumberType::class, array(
                         'label'       => 'Columns',
-                        'constraints' => array(
-                            new Range(array('min' => 1))
-                        )
+                        'constraints' => array(new Range(array('min' => 1)))
                     )
                 );
     }

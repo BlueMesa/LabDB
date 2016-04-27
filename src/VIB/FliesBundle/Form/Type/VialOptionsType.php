@@ -19,6 +19,7 @@
 namespace VIB\FliesBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,18 +33,10 @@ class VialOptionsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "vial_options";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('size', 'choice', array(
-                        'choices' => array(
+        $builder->add('size', ChoiceType::class, array(
+                        'choices'     => array(
                             'small'  => 'small',
                             'medium' => 'medium',
                             'large'  => 'large'
@@ -52,12 +45,12 @@ class VialOptionsType extends AbstractType
                         'label'       => 'Vial size',
                         'required'    => false,
                         'placeholder' => false,
-                        'horizontal' => true
+                        'horizontal'  => true
                     )
                 )
-                ->add('food', 'food', array(
-                        'label'    => 'Food type',
-                        'required' => false,
+                ->add('food', FoodType::class, array(
+                        'label'      => 'Food type',
+                        'required'   => false,
                         'horizontal' => true
                     )
                 );

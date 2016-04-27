@@ -19,6 +19,7 @@
 namespace VIB\FliesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,24 +33,16 @@ class VialType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "vial";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('vial', new VialSimpleType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+        $builder->add('vial', VialSimpleType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false,
-                        'inherit_data' => true
+                        'inherit_data'      => true
                     )
                 )
-                ->add('trashed', 'checkbox', array(
+                ->add('trashed', CheckboxType::class, array(
                         'label'     => '',
                         'required'  => false
                     )

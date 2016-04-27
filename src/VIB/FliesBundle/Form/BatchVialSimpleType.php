@@ -18,9 +18,9 @@
 
 namespace VIB\FliesBundle\Form;
 
+use Bluemesa\Bundle\FormsBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Date;
 
 /**
@@ -33,37 +33,25 @@ class BatchVialSimpleType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "batchvialsimple";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('setupDate', 'datepicker', array(
-                        'label' => 'Setup date',
-                        'required'  => false,
-                        'horizontal' => true,
-                        'constraints' => array(
-                            new Date()
-                        )
+        $builder->add('setupDate', DatePickerType::class, array(
+                        'label'       => 'Setup date',
+                        'required'    => false,
+                        'horizontal'  => true,
+                        'constraints' => array(new Date())
                     )
                 )
-                ->add('flipDate', 'datepicker', array(
-                        'label' => 'Flip date',
-                        'required'  => false,
-                        'horizontal' => true,
-                        'constraints' => array(
-                            new Date()
-                        )
+                ->add('flipDate', DatePickerType::class, array(
+                        'label'       => 'Flip date',
+                        'required'    => false,
+                        'horizontal'  => true,
+                        'constraints' => array(new Date())
                     )
                 )
-                ->add('options', new Type\VialOptionsType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+                ->add('options', Type\VialOptionsType::class, array(
+                        'horizontal'       => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 );

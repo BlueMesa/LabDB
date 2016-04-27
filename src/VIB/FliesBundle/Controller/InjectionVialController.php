@@ -45,7 +45,7 @@ class InjectionVialController extends VialController
      */
     protected function getCreateForm()
     {
-        return new InjectionVialNewType();
+        return InjectionVialNewType::class;
     }
 
     /**
@@ -53,7 +53,7 @@ class InjectionVialController extends VialController
      */
     protected function getEditForm()
     {
-        return new InjectionVialType();
+        return InjectionVialType::class;
     }
 
     /**

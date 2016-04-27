@@ -18,7 +18,9 @@
 
 namespace VIB\FliesBundle\Form;
 
+use Bluemesa\Bundle\CoreBundle\Form\HiddenEntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 use Bluemesa\Bundle\AclBundle\Form\AclType;
@@ -33,31 +35,21 @@ class BatchVialAclType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "batchvialacl";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('vials', 'collection', array(
-                        'type'   => 'hidden_entity',
-                        'allow_add' => true,
-                        'options' => array(
-                            'class' =>  'VIB\FliesBundle\Entity\Vial'
-                        ),
-                        'attr'     => array('class' => 'hidden'),
-                        'horizontal' => false,
-                        'label_render' => false,
+        $builder->add('vials', CollectionType::class, array(
+                        'allow_add'         => true,
+                        'entry_type'        => HiddenEntityType::class,
+                        'entry_options'     => array('class' =>  'VIB\FliesBundle\Entity\Vial'),
+                        'attr'              => array('class' => 'hidden'),
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('acl', new AclType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+                ->add('acl', AclType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 );

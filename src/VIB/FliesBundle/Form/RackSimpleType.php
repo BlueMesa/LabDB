@@ -19,6 +19,7 @@
 namespace VIB\FliesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,17 +33,9 @@ class RackSimpleType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "racksimple";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text', array(
+        $builder->add('name', TextType::class, array(
                         'label'    => 'Name',
                         'required' => true
                     )

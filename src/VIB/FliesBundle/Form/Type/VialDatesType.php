@@ -18,6 +18,7 @@
 
 namespace VIB\FliesBundle\Form\Type;
 
+use Bluemesa\Bundle\FormsBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,24 +33,16 @@ class VialDatesType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "vial_dates";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('setupDate', 'datepicker', array(
-                        'label' => 'Setup date',
+        $builder->add('setupDate', DatePickerType::class, array(
+                        'label'      => 'Setup date',
                         'horizontal' => true
                     )
                 )
-                ->add('storedFlipDate', 'datepicker', array(
-                        'label' => 'Flip date',
-                        'required'  => false,
+                ->add('storedFlipDate', DatePickerType::class, array(
+                        'label'      => 'Flip date',
+                        'required'   => false,
                         'horizontal' => true
                     )
                 );

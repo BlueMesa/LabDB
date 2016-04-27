@@ -67,10 +67,10 @@ class InjectionVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/injections/new');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['injectionvial_new[vial][basic][constructName]'] = 'test construct';
-        $form['injectionvial_new[vial][basic][targetStock]'] = 'stock 1';
-        $form['injectionvial_new[vial][basic][embryoCount]'] = 50;
-        $form['injectionvial_new[number]'] = 1;
+        $form['injection_vial_new[vial][basic][constructName]'] = 'test construct';
+        $form['injection_vial_new[vial][basic][targetStock]'] = 'stock 1';
+        $form['injection_vial_new[vial][basic][embryoCount]'] = 50;
+        $form['injection_vial_new[number]'] = 1;
 
         $client->submit($form);
         $this->assertEquals(302,$client->getResponse()->getStatusCode());
@@ -85,10 +85,10 @@ class InjectionVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/injections/new');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['injectionvial_new[vial][basic][constructName]'] = 'test construct';
-        $form['injectionvial_new[vial][basic][targetStock]'] = 'stock 1';
-        $form['injectionvial_new[vial][basic][embryoCount]'] = 50;
-        $form['injectionvial_new[number]'] = 4;
+        $form['injection_vial_new[vial][basic][constructName]'] = 'test construct';
+        $form['injection_vial_new[vial][basic][targetStock]'] = 'stock 1';
+        $form['injection_vial_new[vial][basic][embryoCount]'] = 50;
+        $form['injection_vial_new[number]'] = 4;
 
         $client->submit($form);
         $this->assertEquals(302,$client->getResponse()->getStatusCode());
@@ -103,7 +103,7 @@ class InjectionVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/injections/new');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['injectionvial_new[number]'] = 0;
+        $form['injection_vial_new[number]'] = 0;
 
         $result = $client->submit($form);
         $this->assertTrue($client->getResponse()->isSuccessful());
@@ -164,7 +164,7 @@ class InjectionVialControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/flies/injections/edit/12');
         $this->assertTrue($client->getResponse()->isSuccessful());
         $form = $crawler->selectButton('Save')->form();
-        $form['injectionvial[basic][notes]'] = 'This is a test note.';
+        $form['injection_vial[basic][notes]'] = 'This is a test note.';
 
         $client->submit($form);
         $this->assertEquals(302,$client->getResponse()->getStatusCode());

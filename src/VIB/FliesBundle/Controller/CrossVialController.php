@@ -46,7 +46,7 @@ class CrossVialController extends VialController
      */
     protected function getCreateForm()
     {
-        return new CrossVialNewType();
+        return CrossVialNewType::class;
     }
 
     /**
@@ -54,7 +54,7 @@ class CrossVialController extends VialController
      */
     protected function getEditForm()
     {
-        return new CrossVialType();
+        return CrossVialType::class;
     }
 
     /**

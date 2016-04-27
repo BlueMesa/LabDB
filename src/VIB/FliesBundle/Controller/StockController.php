@@ -58,7 +58,7 @@ class StockController extends SecureCRUDController
      */
     protected function getCreateForm()
     {
-        return new StockNewType();
+        return StockNewType::class;
     }
 
     /**
@@ -66,7 +66,7 @@ class StockController extends SecureCRUDController
      */
     protected function getEditForm()
     {
-        return new StockType();
+        return StockType::class;
     }
 
     /**

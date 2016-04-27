@@ -45,7 +45,7 @@ class IncubatorController extends SecureCRUDController
      */
     protected function getEditForm()
     {
-        return new IncubatorType();
+        return IncubatorType::class;
     }
 
     /**

@@ -19,6 +19,8 @@
 namespace VIB\FliesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,28 +34,18 @@ class IncubatorType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "incubator";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text', array(
-                        'label' => 'Name',
+        $builder->add('name', TextType::class, array(
+                        'label'    => 'Name',
                         'required' => false
                     )
                 )
-                ->add('temperature', 'number', array(
-                        'scale'     => 2,
-                        'label'     => 'Temperature',
-                        'required'  => false,
-                        'widget_addon_append' => array(
-                                'text' => '℃'
-                        )
+                ->add('temperature', NumberType::class, array(
+                        'scale'               => 2,
+                        'label'               => 'Temperature',
+                        'required'            => false,
+                        'widget_addon_append' => array('text' => '℃')
                     )
                 );
     }

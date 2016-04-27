@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "daf247233b06f182b0e022718250c3e6",
-    "content-hash": "e09eb2f99e895006c1edc221749df457",
+    "hash": "33f1eae5c1bda38ef165a4ed452c1060",
+    "content-hash": "b4805a53cef65578f52528ed41acfa9f",
     "packages": [
         {
             "name": "bluemesa/acl-bundle",
@@ -2659,17 +2659,17 @@
         },
         {
             "name": "mopa/bootstrap-bundle",
-            "version": "v3.0.0",
+            "version": "dev-master",
             "target-dir": "Mopa/Bundle/BootstrapBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phiamo/MopaBootstrapBundle.git",
-                "reference": "0205959643168208f3b313b2e00ca643441850b4"
+                "reference": "8a1bfa82398f339d9c53db24194626aed4fd4801"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/0205959643168208f3b313b2e00ca643441850b4",
-                "reference": "0205959643168208f3b313b2e00ca643441850b4",
+                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/8a1bfa82398f339d9c53db24194626aed4fd4801",
+                "reference": "8a1bfa82398f339d9c53db24194626aed4fd4801",
                 "shasum": ""
             },
             "require": {
@@ -2727,7 +2727,7 @@
                 "form",
                 "template"
             ],
-            "time": "2015-11-27 15:18:23"
+            "time": "2016-04-27 14:45:37"
         },
         {
             "name": "mopa/composer-bridge",
@@ -3237,16 +3237,16 @@
         },
         {
             "name": "sabre/vobject",
-            "version": "3.5.1",
+            "version": "3.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fruux/sabre-vobject.git",
-                "reference": "5b92c27399a31c860877b9c29f4fcbb241069679"
+                "reference": "b7d6005b9f8e18bfe2b953d9847df0b3e4098441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fruux/sabre-vobject/zipball/5b92c27399a31c860877b9c29f4fcbb241069679",
-                "reference": "5b92c27399a31c860877b9c29f4fcbb241069679",
+                "url": "https://api.github.com/repos/fruux/sabre-vobject/zipball/b7d6005b9f8e18bfe2b953d9847df0b3e4098441",
+                "reference": "b7d6005b9f8e18bfe2b953d9847df0b3e4098441",
                 "shasum": ""
             },
             "require": {
@@ -3299,20 +3299,20 @@
                 "jCard",
                 "vCard"
             ],
-            "time": "2016-04-07 00:12:31"
+            "time": "2016-04-24 07:05:24"
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.5",
+            "version": "v5.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "3a160355bb1364da55ed9e415c1aa1fa8d457b6f"
+                "reference": "ffe306d09c1f2bad721237f63b2169d1b78253d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/3a160355bb1364da55ed9e415c1aa1fa8d457b6f",
-                "reference": "3a160355bb1364da55ed9e415c1aa1fa8d457b6f",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/ffe306d09c1f2bad721237f63b2169d1b78253d0",
+                "reference": "ffe306d09c1f2bad721237f63b2169d1b78253d0",
                 "shasum": ""
             },
             "require": {
@@ -3351,7 +3351,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2016-03-15 16:21:41"
+            "time": "2016-04-25 20:50:31"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -5734,6 +5734,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "mopa/bootstrap-bundle": 20,
         "friendsofsymfony/user-bundle": 20,
         "friendsofsymfony/rest-bundle": 20,
         "kuleuven/shibboleth-bundle": 20,

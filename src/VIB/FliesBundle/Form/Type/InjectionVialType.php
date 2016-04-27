@@ -18,7 +18,14 @@
 
 namespace VIB\FliesBundle\Form\Type;
 
+use Bluemesa\Bundle\CoreBundle\Form\EntityTypeaheadType;
+use Bluemesa\Bundle\CoreBundle\Form\TextEntityType;
+use Bluemesa\Bundle\FormsBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,25 +39,17 @@ class InjectionVialType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "injectionvial_basic";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('setupDate', 'datepicker', array('label' => 'Injection date'))
-                ->add('storedFlipDate', 'datepicker', array(
-                        'label' => 'Check date',
-                        'required'  => false,
+        $builder->add('setupDate', DatePickerType::class, array('label' => 'Injection date'))
+                ->add('storedFlipDate', DatePickerType::class, array(
+                        'label'      => 'Check date',
+                        'required'   => false,
                         'horizontal' => true
                     )
                 )
-                ->add('injectionType', 'choice', array(
-                        'choices' => array(
+                ->add('injectionType', ChoiceType::class, array(
+                        'choices'    => array(
                             'phiC31'      => 'phiC31',
                             'P-element'   => 'P-element',
                             'piggyBac'    => 'piggyBac',
@@ -59,63 +58,61 @@ class InjectionVialType extends AbstractType
                             'Flp RMCE'    => 'Flp RMCE',
                             'Cre RMCE'    => 'Cre RMCE'
                         ),
-                        'label' => 'Injection type',
+                        'label'      => 'Injection type',
                         'horizontal' => true
                     )
                 )
-                ->add('constructName', 'text', array(
-                        'label' => 'Construct name',
-                        'required' => true,
+                ->add('constructName', TextType::class, array(
+                        'label'      => 'Construct name',
+                        'required'   => true,
                         'horizontal' => true
                     )
                 )
-                ->add('targetStock', 'entity_typeahead', array(
-                        'choice_label'  => 'name',
-                        'class'     => 'VIBFliesBundle:Stock',
-                        'label'     => 'Target stock',
-                        'required'  => false,
+                ->add('targetStock', EntityTypeaheadType::class, array(
+                        'choice_label' => 'name',
+                        'class'        => 'VIBFliesBundle:Stock',
+                        'label'        => 'Target stock',
+                        'required'     => false,
+                        'horizontal'   => true
+                    )
+                )
+                ->add('targetStockVial', TextEntityType::class, array(
+                        'choice_label'        => 'id',
+                        'class'               => 'VIBFliesBundle:StockVial',
+                        'format'              => '%06d',
+                        'required'            => false,
+                        'label'               => 'Target stock source vial',
+                        'attr'                => array('class' => 'barcode'),
+                        'widget_addon_append' => array('icon' => 'qrcode'),
+                        'horizontal'          => true
+                    )
+                )
+                ->add('embryoCount', NumberType::class, array(
+                        'label'      => 'Embryo count',
                         'horizontal' => true
                     )
                 )
-                ->add('targetStockVial', 'text_entity', array(
-                        'choice_label'  => 'id',
-                        'class'     => 'VIBFliesBundle:StockVial',
-                        'format'    => '%06d',
-                        'required'  => false,
-                        'label'     => 'Target stock source vial',
-                        'attr' => array('class' => 'barcode'),
-                        'widget_addon_append' => array(
-                            'icon' => 'qrcode'
-                        ),
+                ->add('vendor', TextType::class, array(
+                        'label'      => 'Vendor',
+                        'required'   => false,
                         'horizontal' => true
                     )
                 )
-                ->add('embryoCount', 'number', array(
-                        'label' => 'Embryo count',
+                ->add('receiptDate', DatePickerType::class, array(
+                        'label'      => 'Receipt date',
+                        'required'   => false,
                         'horizontal' => true
                     )
                 )
-                ->add('vendor', 'text', array(
-                        'label' => 'Vendor',
-                        'required' => false,
+                ->add('orderNo', TextType::class, array(
+                        'label'      => 'Order number',
+                        'required'   => false,
                         'horizontal' => true
                     )
                 )
-                ->add('receiptDate', 'datepicker', array(
-                        'label' => 'Receipt date',
-                        'required'  => false,
-                        'horizontal' => true
-                    )
-                )
-                ->add('orderNo', 'text', array(
-                        'label' => 'Order number',
-                        'required' => false,
-                        'horizontal' => true
-                    )
-                )
-                ->add('notes', 'textarea', array(
-                        'label' => 'Notes',
-                        'required' => false,
+                ->add('notes', TextareaType::class, array(
+                        'label'      => 'Notes',
+                        'required'   => false,
                         'horizontal' => true
                     )
                 );

@@ -18,6 +18,7 @@
 
 namespace VIB\FliesBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,33 +33,25 @@ class CrossVialSimpleType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "crossvial_simple";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('basic', new Type\CrossVialType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+        $builder->add('basic', Type\CrossVialType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('options', new Type\VialOptionsType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+                ->add('options', Type\VialOptionsType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('storageUnit', 'entity', array(
+                ->add('storageUnit', EntityType::class, array(
                         'choice_label' => 'name',
-                        'class'    => 'VIBFliesBundle:Incubator',
-                        'label'    => 'Incubator',
-                        'horizontal' => true
+                        'class'        => 'VIBFliesBundle:Incubator',
+                        'label'        => 'Incubator',
+                        'horizontal'   => true
                     )
                 );
     }

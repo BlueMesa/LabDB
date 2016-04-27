@@ -50,7 +50,7 @@ class RackController extends SecureCRUDController
      */
     protected function getEditForm()
     {
-        return new RackType();
+        return RackType::class;
     }
 
     /**

@@ -31,14 +31,6 @@ class SettingsType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "flies_settings";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         

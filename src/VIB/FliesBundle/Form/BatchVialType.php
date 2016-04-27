@@ -18,9 +18,10 @@
 
 namespace VIB\FliesBundle\Form;
 
+use Bluemesa\Bundle\CoreBundle\Form\HiddenEntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * BatchVialType class
@@ -32,31 +33,21 @@ class BatchVialType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "batchvial";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('vials', 'collection', array(
-                        'type'   => 'hidden_entity',
-                        'allow_add' => true,
-                        'options' => array(
-                            'class' =>  'VIB\FliesBundle\Entity\Vial'
-                        ),
-                        'attr'     => array('class' => 'hidden'),
-                        'horizontal' => false,
-                        'label_render' => false,
+        $builder->add('vials', CollectionType::class, array(
+                        'allow_add'         => true,
+                        'entry_type'        => HiddenEntityType::class,
+                        'entry_options'     => array('class' =>  'VIB\FliesBundle\Entity\Vial'),
+                        'attr'              => array('class' => 'hidden'),
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('template', new BatchVialSimpleType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+                ->add('template', BatchVialSimpleType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 );

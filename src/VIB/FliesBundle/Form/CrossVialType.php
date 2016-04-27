@@ -18,7 +18,10 @@
 
 namespace VIB\FliesBundle\Form;
 
+use Bluemesa\Bundle\CoreBundle\Form\TextEntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -32,42 +35,32 @@ class CrossVialType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
-    {
-        return "crossvial";
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('basic', new Type\CrossVialType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+        $builder->add('basic', Type\CrossVialType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('sourceVial', 'text_entity', array(
-                        'choice_label'  => 'id',
-                        'class'     => 'VIBFliesBundle:CrossVial',
-                        'format'    => '%06d',
-                        'label'     => 'Flipped from',
-                        'attr'      => array('class' => 'barcode'),
-                        'widget_addon_append' => array(
-                            'icon' => 'qrcode'
-                        ),
-                        'required'  => false
+                ->add('sourceVial', TextEntityType::class, array(
+                        'choice_label'        => 'id',
+                        'class'               => 'VIBFliesBundle:CrossVial',
+                        'format'              => '%06d',
+                        'label'               => 'Flipped from',
+                        'attr'                => array('class' => 'barcode'),
+                        'widget_addon_append' => array('icon' => 'qrcode'),
+                        'required'            => false
                     )
                 )
-                ->add('options', new Type\VialOptionsType(), array(
-                        'horizontal' => false,
-                        'label_render' => false,
+                ->add('options', Type\VialOptionsType::class, array(
+                        'horizontal'        => false,
+                        'label_render'      => false,
                         'widget_form_group' => false
                     )
                 )
-                ->add('outcome', 'choice', array(
-                        'choices' => array(
+                ->add('outcome', ChoiceType::class, array(
+                        'choices'     => array(
                             'successful' => 'Successful',
                             'failed'     => 'Failed',
                             'sterile'    => 'Sterile',
@@ -79,7 +72,7 @@ class CrossVialType extends AbstractType
                         'required'    => false,
                     )
                 )
-                ->add('trashed', 'checkbox', array(
+                ->add('trashed', CheckboxType::class, array(
                         'label'    => '',
                         'required' => false
                     )
