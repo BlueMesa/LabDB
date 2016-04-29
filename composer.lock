@@ -4,9 +4,83 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "33f1eae5c1bda38ef165a4ed452c1060",
-    "content-hash": "b4805a53cef65578f52528ed41acfa9f",
+    "hash": "9c37ec5f7de7ff0449ed7a55a79c608d",
+    "content-hash": "0ae4ab1b1b559ba0a56edeffb37deb96",
     "packages": [
+        {
+            "name": "beelab/bowerphp",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bee-Lab/bowerphp.git",
+                "reference": "28b655c65c52ded560dbeb6ca311310bf0f5a64e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bee-Lab/bowerphp/zipball/28b655c65c52ded560dbeb6ca311310bf0f5a64e",
+                "reference": "28b655c65c52ded560dbeb6ca311310bf0f5a64e",
+                "shasum": ""
+            },
+            "require": {
+                "camspiers/json-pretty": "1.0.*",
+                "ext-fileinfo": "*",
+                "ext-zip": "*",
+                "knplabs/github-api": "1.4.*",
+                "php": ">=5.3.6",
+                "symfony/console": "~2.3|~3.0",
+                "symfony/filesystem": "~2.4|~3.0",
+                "symfony/finder": "~2.3|~3.0",
+                "symfony/process": "~2.3|~3.0",
+                "vierbergenlars/php-semver": "~3.0"
+            },
+            "require-dev": {
+                "ext-phar": "*",
+                "fabpot/php-cs-fixer": "~1.5",
+                "mockery/mockery": "~0.9.3",
+                "phpunit/phpunit": "4.*"
+            },
+            "bin": [
+                "bin/bowerphp"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bowerphp\\": "src/Bowerphp"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Massimiliano Arione",
+                    "email": "massimiliano.arione@bee-lab.net"
+                },
+                {
+                    "name": "Mauro D'Alatri",
+                    "email": "mauro.dalatri@bee-lab.net"
+                },
+                {
+                    "name": "The Community",
+                    "homepage": "https://github.com/Bee-Lab/bowerphp/graphs/contributors"
+                }
+            ],
+            "description": "An implementation of bower in PHP",
+            "homepage": "http://bowerphp.org/",
+            "keywords": [
+                "bower",
+                "dependency",
+                "frontend",
+                "package"
+            ],
+            "time": "2016-04-04 13:22:45"
+        },
         {
             "name": "bluemesa/acl-bundle",
             "version": "dev-master",
@@ -207,44 +281,78 @@
             }
         },
         {
-            "name": "components/bootstrap",
-            "version": "3.3.6",
+            "name": "camspiers/json-pretty",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/components/bootstrap.git",
-                "reference": "fb4923919c620b8b2aa8a11eda16b49b0a9e8a27"
+                "url": "https://github.com/camspiers/json-pretty.git",
+                "reference": "17be37cb83af8014658da48fa0012604179039a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/bootstrap/zipball/fb4923919c620b8b2aa8a11eda16b49b0a9e8a27",
-                "reference": "fb4923919c620b8b2aa8a11eda16b49b0a9e8a27",
+                "url": "https://api.github.com/repos/camspiers/json-pretty/zipball/17be37cb83af8014658da48fa0012604179039a7",
+                "reference": "17be37cb83af8014658da48fa0012604179039a7",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Camspiers": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cam Spiers",
+                    "email": "cameron@heyday.co.nz"
+                }
+            ],
+            "description": "Provides support for json pretty printing",
+            "time": "2016-02-06 01:25:58"
+        },
+        {
+            "name": "craue/formflow-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/craue/CraueFormFlowBundle.git",
+                "reference": "551482eadb8b5d9cacda46a8afa8108ae9e08cdb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/craue/CraueFormFlowBundle/zipball/551482eadb8b5d9cacda46a8afa8108ae9e08cdb",
+                "reference": "551482eadb8b5d9cacda46a8afa8108ae9e08cdb",
                 "shasum": ""
             },
             "require": {
-                "components/jquery": "1.9.1 - 2"
+                "php": "^5.3.9|~7.0",
+                "symfony/form": "~2.7|~3.0",
+                "symfony/http-kernel": "~2.7|~3.0",
+                "symfony/translation": "~2.7|~3.0",
+                "symfony/yaml": "~2.7|~3.0"
             },
-            "suggest": {
-                "components/bootstrap-default": "Provide a theme for Bootstrap as components/bootstrap only provides the CSS as file assets"
+            "require-dev": {
+                "doctrine/doctrine-bundle": "~1.0",
+                "phpunit/phpunit": "~4.1|~5.0",
+                "sensio/framework-extra-bundle": "~3.0",
+                "symfony/phpunit-bridge": "^2.8.1|^3.0.1",
+                "symfony/symfony": "~2.7|~3.0"
             },
-            "type": "component",
+            "type": "symfony-bundle",
             "extra": {
-                "component": {
-                    "scripts": [
-                        "js/bootstrap.js"
-                    ],
-                    "files": [
-                        "js/*.js",
-                        "css/*.css",
-                        "css/*.map",
-                        "fonts/*",
-                        "less/mixins/*.less",
-                        "less/*.less"
-                    ],
-                    "shim": {
-                        "deps": [
-                            "jquery"
-                        ]
-                    }
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Craue\\FormFlowBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -253,68 +361,24 @@
             ],
             "authors": [
                 {
-                    "name": "Jacob Thornton",
-                    "email": "jacobthornton@gmail.com"
+                    "name": "Christian Raue",
+                    "email": "christian.raue@gmail.com"
                 },
                 {
-                    "name": "Mark Otto",
-                    "email": "markdotto@gmail.com"
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/craue/CraueFormFlowBundle/contributors"
                 }
             ],
-            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
-            "homepage": "http://getbootstrap.com",
+            "description": "Multi-step forms for your Symfony project.",
+            "homepage": "https://github.com/craue/CraueFormFlowBundle",
             "keywords": [
-                "css",
-                "framework",
-                "front-end",
-                "less",
-                "mobile-first",
-                "responsive",
-                "web"
+                "Symfony2",
+                "form",
+                "step",
+                "symfony3",
+                "wizard"
             ],
-            "time": "2015-11-24 20:19:41"
-        },
-        {
-            "name": "components/jquery",
-            "version": "2.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/components/jquery.git",
-                "reference": "7894addbce3c4de6f82449610e6f8e168b49e9b0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/components/jquery/zipball/7894addbce3c4de6f82449610e6f8e168b49e9b0",
-                "reference": "7894addbce3c4de6f82449610e6f8e168b49e9b0",
-                "shasum": ""
-            },
-            "type": "component",
-            "extra": {
-                "component": {
-                    "scripts": [
-                        "jquery.js"
-                    ],
-                    "files": [
-                        "jquery.min.js",
-                        "jquery.min.map",
-                        "jquery-migrate.js",
-                        "jquery-migrate.min.js"
-                    ]
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "John Resig",
-                    "email": "jeresig@gmail.com"
-                }
-            ],
-            "description": "jQuery JavaScript Library",
-            "homepage": "http://jquery.com",
-            "time": "2016-02-24 08:16:25"
+            "time": "2016-04-20 10:50:12"
         },
         {
             "name": "doctrine/annotations",
@@ -1197,120 +1261,17 @@
             "time": "2016-01-05 21:34:58"
         },
         {
-            "name": "eternicode/bootstrap-datepicker",
-            "version": "v1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/eternicode/bootstrap-datepicker.git",
-                "reference": "4a28c83d854feef150e307a445dcc7662db54b45"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/eternicode/bootstrap-datepicker/zipball/4a28c83d854feef150e307a445dcc7662db54b45",
-                "reference": "4a28c83d854feef150e307a445dcc7662db54b45",
-                "shasum": ""
-            },
-            "require": {
-                "components/bootstrap": ">=3.0, <4.0",
-                "components/jquery": ">=1.7.1",
-                "robloach/component-installer": "*"
-            },
-            "type": "component",
-            "extra": {
-                "component": {
-                    "scripts": [
-                        "js/bootstrap-datepicker.js"
-                    ],
-                    "styles": [
-                        "dist/css/bootstrap-datepicker.css",
-                        "dist/css/bootstrap-datepicker3.css"
-                    ],
-                    "files": [
-                        "js/locales/bootstrap-datepicker.*.js"
-                    ]
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Andrew Rowls",
-                    "email": "eternicode@gmail.com"
-                },
-                {
-                    "name": "Community",
-                    "homepage": "https://github.com/eternicode/bootstrap-datepicker/contributors"
-                }
-            ],
-            "description": "A datepicker for Bootstrap forked from Stefan Petre's (of eyecon.ro)",
-            "keywords": [
-                "bootstrap",
-                "datepicker"
-            ],
-            "time": "2016-02-01 18:59:58"
-        },
-        {
-            "name": "fortawesome/font-awesome",
-            "version": "v4.6.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "6535013c330e801ecf0b23c437865a7fb344486d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/6535013c330e801ecf0b23c437865a7fb344486d",
-                "reference": "6535013c330e801ecf0b23c437865a7fb344486d",
-                "shasum": ""
-            },
-            "require-dev": {
-                "jekyll": "1.0.2",
-                "lessc": "1.4.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.0.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "OFL-1.1",
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dave Gandy",
-                    "email": "dave@fontawesome.io",
-                    "homepage": "http://twitter.com/davegandy",
-                    "role": "Developer"
-                }
-            ],
-            "description": "The iconic font and CSS framework",
-            "homepage": "http://fontawesome.io/",
-            "keywords": [
-                "FontAwesome",
-                "awesome",
-                "bootstrap",
-                "font",
-                "icon"
-            ],
-            "time": "2016-04-12 14:51:54"
-        },
-        {
             "name": "friendsofsymfony/rest-bundle",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "df94140dc39bc591b7c2ce7cd9e791594fad7b28"
+                "reference": "a422c7a230f1e88e0e57a70dbe7eb7571b2abf35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/df94140dc39bc591b7c2ce7cd9e791594fad7b28",
-                "reference": "df94140dc39bc591b7c2ce7cd9e791594fad7b28",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/a422c7a230f1e88e0e57a70dbe7eb7571b2abf35",
+                "reference": "a422c7a230f1e88e0e57a70dbe7eb7571b2abf35",
                 "shasum": ""
             },
             "require": {
@@ -1385,7 +1346,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2016-03-31 21:02:10"
+            "time": "2016-04-27 17:07:23"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -1393,12 +1354,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "16b04c49af05dd3fb381e4abe04f0e5e231ac76d"
+                "reference": "def27463609e24af410b2606f0062de46fab5662"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/16b04c49af05dd3fb381e4abe04f0e5e231ac76d",
-                "reference": "16b04c49af05dd3fb381e4abe04f0e5e231ac76d",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/def27463609e24af410b2606f0062de46fab5662",
+                "reference": "def27463609e24af410b2606f0062de46fab5662",
                 "shasum": ""
             },
             "require": {
@@ -1454,7 +1415,99 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2016-03-08 11:05:28"
+            "time": "2016-04-28 10:51:07"
+        },
+        {
+            "name": "guzzle/guzzle",
+            "version": "v3.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.3",
+                "symfony/event-dispatcher": ">=2.1"
+            },
+            "replace": {
+                "guzzle/batch": "self.version",
+                "guzzle/cache": "self.version",
+                "guzzle/common": "self.version",
+                "guzzle/http": "self.version",
+                "guzzle/inflection": "self.version",
+                "guzzle/iterator": "self.version",
+                "guzzle/log": "self.version",
+                "guzzle/parser": "self.version",
+                "guzzle/plugin": "self.version",
+                "guzzle/plugin-async": "self.version",
+                "guzzle/plugin-backoff": "self.version",
+                "guzzle/plugin-cache": "self.version",
+                "guzzle/plugin-cookie": "self.version",
+                "guzzle/plugin-curlauth": "self.version",
+                "guzzle/plugin-error-response": "self.version",
+                "guzzle/plugin-history": "self.version",
+                "guzzle/plugin-log": "self.version",
+                "guzzle/plugin-md5": "self.version",
+                "guzzle/plugin-mock": "self.version",
+                "guzzle/plugin-oauth": "self.version",
+                "guzzle/service": "self.version",
+                "guzzle/stream": "self.version"
+            },
+            "require-dev": {
+                "doctrine/cache": "*",
+                "monolog/monolog": "1.*",
+                "phpunit/phpunit": "3.7.*",
+                "psr/log": "1.0.*",
+                "symfony/class-loader": "*",
+                "zendframework/zend-cache": "<2.3",
+                "zendframework/zend-log": "<2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Guzzle": "src/",
+                    "Guzzle\\Tests": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Guzzle Community",
+                    "homepage": "https://github.com/guzzle/guzzle/contributors"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "time": "2014-01-28 22:29:15"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1506,49 +1559,6 @@
                 "parameters management"
             ],
             "time": "2015-11-10 17:04:01"
-        },
-        {
-            "name": "ivaynberg/select2",
-            "version": "3.5.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/select2/select2.git",
-                "reference": "95a977f674b6938af55ec5f28b7772df93786c5c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/select2/select2/zipball/95a977f674b6938af55ec5f28b7772df93786c5c",
-                "reference": "95a977f674b6938af55ec5f28b7772df93786c5c",
-                "shasum": ""
-            },
-            "require": {
-                "components/jquery": ">=1.7.1",
-                "robloach/component-installer": "*"
-            },
-            "type": "component",
-            "extra": {
-                "component": {
-                    "scripts": [
-                        "select2.js"
-                    ],
-                    "files": [
-                        "select2.js",
-                        "select2_locale_*.js",
-                        "select2.css",
-                        "select2-bootstrap.css",
-                        "select2-spinner.gif",
-                        "select2.png",
-                        "select2x2.png"
-                    ]
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "Select2 is a jQuery based replacement for select boxes.",
-            "homepage": "http://ivaynberg.github.io/select2/",
-            "time": "2015-08-30 17:30:38"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2070,26 +2080,65 @@
             "time": "2015-11-10 12:26:42"
         },
         {
-            "name": "jquery/jquery",
-            "version": "1.11.3",
-            "dist": {
-                "type": "file",
-                "url": "http://code.jquery.com/jquery-1.11.3.min.js",
-                "reference": null,
-                "shasum": null
+            "name": "knplabs/github-api",
+            "version": "1.4.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/php-github-api.git",
+                "reference": "313d7ed61494f525ab93cfd8595ec2d398533220"
             },
-            "type": "library"
-        },
-        {
-            "name": "jquery/jquery-ui",
-            "version": "1.11.4",
             "dist": {
                 "type": "zip",
-                "url": "http://jqueryui.com/resources/download/jquery-ui-1.11.4.zip",
-                "reference": "1.11.4",
-                "shasum": null
+                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/313d7ed61494f525ab93cfd8595ec2d398533220",
+                "reference": "313d7ed61494f525ab93cfd8595ec2d398533220",
+                "shasum": ""
             },
-            "type": "library"
+            "require": {
+                "ext-curl": "*",
+                "guzzle/guzzle": "~3.7",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "knplabs/gaufrette": "Needed for optional Gaufrette cache"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Github\\": "lib/Github/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thibault Duplessis",
+                    "email": "thibault.duplessis@gmail.com",
+                    "homepage": "http://ornicar.github.com"
+                },
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                }
+            ],
+            "description": "GitHub API v3 client",
+            "homepage": "https://github.com/KnpLabs/php-github-api",
+            "keywords": [
+                "api",
+                "gh",
+                "gist",
+                "github"
+            ],
+            "time": "2015-08-20 09:44:33"
         },
         {
             "name": "knplabs/knp-components",
@@ -2668,7 +2717,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/8a1bfa82398f339d9c53db24194626aed4fd4801",
+                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/04c608d09513d33f1761439ab9a939737705eec4",
                 "reference": "8a1bfa82398f339d9c53db24194626aed4fd4801",
                 "shasum": ""
             },
@@ -3186,54 +3235,6 @@
                     ]
                 }
             }
-        },
-        {
-            "name": "robloach/component-installer",
-            "version": "0.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/RobLoach/component-installer.git",
-                "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0",
-                "kriswallsmith/assetic": "1.*",
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "composer/composer": "1.*@alpha",
-                "phpunit/phpunit": "4.*"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                },
-                "class": "ComponentInstaller\\ComponentInstallerPlugin"
-            },
-            "autoload": {
-                "psr-0": {
-                    "ComponentInstaller": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rob Loach",
-                    "homepage": "http://robloach.net"
-                }
-            ],
-            "description": "Allows installation of Components via Composer.",
-            "time": "2015-08-10 12:35:38"
         },
         {
             "name": "sabre/vobject",
@@ -4234,57 +4235,6 @@
             "time": "2015-09-12 10:08:34"
         },
         {
-            "name": "twbs/bootstrap",
-            "version": "v3.3.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "81df608a40bf0629a1dc08e584849bb1e43e0b7a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/81df608a40bf0629a1dc08e584849bb1e43e0b7a",
-                "reference": "81df608a40bf0629a1dc08e584849bb1e43e0b7a",
-                "shasum": ""
-            },
-            "replace": {
-                "twitter/bootstrap": "self.version"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.3.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jacob Thornton",
-                    "email": "jacobthornton@gmail.com"
-                },
-                {
-                    "name": "Mark Otto",
-                    "email": "markdotto@gmail.com"
-                }
-            ],
-            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
-            "homepage": "http://getbootstrap.com",
-            "keywords": [
-                "JS",
-                "css",
-                "framework",
-                "front-end",
-                "less",
-                "mobile-first",
-                "responsive",
-                "web"
-            ],
-            "time": "2015-11-24 19:37:05"
-        },
-        {
             "name": "twig/extensions",
             "version": "v1.3.0",
             "source": {
@@ -4398,49 +4348,6 @@
             "time": "2016-01-25 21:22:18"
         },
         {
-            "name": "twitter/hogan.js",
-            "version": "v3.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twitter/hogan.js.git",
-                "reference": "v3.0.2"
-            },
-            "type": "component"
-        },
-        {
-            "name": "twitter/typeahead.js",
-            "version": "v0.11.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twitter/typeahead.js.git",
-                "reference": "588440f66559714280628a4f9799f0c4eb880a4a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twitter/typeahead.js/zipball/588440f66559714280628a4f9799f0c4eb880a4a",
-                "reference": "588440f66559714280628a4f9799f0c4eb880a4a",
-                "shasum": ""
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Twitter Inc.",
-                    "homepage": "https://twitter.com/twitteross"
-                }
-            ],
-            "description": "fast and fully-featured autocomplete library",
-            "homepage": "http://twitter.github.com/typeahead.js",
-            "keywords": [
-                "autocomplete",
-                "typeahead"
-            ],
-            "time": "2015-04-27 04:02:14"
-        },
-        {
             "name": "verekia/initializr",
             "version": "4.2.0",
             "dist": {
@@ -4450,6 +4357,58 @@
                 "shasum": null
             },
             "type": "library"
+        },
+        {
+            "name": "vierbergenlars/php-semver",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vierbergenlars/php-semver.git",
+                "reference": "516bb3061577e60e9420cbecc479362d3ad8c7f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vierbergenlars/php-semver/zipball/516bb3061577e60e9420cbecc479362d3ad8c7f1",
+                "reference": "516bb3061577e60e9420cbecc479362d3ad8c7f1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "simpletest/simpletest": "1.1.*"
+            },
+            "bin": [
+                "bin/semver",
+                "bin/update-versions"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "vierbergenlars\\SemVer\\": "src/",
+                    "vierbergenlars\\LibJs\\": "src/"
+                },
+                "classmap": [
+                    "src/vierbergenlars/SemVer/internal.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Vierbergen",
+                    "email": "vierbergenlars@gmail.com"
+                }
+            ],
+            "description": "The Semantic Versioner for PHP",
+            "keywords": [
+                "semantic",
+                "semver",
+                "versioning"
+            ],
+            "time": "2015-05-02 19:28:54"
         },
         {
             "name": "whiteoctober/tcpdf-bundle",
@@ -5677,16 +5636,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v2.7.11",
+            "version": "v2.7.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "bf3118da2876fd38dc6c09ebcbe4af3a259cf3ae"
+                "reference": "c8a9203ebf4683a52bcb82114e5989794f7665ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/bf3118da2876fd38dc6c09ebcbe4af3a259cf3ae",
-                "reference": "bf3118da2876fd38dc6c09ebcbe4af3a259cf3ae",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/c8a9203ebf4683a52bcb82114e5989794f7665ac",
+                "reference": "c8a9203ebf4683a52bcb82114e5989794f7665ac",
                 "shasum": ""
             },
             "require": {
@@ -5728,7 +5687,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2016-03-23 12:43:53"
+            "time": "2016-04-04 17:11:39"
         }
     ],
     "aliases": [],
@@ -5741,7 +5700,9 @@
         "bluemesa/core-bundle": 20,
         "bluemesa/acl-bundle": 20,
         "bluemesa/storage-bundle": 20,
-        "bluemesa/forms-bundle": 20
+        "bluemesa/forms-bundle": 20,
+        "craue/formflow-bundle": 20,
+        "beelab/bowerphp": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

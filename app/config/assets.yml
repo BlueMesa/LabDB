@@ -17,29 +17,20 @@ assetic:
         yui_js:
             jar:        %kernel.root_dir%/../vendor/packagist/yuicompressor-bin/bin/yuicompressor.jar
     assets:
-#        # Bootstrap
-#        Bootstrap-halflings:
-#            inputs:
-#                -       %kernel.root_dir%/../vendor/twbs/bootstrap/img/glyphicons-halflings.png
-#            output:     'img/glyphicons-halflings.png'
-#        Bootstrap-halflings-white:
-#            inputs:
-#                -       %kernel.root_dir%/../vendor/twbs/bootstrap/img/glyphicons-halflings-white.png
-#            output:     'img/glyphicons-halflings-white.png'
         # FontAwesome
         FontAwesome-eot:
             inputs:
-                -       %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.eot
+                -       %kernel.root_dir%/../bower_components/fontawesome/fonts/fontawesome-webfont.eot
             output:     'font/fontawesome-webfont.eot'
         FontAwesome-svg:
             inputs:
-                -       %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.svg
+                -       %kernel.root_dir%/../bower_components/fontawesome/fonts/fontawesome-webfont.svg
             output:     'font/fontawesome-webfont.svg'
         FontAwesome-ttf:
             inputs:
-                -       %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.ttf
+                -       %kernel.root_dir%/../bower_components/fontawesome/fonts/fontawesome-webfont.ttf
             output:     'font/fontawesome-webfont.ttf'
         FontAwesome-woff:
             inputs:
-                -       %kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.woff
+                -       %kernel.root_dir%/../bower_components/fontawesome/fonts/fontawesome-webfont.woff
             output:     'font/fontawesome-webfont.woff'

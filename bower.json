@@ -1,0 +1,19 @@
+{
+    "name": "bluemesa\/labdb",
+    "authors": [
+        "Beelab <info@bee-lab.net>",
+        null
+    ],
+    "private": true,
+    "dependencies": {
+        "bootstrap": "3",
+        "typeahead.js": "0.11",
+        "hogan": "3",
+        "fontawesome": "4",
+        "bootstrap-datepicker": "1.5",
+        "select2": "3",
+        "jquery-ui": "1",
+        "modernizr": "2.8",
+        "respond": "1.4"
+    }
+}

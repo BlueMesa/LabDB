@@ -8,6 +8,11 @@
     "autoload-dev": {
         "psr-4": { "Tests\\": "tests/" }
     },
+    "provide": {
+        "components/bootstrap": "*",
+        "components/jquery": "*"
+
+    },
     "require": {
         "php": ">=5.6.0",
         "symfony/symfony": "~3.0",
@@ -25,7 +30,6 @@
         "jms/di-extra-bundle": "~1.6",
         "jms/serializer-bundle": "~1.0",
         "mopa/bootstrap-bundle": "dev-master#8a1bfa82398f339d9c53db24194626aed4fd4801",
-        "twbs/bootstrap": "~3.3",
         "knplabs/knp-paginator-bundle": "~2.5",
         "knplabs/knp-menu-bundle": "~2.1",
         "friendsofsymfony/user-bundle": "~2.0@dev",
@@ -37,20 +41,15 @@
         "kuleuven/shibboleth-bundle": "dev-master#67070be",
         "oyejorge/less.php": "~1.7",
         "leafo/scssphp": "~0.3",
-        "twitter/typeahead.js": "~0.11.1",
-        "twitter/hogan.js": "v3.0.2",
-        "fortawesome/font-awesome": "~4.4",
-        "eternicode/bootstrap-datepicker": "~1.5",
-        "ivaynberg/select2": "~3.5",
-        "jquery/jquery": "~1.11",
-        "jquery/jquery-ui": "~1.11",
         "packagist/yuicompressor-bin": "~2.4",
         "packagist/cssembed-bin": "~0.4",
         "verekia/initializr": "~4.2",
         "bluemesa/core-bundle": "dev-master",
         "bluemesa/acl-bundle": "dev-master",
         "bluemesa/storage-bundle": "dev-master",
-        "bluemesa/forms-bundle": "@dev"
+        "bluemesa/forms-bundle": "@dev",
+        "craue/formflow-bundle": "~3.0@dev",
+        "beelab/bowerphp": "1.0.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
@@ -65,7 +64,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            "ln -fs ../../../../../../../../bower_components/bootstrap vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap"
        ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
@@ -73,8 +72,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
-            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ]
     },
     "config": {
@@ -98,53 +96,6 @@
         }
     },
     "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "verekia/initializr",
-                "version": "4.2.0",
-                "dist":{
-                    "url":"http://www.initializr.com/builder?modernizrrespond",
-                    "type":"zip"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "jquery/jquery",
-                "version": "1.11.3",
-                "dist":{
-                    "url":"http://code.jquery.com/jquery-1.11.3.min.js",
-                    "type":"file"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "jquery/jquery-ui",
-                "version": "1.11.4",
-                "dist":{
-                    "url":"http://jqueryui.com/resources/download/jquery-ui-1.11.4.zip",
-                    "type":"zip",
-                    "reference":"1.11.4"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "version": "v3.0.2",
-                "name": "twitter/hogan.js",
-                "type": "component",
-                "source": {
-                    "url": "https://github.com/twitter/hogan.js.git",
-                    "type": "git",
-                    "reference": "v3.0.2"
-                }
-            }
-        },
         {
             "type": "package",
             "package": {

@@ -53,7 +53,7 @@
   {% endif %}
   {% block head_style %}
     {% stylesheets
-      '../vendor/ivaynberg/select2/select2.css'
+      '../bower_components/select2/select2.css'
       '@VIBSiteTemplateBundle/Resources/public/less/vibbasebundle.less'
       output='css/styles.css'
     %}
@@ -70,7 +70,8 @@
   {% endblock head_style %}
   {% block head_scripts %}
     {% javascripts
-        '../vendor/verekia/initializr/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js'
+        '../bower_components/modernizr/modernizr.js'
+        '../bower_components/respond/src/respond.js'
         output='js/head.js'
     %}
       <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -162,24 +163,24 @@
     </script>
     {% endif %}
     {% javascripts output='js/main.js'
-      '../vendor/jquery/jquery/jquery-1.11.3.min.js'
-      '../vendor/jquery/jquery-ui/jquery-ui.min.js'
-      '../vendor/twbs/bootstrap/js/transition.js'
-      '../vendor/twbs/bootstrap/js/modal.js'
-      '../vendor/twbs/bootstrap/js/scrollspy.js'
-      '../vendor/twbs/bootstrap/js/tab.js'
-      '../vendor/twbs/bootstrap/js/tooltip.js'
-      '../vendor/twbs/bootstrap/js/popover.js'
-      '../vendor/twbs/bootstrap/js/dropdown.js'
-      '../vendor/twbs/bootstrap/js/alert.js'
-      '../vendor/twbs/bootstrap/js/button.js'
-      '../vendor/twbs/bootstrap/js/collapse.js'
-      '../vendor/twbs/bootstrap/js/carousel.js'
-      '../vendor/twitter/hogan.js/web/builds/2.0.0/hogan-2.0.0.js'
-      '../vendor/twitter/typeahead.js/dist/bloodhound.js'
-      '../vendor/twitter/typeahead.js/dist/typeahead.jquery.js'
-      '../vendor/eternicode/bootstrap-datepicker/js/bootstrap-datepicker.js'
-      '../vendor/ivaynberg/select2/select2.js'
+      '../bower_components/jquery/dist/jquery.js'
+      '../bower_components/jquery-ui/jquery-ui.js'
+      '../bower_components/bootstrap/js/transition.js'
+      '../bower_components/bootstrap/js/modal.js'
+      '../bower_components/bootstrap/js/scrollspy.js'
+      '../bower_components/bootstrap/js/tab.js'
+      '../bower_components/bootstrap/js/tooltip.js'
+      '../bower_components/bootstrap/js/popover.js'
+      '../bower_components/bootstrap/js/dropdown.js'
+      '../bower_components/bootstrap/js/alert.js'
+      '../bower_components/bootstrap/js/button.js'
+      '../bower_components/bootstrap/js/collapse.js'
+      '../bower_components/bootstrap/js/carousel.js'
+      '../bower_components/hogan/web/builds/3.0.2/hogan-3.0.2.js'
+      '../bower_components/typeahead.js/dist/bloodhound.js'
+      '../bower_components/typeahead.js/dist/typeahead.jquery.js'
+      '../bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js'
+      '../bower_components/select2/select2.js'
       '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
       '@BluemesaFormsBundle/Resources/public/js/forms.js'
       '@VIBFliesBundle/Resources/public/js/forms.js'
