@@ -423,13 +423,12 @@ $(document).ready(function() {
           }
         }
       });
-      source.initialize();
       $this.typeahead(null,{
-        displayKey: 'stock_center',
+        display: 'stock_center',
         templates: {
           suggestion: function (d) { return template.render(d); }
         },
-        source: source.ttAdapter()       
+        source: source
       });
     });
     
@@ -450,13 +449,12 @@ $(document).ready(function() {
           }
         }
       });
-      source.initialize();
       $this.typeahead(null,{
-        displayKey: 'stock_id',
+        display: 'stock_id',
         templates: {
           suggestion: function (d) { return template.render(d); }
         },
-        source: source.ttAdapter()       
+        source: source
       }).on('typeahead:selected', function(event, data) {
          $('.fb-genotype').typeahead('val', data.stock_genotype);
          $('.fb-vendor').typeahead('val', data.stock_center);
@@ -468,11 +466,6 @@ $(document).ready(function() {
       var $this = $(this);
       var url = $this.data('link');
       $this.select2({
-//        width: 'resolve',
-//        initSelection : function (element, callback) {
-//          var data = {id: element.val(), text: element.val()};
-//          callback(data);
-//        },
         ajax: {
           url: url,
           dataType: 'json',
@@ -488,16 +481,6 @@ $(document).ready(function() {
           }
         }
       });
-      /*
-              .on('select2-open', function() {
-        $('.select2-search').each(function() {
-          var $search = $(this);
-          if ($search.children('i.fa').length === 0) {
-            $search.append('<i class="fa fa-spinner fa-lg fa-spin"></i>');
-          }
-        });
-      });
-      */
     });
     $('.genotype-typeahead').each(function() {
       var $this = $(this);
@@ -516,10 +499,9 @@ $(document).ready(function() {
           }
         }
       });
-      source.initialize();
       $this.typeahead(null,{
-        displayKey: 'genotype',
-        source: source.ttAdapter()       
+        display: 'genotype',
+        source: source
       });
     });
     

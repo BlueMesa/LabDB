@@ -41,7 +41,11 @@ class InjectionVialType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('setupDate', DatePickerType::class, array('label' => 'Injection date'))
+        $builder->add('setupDate', DatePickerType::class, array(
+                        'label' => 'Injection date',
+                        'horizontal' => true
+                    )
+                )
                 ->add('storedFlipDate', DatePickerType::class, array(
                         'label'      => 'Check date',
                         'required'   => false,
