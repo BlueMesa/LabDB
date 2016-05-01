@@ -18,6 +18,8 @@ twig:
     strict_variables: "%kernel.debug%"
     form_themes:
         - 'BluemesaFormsBundle:Form:fields.html.twig'
+        - 'BluemesaCoreBundle:Form:fields.html.twig'
+        - 'BluemesaAclBundle:Form:fields.html.twig'
         - 'VIBFliesBundle:Form:fields.html.twig'
 
 # Doctrine Configuration
