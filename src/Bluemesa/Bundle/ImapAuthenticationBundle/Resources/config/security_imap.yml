@@ -1,0 +1,42 @@
+parameters:
+    bluemesa_imap.imap_connection.class: Bluemesa\Bundle\ImapAuthenticationBundle\Manager\ImapConnection
+    bluemesa_imap.imap_manager.class: Bluemesa\Bundle\ImapAuthenticationBundle\Manager\ImapUserManager
+    bluemesa_imap.security.authentication.provider.class: Bluemesa\Bundle\ImapAuthenticationBundle\Provider\ImapAuthenticationProvider
+    bluemesa_imap.security.authentication.listener.class: Bluemesa\Bundle\ImapAuthenticationBundle\EventListener\ImapListener
+    bluemesa_imap.security.authentication.form_entry_point.class: Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint
+                    
+services:
+    bluemesa_imap.security.authentication.form_entry_point:
+        public: false
+        abstract: true
+        class: '%bluemesa_imap.security.authentication.form_entry_point.class%'
+        arguments: ['@http_kernel']
+    bluemesa_imap.imap_connection:
+        public: false
+        class: '%bluemesa_imap.imap_connection.class%'
+        arguments:
+            - '%bluemesa_imap.imap_connection.params%'
+            - '@logger'
+        tags:
+            -  { name: monolog.logger, channel: imap_connection }
+    bluemesa_imap.imap_manager:
+        class: '%bluemesa_imap.imap_manager.class%'
+        arguments: ['@bluemesa_imap.imap_connection']
+    bluemesa_imap.security.authentication.listener:
+        public: false
+        class: '%bluemesa_imap.security.authentication.listener.class%'
+        arguments:
+            - '@security.context'
+            - '@security.authentication.manager'
+            - '@security.authentication.session_strategy'
+            - '@security.http_utils'
+            - ''
+            - '@?imap.authentication.success_handler'
+            - '@?imap.authentication.failure_handler'
+            - {}
+            - '@?logger'
+            - '@?event_dispatcher'
+    imap.authentication.success_handler:
+        parent: security.authentication.success_handler
+    imap.authentication.failure_handler:
+        parent: security.authentication.failure_handler

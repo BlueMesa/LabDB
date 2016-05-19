@@ -1,0 +1,15 @@
+{% import "BluemesaSiteTemplateBundle:Macros:list.html.twig" as l %}
+
+{% if entity is not empty %}
+<tr>
+  {% if type == 'cross' %}
+    {% include 'BluemesaFliesBundle:CrossVial:list_row.html.twig' with {'entity': entity, 'order': order} %}
+  {% elseif type == 'stock' %}
+    {% include 'BluemesaFliesBundle:StockVial:list_row.html.twig' with {'entity': entity, 'order': order} %}
+  {% elseif type == 'injection' %}
+    {% include 'BluemesaFliesBundle:InjectionVial:list_row.html.twig' with {'entity': entity, 'order': order} %}
+  {% else %}
+    {% include 'BluemesaFliesBundle:Vial:list_row.html.twig' with {'entity': entity, 'order': order} %}
+  {% endif %}
+</tr>
+{% endif %}

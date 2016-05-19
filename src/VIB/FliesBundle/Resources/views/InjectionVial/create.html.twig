@@ -1,9 +1,0 @@
-{% extends "VIBFliesBundle:InjectionVial:layout.html.twig" %}
-{% use "VIBSiteTemplateBundle:Form:form.html.twig" %}
-{% import "VIBSiteTemplateBundle:Macros:form.html.twig" as f %}
-
-{% block modal_header %}New injection vial{% endblock modal_header %}
-
-{% block modal_footer %}
-  {{ f.buttons(form.vars.value.vial,'vib_flies_injectionvial') }}
-{% endblock modal_footer %}

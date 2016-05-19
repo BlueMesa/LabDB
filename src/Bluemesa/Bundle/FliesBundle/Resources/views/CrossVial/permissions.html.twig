@@ -1,0 +1,11 @@
+{% extends "BluemesaFliesBundle:CrossVial:layout.html.twig" %}
+{% use "BluemesaSiteTemplateBundle:Form:form.html.twig" %}
+{% import "BluemesaSiteTemplateBundle:Macros:form.html.twig" as f %}
+
+{% block modal_header %}
+  Edit permissions for cross {{ entity }}
+{% endblock modal_header %}
+
+{% block modal_footer %}
+  {{ f.buttons(entity,'bluemesa_flies_crossvial',false,false) }}
+{% endblock modal_footer %}

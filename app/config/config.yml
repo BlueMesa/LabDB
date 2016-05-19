@@ -20,7 +20,7 @@ twig:
         - 'BluemesaFormsBundle:Form:fields.html.twig'
         - 'BluemesaCoreBundle:Form:fields.html.twig'
         - 'BluemesaAclBundle:Form:fields.html.twig'
-        - 'VIBFliesBundle:Form:fields.html.twig'
+        - 'BluemesaFliesBundle:Form:fields.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -60,7 +60,7 @@ mopa_bootstrap:
             title:        "FlyDB"
             description:  "Fly stock management system"
             keywords:     "FlyDB,management,stock"
-            author_name:  "Radosław Kamil Ejsmont"
+            author_name:  "Radoslaw Kamil Ejsmont"
             author_url:   "http://radoslaw.ejsmont.net/"
             nofollow:     true
             noindex:      true
@@ -93,9 +93,9 @@ shibboleth:
 fos_user:
     db_driver: orm
     firewall_name: secured_area
-    user_class: VIB\UserBundle\Entity\User
+    user_class: Bluemesa\Bundle\UserBundle\Entity\User
 
 jms_di_extra:
     locations:
         all_bundles: false
-        bundles: [BluemesaCoreBundle, BluemesaAclBundle, BluemesaFormsBundle, VIBFliesBundle, VIBSecurityBundle, VIBUserBundle]
+        bundles: [BluemesaCoreBundle, BluemesaAclBundle, BluemesaFormsBundle, BluemesaFliesBundle, BluemesaSecurityBundle, BluemesaUserBundle]

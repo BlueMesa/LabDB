@@ -1,0 +1,68 @@
+{% extends "BluemesaFliesBundle:InjectionVial:layout.html.twig" %}
+{% use "BluemesaSiteTemplateBundle:Show:modal.html.twig" %}
+{% import "BluemesaSiteTemplateBundle:Macros:show.html.twig" as s %}
+{% import 'BluemesaSiteTemplateBundle:Macros:status.html.twig' as status %}
+
+{% block modal_header %}
+  {{ status.vial(entity) }}
+  Injection vial {{ entity }}<br/>
+  <span class="muted">{{ entity.name }}</span>
+{% endblock modal_header %}
+
+{% block modal_body %}
+  {{ s.row("Injection date", entity.setupDate | date("d F Y")) }}
+  {{ s.row("Check date", entity.flipDate | date("d F Y")) }}
+  {{ s.row("Injection type", entity.injectionType) }}
+  {{ s.row("Construct name", entity.constructName) }}
+  {{ s.row("Target stock", entity.targetStock, 'bluemesa_flies_stock_show', null, 'stock') }}
+  <div class="form-group">
+    <a class="col-sm-3 control-label collapse-toggle" data-toggle="collapse" href="#more">
+      <strong>More information</strong></a>
+  </div>
+  <div id="more" class="collapse">
+    {{ s.row("Location", entity.location) }}
+    {{ s.user("Created by", owner) }}
+    {{ s.row("Embryo count", entity.embryoCount) }}
+    {{ s.row("Notes", entity.notes) }}
+  </div>
+  <div class="form-group">
+    <a class="col-sm-3 control-label collapse-toggle" data-toggle="collapse" href="#vendor">
+      <strong>Vendor information</strong></a>
+  </div>
+  <div id="vendor" class="collapse">
+    {{ s.row("Vendor", entity.vendor) }}
+    {% if entity.receiptDate is not null %}
+    {{ s.row("Receipt date", entity.receiptDate | date("d F Y")) }}
+    {% else %}
+    {{ s.row("Receipt date", null) }}
+    {% endif %}
+    {{ s.row("Order number", entity.orderNo) }}
+  </div>
+  <div class="form-group">
+    <a class="col-sm-3 control-label collapse-toggle" data-toggle="collapse" href="#development">
+      <strong>Development</strong></a>
+  </div>
+  <div id="development" class="collapse">
+    {{ s.row("Generation", entity.progress // 1 + 1 ) }}
+    {{ s.stage(entity) }}
+    {{ s.development(entity) }}
+  </div>
+  <div class="form-group">
+    <a class="col-sm-3 control-label collapse-toggle" data-toggle="collapse" href="#vials">
+      <strong>Vials and stocks</strong></a>
+  </div>
+  <div id="vials" class="collapse">
+    {{ s.row("Source vial", entity.targetStockVial, 'bluemesa_flies_stockvial_show', null, 'vial') }}
+    {{ s.row("Flipped from", entity.parent, 'bluemesa_flies_crossvial_show', null, 'vial') }}
+    {{ s.list("Flipped to", entity.children, 'bluemesa_flies_crossvial_show', null, 'vial') }}
+    {{ s.list("Crosses", entity.crosses, 'bluemesa_flies_crossvial_show', null, 'vial') }}
+  </div>
+{% endblock modal_body %}
+
+{% block modal_footer %}
+  {% if is_granted('ROLE_ADMIN') or is_granted('EDIT',entity) %}
+  <a href="{{ path('bluemesa_flies_injectionvial_edit', { 'id': entity.id }) }}" class="btn btn-primary">Edit</a>
+  {% endif %}
+  <a href="{{ path('bluemesa_flies_injectionvial_stats', { 'id': entity.id }) }}" class="btn btn-default">Stats</a>
+  <a href="{{ path('bluemesa_flies_injectionvial_list') }}" class="btn btn-default">List</a>
+{% endblock modal_footer %}

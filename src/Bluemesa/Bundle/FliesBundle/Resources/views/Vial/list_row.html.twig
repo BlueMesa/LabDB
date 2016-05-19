@@ -1,0 +1,31 @@
+{% import 'BluemesaSiteTemplateBundle:Macros:status.html.twig' as status %}
+
+{% if checked is not defined %}
+  {% if entity.labelPrinted %}
+    {% set checked = "" %}
+  {% else %}
+    {% set checked = "checked" %}
+  {% endif %}
+{% endif %}
+
+{% if order is not defined or order is empty %}
+  {% set order = entity.id %}
+{% endif %}
+
+<td><input type="checkbox" id="select_items_{{ entity.id }}"
+           name="select[items][{{ order }}]"
+           value="{{ entity.id }}" {{ checked }} /></td>
+<td>{{ l.link(entity, 'bluemesa_flies_vial_show', false, null, 'vial') }}</td>
+<td>{% spaceless %}{% if entity.type == 'stock' %}
+      {{ l.link(entity.stock, 'bluemesa_flies_stock_show', true, null, 'stock') }}
+    {% elseif entity.type == 'cross' %}
+      {{ l.link(entity, 'bluemesa_flies_crossvial_show', true, entity.name, 'vial') }}
+    {% elseif entity.type == 'injection' %}
+      {{ l.link(entity, 'bluemesa_flies_injectionvial_show', true, entity.name, 'vial') }}
+    {% endif %}{% endspaceless %}</td>
+<td class="dates">
+  <div>{{ entity.setupDate | date("d‑m‑Y") }}</div>
+  <div>{{ entity.flipDate | date("d‑m‑Y") }}</div>
+</td>
+<td>{{ l.link(entity.parent, 'bluemesa_flies_vial_show', true, null, 'vial') }}</td>
+<td>{{ status.vial(entity) }}</td>

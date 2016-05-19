@@ -1,0 +1,30 @@
+{% extends "BluemesaFliesBundle::layout.html.twig" %}
+{% use "BluemesaSiteTemplateBundle:List:table.html.twig" %}
+{% import "BluemesaSiteTemplateBundle:Macros:list.html.twig" as l %}
+{% import 'BluemesaSiteTemplateBundle:Macros:status.html.twig' as status %}
+
+{% block headline %}
+  Search results
+{% endblock headline %}
+
+{% block list_header %}
+{% if filter == 'stock' %}
+  {% include 'BluemesaFliesBundle:Stock:list_head.html.twig' %}
+{% elseif filter == 'crossvial' %}
+  {% include 'BluemesaFliesBundle:CrossVial:list_head.html.twig' %}
+{% elseif filter == 'injectionvial' %}
+  {% include 'BluemesaFliesBundle:InjectionVial:list_head.html.twig' %}
+{% endif %}{% endblock list_header %}
+
+{% block list_item %}
+{% if filter == 'stock' %}
+  {% include 'BluemesaFliesBundle:Stock:list_row.html.twig' with {'entity': entity} %}
+{% elseif filter == 'crossvial' %}
+  {% include 'BluemesaFliesBundle:CrossVial:list_row.html.twig' with {'entity': entity,'checkbox': false} %}
+{% elseif filter == 'injectionvial' %}
+  {% include 'BluemesaFliesBundle:InjectionVial:list_row.html.twig' with {'entity': entity,'checkbox': false} %}
+{% endif %}
+{% endblock list_item %}
+
+{% block list_buttons %}
+{% endblock list_buttons %}

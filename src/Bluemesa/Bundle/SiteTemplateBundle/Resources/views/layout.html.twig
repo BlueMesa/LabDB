@@ -1,0 +1,195 @@
+{% extends 'MopaBootstrapBundle::base_initializr.html.twig' %}
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+
+{% block html_tag %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+{% endblock html_tag %}
+
+{% block head %}
+<head>
+  <meta charset="utf-8">
+  {% block dns_prefetch %}
+    {% for domain in dns_prefetch %}
+  <link rel="dns-prefetch" href="{{ domain }}" />
+    {% endfor %}
+  {% endblock dns_prefetch %}
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">        
+  <meta name="description" content="{{ meta['description'] }}" />
+  <meta name="keywords" content="{{ meta['keywords'] }}" />
+  <meta name="author" content="{{ meta['author_name'] }}" />
+  <link rel="author" href="{{ meta['author_url'] }}" title="{{ meta['author_name'] }}" />
+  <title>{% block title%}{{ meta['title'] }}{% endblock %}</title>
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+  <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" />
+  {% if meta['sitemap'] is defined %}
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ meta['sitemap'] }}" />
+  {% endif %}
+  {% if meta['feed_atom'] is defined %}
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="{{ meta['feed_atom'] }}" />
+  {% endif %}
+  {% if meta['feed_rss'] is defined %}
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ meta['feed_rss'] }}" />
+  {% endif %}
+  {% if meta['noindex'] or noindex is defined %}
+    {% set meta_robots = 'noindex,' %}
+  {% else %}
+    {% set meta_robots = '' %}
+  {% endif %}
+  {% if meta['nofollow'] or nofollow is defined %}
+    {% set meta_robots = meta_robots ~ 'nofollow' %}
+  {% else %}
+    {% set meta_robots = meta_robots ~ 'follow' %}
+  {% endif %}
+  {% if meta_robots != 'follow' %}
+    <meta name="robots" content="{{ meta_robots }}" />
+  {% endif %}
+  {% if google['wt'] is defined %}
+    <meta name="google-site-verification" content="{{ google['wt'] }}" />
+  {% endif %}
+  {% block head_style %}
+    {% stylesheets
+      '../bower_components/select2/select2.css'
+      '@BluemesaSiteTemplateBundle/Resources/public/less/bluemesabasebundle.less'
+      output='css/styles.css'
+    %}
+      <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+    {% if diagnostic_mode %}
+      {% stylesheets
+          '@MopaBootstrapBundle/Resources/public/css/diagnostic.css'
+          output='css/screen_diagnostic.css'
+      %}
+      <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+      {% endstylesheets %}
+    {% endif %}
+  {% endblock head_style %}
+  {% block head_scripts %}
+    {% javascripts
+        '../bower_components/modernizr/modernizr.js'
+        '../bower_components/respond/src/respond.js'
+        output='js/head.js'
+    %}
+      <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+  {% endblock head_scripts %}
+</head>
+{% endblock head %}
+
+{% block body_start %}
+<!--[if lt IE 7]>
+  <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+{% endblock body_start %}    
+
+{% block body %}
+  <div class="wrap">
+
+    {% block header %}
+    {% block header_start %}<header>{% endblock header_start %}
+      {% block navbar %}
+        {% include 'BluemesaSiteTemplateBundle::navbar.html.twig' %}
+      {% endblock navbar %}
+    {% block header_end %}</header>{% endblock header_end %}
+    {% endblock header %}
+
+    {% block container %}
+    {% block container_div_start %}<div class="{% block container_class %}container{% endblock container_class %}">{% endblock container_div_start %}
+      {% block content_div_start %}<div class="content">{% endblock content_div_start %}
+        <div class="row">
+          {% block info_row %}
+          <div class="col-sm-12">
+            {% block flashes %}
+            {% if app.session.flashbag.peekAll|length > 0 %}
+                {{ session_flash(true) }}
+            {% endif %}
+            {% endblock flashes %}
+            {% block msie_info %}
+            {{ render(controller("BluemesaSiteTemplateBundle:Messages:msie")) }}
+            {% endblock msie_info %}
+            {% block info_messages %}{% endblock info_messages %}
+          </div>
+          {% endblock info_row %}
+          {% block header_row %}
+          <div class="col-sm-offset-3 col-sm-9">
+            {% block page_header %}
+            <h1>{% block headline %}Welcome{% endblock headline %}</h1>
+            {% endblock page_header %}
+          </div>
+          {% endblock header_row %}
+        </div>
+        <div class="row">
+          {% block main_row %}
+          <div id="sidebar" class="col-sm-3">
+            {% block content_sidebar %}
+            {% endblock content_sidebar %}
+          </div>
+          <div class="col-sm-9">
+            {% block content_row %}
+            <div class="row">
+                {% block content %}
+                    {% block content_content %}
+                    {% endblock content_content %}
+                {% endblock content %}
+            </div>
+            {% endblock content_row %}
+          </div>
+          {% endblock main_row %}
+        </div>
+      {% block content_div_end %}</div>{% endblock content_div_end %}
+    {% block container_div_end %}</div>{% endblock container_div_end %}
+    {% endblock container %}
+
+  </div>
+
+  {% block footer %}
+    {% include 'BluemesaSiteTemplateBundle::footer.html.twig' %}
+  {% endblock footer %}
+
+  {% block foot_script %}
+    {% if google['analytics'] is defined %}
+    <script>
+        var _gaq = [['_setAccount', '{{ google['analytics'] }}'], ['_trackPageview']];
+        (function(d, t) {
+            var g = d.createElement(t),
+                s = d.getElementsByTagName(t)[0];
+            g.async = g.src = '//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g, s);
+        }(document, 'script'));
+    </script>
+    {% endif %}
+    {% javascripts output='js/main.js'
+      '../bower_components/jquery/dist/jquery.js'
+      '../bower_components/jquery-ui/jquery-ui.js'
+      '../bower_components/bootstrap/js/transition.js'
+      '../bower_components/bootstrap/js/modal.js'
+      '../bower_components/bootstrap/js/scrollspy.js'
+      '../bower_components/bootstrap/js/tab.js'
+      '../bower_components/bootstrap/js/tooltip.js'
+      '../bower_components/bootstrap/js/popover.js'
+      '../bower_components/bootstrap/js/dropdown.js'
+      '../bower_components/bootstrap/js/alert.js'
+      '../bower_components/bootstrap/js/button.js'
+      '../bower_components/bootstrap/js/collapse.js'
+      '../bower_components/bootstrap/js/carousel.js'
+      '../bower_components/hogan/web/builds/3.0.2/hogan-3.0.2.js'
+      '../bower_components/typeahead.js/dist/bloodhound.js'
+      '../bower_components/typeahead.js/dist/typeahead.jquery.js'
+      '../bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js'
+      '../bower_components/select2/select2.js'
+      '@MopaBootstrapBundle/Resources/public/js/mopabootstrap-collection.js'
+      '@BluemesaFormsBundle/Resources/public/js/forms.js'
+      '@BluemesaAclBundle/Resources/public/js/forms.js'
+      '@BluemesaFliesBundle/Resources/public/js/forms.js'
+      '@BluemesaSiteTemplateBundle/Resources/public/js/dropdown-split.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+  {% endblock foot_script %}
+  {% block foot_script_additional %}
+  {% endblock foot_script_additional %}
+{% endblock body %}

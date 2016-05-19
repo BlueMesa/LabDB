@@ -1,0 +1,18 @@
+{% extends "BluemesaFliesBundle:Vial:layout.html.twig" %}
+{% use "BluemesaSiteTemplateBundle:Form:form.html.twig" %}
+{% import "BluemesaSiteTemplateBundle:Macros:form.html.twig" as f %}
+
+{% set source = form.vars.value.source %}
+
+{% block modal_header %}
+  Expand vial
+{% endblock modal_header %}
+
+{% block modal_footer %}
+  <button type="submit" class="btn btn-primary">Save</button>
+  {% if source is not null %}
+    <a href="{{ path('bluemesa_flies_vial_show', { 'id': source.id }) }}" class="btn btn-default">Cancel</a>
+  {% else %}
+    <a href="{{ path('bluemesa_flies_vial_list') }}" class="btn btn-default">Cancel</a>
+  {% endif %}
+{% endblock modal_footer %}

@@ -1,14 +1,9 @@
-vib_imap_user:
-    resource: "@VIBImapUserBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 default:
     path:  /
-    defaults: { _controller: VIBWelcomeBundle:Default:index }
+    defaults: { _controller: BluemesaWelcomeBundle:Default:index }
     
 vib_search:
-    resource: "@VIBSearchBundle/Controller/"
+    resource: "@BluemesaSearchBundle/Controller/"
     type:     annotation
     prefix:   /
     
@@ -23,22 +18,22 @@ bluemesa_core:
     prefix:   /_ajax
 
 vib_flies:
-    resource: "@VIBFliesBundle/Controller/"
+    resource: "@BluemesaFliesBundle/Controller/"
     type:     annotation
     prefix:   /flies
 
 vib_antibody:
-    resource: "@VIBAntibodyBundle/Controller/"
+    resource: "@BluemesaAntibodyBundle/Controller/"
     type:     annotation
     prefix:   /antibodies
 
 vib_calendar:
-    resource: "@VIBCalendarBundle/Controller/"
+    resource: "@BluemesaCalendarBundle/Controller/"
     type:     annotation
     prefix:   /calendar
     
-vib_users:
-    resource: "@VIBUserBundle/Controller/"
+bluemesa_users:
+    resource: "@BluemesaUserBundle/Controller/"
     type:     annotation
     prefix:   /users
 
@@ -46,9 +41,14 @@ fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
     prefix:   /profile
 
+bluemesa_imap_auth:
+    resource: "@BluemesaImapAuthenticationBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 login:
     path:   /login
-    defaults:  { _controller: VIBSecurityBundle:Security:login }
+    defaults:  { _controller: BluemesaSecurityBundle:Security:login }
 login_check:
     path:   /login_check
 logout:

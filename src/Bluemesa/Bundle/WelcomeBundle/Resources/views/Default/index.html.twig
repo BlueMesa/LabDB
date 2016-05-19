@@ -1,0 +1,84 @@
+{% extends "BluemesaSiteTemplateBundle::layout.html.twig" %}
+
+{% block headline %}LabDB{% endblock headline %}
+
+{% block content %}
+<p>
+  Welcome the to the LabDB. Use the menu above to access database resources.
+  {% if app.user is empty %}
+  You will redirected to the login page, where you can log in with your <b>username</b>
+  and <b>password</b>. After successful login you will see a list of your private stock vials.
+  {% endif %}
+</p>
+<p>
+  The website is still in development, so if you encounter any errors, please
+  <a href="https://github.com/rejsmont/LabDB/issues/new">submit a bug report</a>, including description
+  of what you were doing, URL from the address bar and the error message.
+  I will try to fix the error as soon as possible.
+</p>
+<hr>
+<h3>Updates and new features:</h3>
+<p>
+  There was a major update to the database. The welcome page may display inconsistent data until all of your
+  living vials have been flipped and have gone through one lifecycle. Please read the changelog carefully and
+  familiarize yourself with new features. In case of questions, you can always contant
+  <a href="mailto:radoslaw@ejsmont.net">webmaster</a> for support.
+</p>
+<ul>
+  <li>
+    <b>Now using <i class="fa fa-github fa-lg"></i> GitHub for issue tracking</b><br/>
+    <span class="muted">
+      We have dropped Bugzilla in favor  <a href="https://github.com/rejsmont/LabDB/issues">GitHub Issue Tracker</a>.
+      You will need to <a href="https://github.com/join"> create a free account</a> to use it. The good news is that
+      you can use your account to provide feedback for other GitHub-hosted projects.
+    </span>
+  </li>
+  <li>
+    <b>New sidebar design</b><br/>
+    <span class="muted">Each part of the sidebar can now be collapsed.</span>
+  </li>
+  <li>
+    <b>Filters</b><br/>
+    <span class="muted">Displayed lists can now be filtered using filter widget on the sidebar.</span>
+  </li>
+  <li>
+    <b>Mobile-friendly</b><br/>
+    <span class="muted">The website is now mobile friendly. Test it on you smartphone!</span>
+  </li>
+  <li>
+    <b>Flip-date updates</b><br/>
+    <span class="muted">
+      Flip date is now saved in the database and updated automatically when storage conditions change. As a result your
+      old vials (that do not have flip-date saved in the database) will not appear in lists that depend on
+      flip-date (due and overdue vials). All you new vials will behave properly. When the old vials die, issue fix get
+      fixed.
+    </span>
+  </li>
+  <li>
+    <b>Stable dependencies</b><br/>
+    <span class="muted">
+      As we are moving towards a stable release, the dependencies of the database have been fixed, so backward
+      compatibility breaks should not happen anymore.
+    </span>
+  </li>
+</ul>
+{% endblock content %}
+
+
+{% block header_row %}
+<div class="col-sm-12">
+  {% block page_header %}
+  <div class="page-header">
+        <h1>{{ block('headline') }}</h1>
+  </div>
+  {% endblock page_header %}
+</div>
+{% endblock header_row %}
+
+{% block main_row %}
+<div class="col-sm-12">
+  {% block content_row %}
+    {{ block('content') }}
+  {% endblock content_row %}
+</div>
+{% endblock main_row %}

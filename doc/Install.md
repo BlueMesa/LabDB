@@ -103,8 +103,8 @@ To populate database with example data (including two sample users) execute:
 
 ```
 $ app/console doctrine:fixtures:load \
-  --fixtures=src/VIB/UserBundle/Tests/DataFixtures \
-  --fixtures=src/VIB/FliesBundle/Tests/DataFixtures \
+  --fixtures=src/Bluemesa/UserBundle/Tests/DataFixtures \
+  --fixtures=src/Bluemesa/FliesBundle/Tests/DataFixtures \
   --env=prod
 ```
 

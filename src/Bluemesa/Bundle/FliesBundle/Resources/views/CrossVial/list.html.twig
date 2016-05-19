@@ -1,0 +1,44 @@
+{% extends "BluemesaFliesBundle:CrossVial:layout.html.twig" %}
+{% use "BluemesaSiteTemplateBundle:List:table.html.twig" %}
+{% import "BluemesaSiteTemplateBundle:Macros:list.html.twig" as l %}
+{% import 'BluemesaSiteTemplateBundle:Macros:status.html.twig' as status %}
+
+{% if form is defined %}
+  {% form_theme form _self %}
+  {% block _select_items_row %}{% endblock %}
+{% endif %}
+
+{% block headline %}Crosses{% endblock headline %}
+
+{% block list_header %}
+  {% include 'BluemesaFliesBundle:CrossVial:list_head.html.twig' with {'checked' : ''} %}
+{% endblock list_header %}
+
+{% block list_item %}
+  {% include 'BluemesaFliesBundle:CrossVial:list_row.html.twig' with {'entity': entity, 'order': order} %}
+{% endblock list_item %}
+
+{% block list_buttons %}
+  {{ l.flip_button() }}
+  {{ l.trash_button() }}
+  <div class="btn-group">
+    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">
+      Mark
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+    <li onclick="$('#select_action').val('marksuccessful'); $('form').submit();">
+      <a href="#">Mark as successful</a>
+    </li>
+    <li onclick="$('#select_action').val('markfailed'); $('form').submit();">
+      <a href="#">Mark as failed</a>
+    </li>
+    <li onclick="$('#select_action').val('marksterile'); $('form').submit();">
+      <a href="#">Mark as sterile and trash</a>
+    </li>
+    </ul>
+  </div>
+  {{ l.print_button() }}
+  {{ l.incubate_button() }}
+  {{ l.batch_button() }}  
+{% endblock list_buttons %}

@@ -1,9 +1,0 @@
-{% extends "VIBFliesBundle:StockVial:layout.html.twig" %}
-{% use "VIBSiteTemplateBundle:Form:form.html.twig" %}
-{% import "VIBSiteTemplateBundle:Macros:form.html.twig" as f %}
-
-{% block modal_header %}New stock vial{% endblock modal_header %}
-
-{% block modal_footer %}
-  {{ f.buttons(form.vars.value.vial,'vib_flies_stockvial') }}
-{% endblock modal_footer %}
