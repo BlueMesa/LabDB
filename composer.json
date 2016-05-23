@@ -44,10 +44,6 @@
         "packagist/yuicompressor-bin": "~2.4",
         "packagist/cssembed-bin": "~0.4",
         "verekia/initializr": "~4.2",
-        "bluemesa/core-bundle": "dev-master",
-        "bluemesa/acl-bundle": "dev-master",
-        "bluemesa/storage-bundle": "dev-master",
-        "bluemesa/forms-bundle": "@dev",
         "craue/formflow-bundle": "~3.0@dev",
         "beelab/bowerphp": "1.0.*@dev",
         "egulias/email-validator": "^1.2"

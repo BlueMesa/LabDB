@@ -1,9 +1,0 @@
-{% extends "BluemesaFliesBundle:StockVial:layout.html.twig" %}
-{% use "BluemesaSiteTemplateBundle:Form:form.html.twig" %}
-{% import "BluemesaSiteTemplateBundle:Macros:form.html.twig" as f %}
-
-{% block modal_header %}New stock vial{% endblock modal_header %}
-
-{% block modal_footer %}
-  {{ f.buttons(form.vars.value.vial,'bluemesa_flies_stockvial') }}
-{% endblock modal_footer %}

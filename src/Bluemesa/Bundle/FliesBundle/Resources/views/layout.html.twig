@@ -1,9 +1,0 @@
-{% extends "BluemesaSiteTemplateBundle::layout.html.twig" %}
-
-{% block navbar %}
-  {% include 'BluemesaFliesBundle::navbar.html.twig' %}
-{% endblock navbar %}
-
-{% block content_sidebar %}
-  {{ render(controller("BluemesaFliesBundle:Print:printPanel")) }}
-{% endblock content_sidebar %}

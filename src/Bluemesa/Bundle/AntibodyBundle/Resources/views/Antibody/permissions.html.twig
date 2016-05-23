@@ -1,9 +1,0 @@
-{% extends "BluemesaFliesBundle:Stock:layout.html.twig" %}
-{% use "BluemesaSiteTemplateBundle:Form:form.html.twig" %}
-{% import "BluemesaSiteTemplateBundle:Macros:form.html.twig" as f %}
-
-{% block modal_header %}Edit permissions for {{ entity }}{% endblock modal_header %}
-
-{% block modal_footer %}
-  {{ f.buttons(entity,'bluemesa_antibody_antibody',false,false) }}
-{% endblock modal_footer %}

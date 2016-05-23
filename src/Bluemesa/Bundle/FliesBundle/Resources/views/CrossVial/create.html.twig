@@ -1,9 +1,0 @@
-{% extends "BluemesaFliesBundle:CrossVial:layout.html.twig" %}
-{% use "BluemesaSiteTemplateBundle:Form:form.html.twig" %}
-{% import "BluemesaSiteTemplateBundle:Macros:form.html.twig" as f %}
-
-{% block modal_header %}New cross{% endblock modal_header %}
-
-{% block modal_footer %}
-  {{ f.buttons(form.vars.value.vial,'bluemesa_flies_crossvial') }}
-{% endblock modal_footer %}
