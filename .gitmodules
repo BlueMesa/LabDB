@@ -1,0 +1,39 @@
+[submodule "src/Bluemesa/Bundle/AclBundle"]
+	path = src/Bluemesa/Bundle/AclBundle
+	url = ../AclBundle/
+[submodule "src/Bluemesa/Bundle/AntibodyBundle"]
+	path = src/Bluemesa/Bundle/AntibodyBundle
+	url = ../AntibodyBundle/
+[submodule "src/Bluemesa/Bundle/CalendarBundle"]
+	path = src/Bluemesa/Bundle/CalendarBundle
+	url = ../CalendarBundle/
+[submodule "src/Bluemesa/Bundle/CoreBundle"]
+	path = src/Bluemesa/Bundle/CoreBundle
+	url = ../CoreBundle/
+[submodule "src/Bluemesa/Bundle/FliesBundle"]
+	path = src/Bluemesa/Bundle/FliesBundle
+	url = ../FliesBundle/
+[submodule "src/Bluemesa/Bundle/FormsBundle"]
+	path = src/Bluemesa/Bundle/FormsBundle
+	url = ../FormsBundle/
+[submodule "src/Bluemesa/Bundle/ImapAuthenticationBundle"]
+	path = src/Bluemesa/Bundle/ImapAuthenticationBundle
+	url = ../ImapAuthenticationBundle/
+[submodule "src/Bluemesa/Bundle/SearchBundle"]
+	path = src/Bluemesa/Bundle/SearchBundle
+	url = ../SearchBundle/
+[submodule "src/Bluemesa/Bundle/SecurityBundle"]
+	path = src/Bluemesa/Bundle/SecurityBundle
+	url = ../SecurityBundle/
+[submodule "src/Bluemesa/Bundle/SiteTemplateBundle"]
+	path = src/Bluemesa/Bundle/SiteTemplateBundle
+	url = ../SiteTemplateBundle/
+[submodule "src/Bluemesa/Bundle/StorageBundle"]
+	path = src/Bluemesa/Bundle/StorageBundle
+	url = ../StorageBundle/
+[submodule "src/Bluemesa/Bundle/UserBundle"]
+	path = src/Bluemesa/Bundle/UserBundle
+	url = ../UserBundle/
+[submodule "src/Bluemesa/Bundle/WelcomeBundle"]
+	path = src/Bluemesa/Bundle/WelcomeBundle
+	url = ../WelcomeBundle/
