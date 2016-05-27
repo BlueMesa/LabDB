@@ -28,6 +28,8 @@ class AppKernel extends Kernel
             new WhiteOctober\TCPDFBundle\WhiteOctoberTCPDFBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new KULeuven\ShibbolethBundle\ShibbolethBundle(),
             new Bluemesa\Bundle\SiteTemplateBundle\BluemesaSiteTemplateBundle(),
             new Bluemesa\Bundle\FliesBundle\BluemesaFliesBundle(),
@@ -43,6 +45,7 @@ class AppKernel extends Kernel
             new Bluemesa\Bundle\UserBundle\BluemesaUserBundle(),
             new Bluemesa\Bundle\ImapAuthenticationBundle\BluemesaImapAuthenticationBundle(),
             new Bluemesa\Bundle\StorageBundle\BluemesaStorageBundle(),
+            new Bluemesa\Bundle\SensorBundle\BluemesaSensorBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -1,3 +1,8 @@
+bluemesa_sensor:
+    resource: "@BluemesaSensorBundle/Controller/"
+    type:     annotation
+    prefix:   /sensors
+
 default:
     path:  /
     defaults: { _controller: BluemesaWelcomeBundle:Default:index }

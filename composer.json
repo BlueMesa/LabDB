@@ -29,6 +29,8 @@
         "jms/security-extra-bundle": "~1.5",
         "jms/di-extra-bundle": "~1.6",
         "jms/serializer-bundle": "~1.0",
+        "jms/aop-bundle": "~1.2",
+        "jms/parser-lib": "~1.0",
         "mopa/bootstrap-bundle": "dev-master#8a1bfa82398f339d9c53db24194626aed4fd4801",
         "knplabs/knp-paginator-bundle": "~2.5",
         "knplabs/knp-menu-bundle": "~2.1",
@@ -46,7 +48,8 @@
         "verekia/initializr": "~4.2",
         "craue/formflow-bundle": "~3.0@dev",
         "beelab/bowerphp": "1.0.*@dev",
-        "egulias/email-validator": "^1.2"
+        "egulias/email-validator": "^1.2",
+        "stof/doctrine-extensions-bundle": "^1.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

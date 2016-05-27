@@ -82,6 +82,11 @@ mopa_bootstrap:
     icons:
         icon_set: fontawesome4
 
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+
 bluemesa_acl:
     walker: Bluemesa\Bundle\AclBundle\Bridge\Doctrine\AclWalker
 
@@ -94,6 +99,12 @@ fos_user:
     db_driver: orm
     firewall_name: secured_area
     user_class: Bluemesa\Bundle\UserBundle\Entity\User
+
+fos_rest:
+    view:
+        view_response_listener: 'force'
+    body_converter:
+        enabled: true
 
 jms_di_extra:
     locations:

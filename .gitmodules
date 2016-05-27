@@ -37,3 +37,6 @@
 [submodule "src/Bluemesa/Bundle/WelcomeBundle"]
 	path = src/Bluemesa/Bundle/WelcomeBundle
 	url = ../WelcomeBundle/
+[submodule "src/Bluemesa/Bundle/SensorBundle"]
+	path = src/Bluemesa/Bundle/SensorBundle
+	url = ../SensorBundle/
