@@ -103,9 +103,9 @@ fos_user:
 fos_rest:
     view:
         view_response_listener: 'force'
+        serialize_null: true
     body_converter:
         enabled: true
-
 jms_di_extra:
     locations:
         all_bundles: false
