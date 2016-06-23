@@ -42,7 +42,7 @@ if (false !== ($env = getenv('BOOTSTRAP_CREATE_DB_ENV'))) {
 
 if (false !== ($env = getenv('BOOTSTRAP_LOAD_FIXTURES_ENV'))) {
     passthru(sprintf(
-        'php "bin/console" doctrine:fixtures:load --no-interaction --fixtures=src/Bluemesa/UserBundle/Tests/DataFixtures --fixtures=src/Bluemesa/FliesBundle/Tests/DataFixtures --env=%s', $env
+        'php "bin/console" doctrine:fixtures:load --no-interaction --fixtures=src/Bluemesa/Bundle/UserBundle/Tests/DataFixtures --fixtures=src/Bluemesa/Bundle/FliesBundle/Tests/DataFixtures --env=%s', $env
     ));
 }
 
