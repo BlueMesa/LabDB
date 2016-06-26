@@ -109,4 +109,11 @@ fos_rest:
 jms_di_extra:
     locations:
         all_bundles: false
-        bundles: [BluemesaCoreBundle, BluemesaAclBundle, BluemesaFormsBundle, BluemesaFliesBundle, BluemesaSecurityBundle, BluemesaUserBundle]
+        bundles:
+            - BluemesaCoreBundle
+            - BluemesaAclBundle
+            - BluemesaFormsBundle
+            - BluemesaFliesBundle
+            - BluemesaSecurityBundle
+            - BluemesaUserBundle
+            - BluemesaImapAuthenticationBundle
