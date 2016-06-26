@@ -21,7 +21,7 @@ namespace Bluemesa\KULeuvenImapUserBundle\Security;
 use FOS\UserBundle\Model\UserInterface;
 use JMS\DiExtraBundle\Annotation as DI;
 
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
 use FOS\UserBundle\Security\UserProvider as BaseUserProvider;
@@ -30,7 +30,7 @@ use FOS\UserBundle\Model\UserManagerInterface;
 use Egulias\EmailValidator\EmailParser;
 use Egulias\EmailValidator\EmailLexer;
 
-use Bluemesa\ImapAuthenticationBundle\Provider\ImapUserProviderInterface;
+use Bluemesa\Bundle\ImapAuthenticationBundle\Provider\ImapUserProviderInterface;
 use Bluemesa\Bundle\UserBundle\Entity\User;
 
 /**
@@ -72,10 +72,10 @@ class ImapUserProvider extends BaseUserProvider implements ImapUserProviderInter
     /**
      * Create a new user using imap data source
      *
-     * @param  UsernamePasswordToken $token
+     * @param  TokenInterface $token
      * @return UserInterface
      */
-    public function createUser(UsernamePasswordToken $token)
+    public function createUser(TokenInterface $token)
     {
         $user = $this->userManager->createUser();
         $user->setUsername($token->getUsername());
@@ -87,10 +87,10 @@ class ImapUserProvider extends BaseUserProvider implements ImapUserProviderInter
     /**
      * Update user using imap data source
      *
-     * @param  UsernamePasswordToken  $token
+     * @param  TokenInterface  $token
      * @return UserInterface
      */
-    public function updateUser(UsernamePasswordToken $token)
+    public function updateUser(TokenInterface $token)
     {
         $user = $this->loadUserByUsername($token->getUsername());
         $this->setUserData($user);
