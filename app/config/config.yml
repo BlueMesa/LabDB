@@ -106,6 +106,7 @@ fos_rest:
         serialize_null: true
     body_converter:
         enabled: true
+
 jms_di_extra:
     locations:
         all_bundles: false
@@ -117,3 +118,6 @@ jms_di_extra:
             - BluemesaSecurityBundle
             - BluemesaUserBundle
             - BluemesaImapAuthenticationBundle
+            - BluemesaIcmImapUserBundle
+            - BluemesaKULeuvenImapUserBundle
+            - BluemesaKULeuvenShibbolethUserBundle
