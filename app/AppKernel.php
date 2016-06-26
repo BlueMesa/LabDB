@@ -47,6 +47,8 @@ class AppKernel extends Kernel
             new Bluemesa\Bundle\ImapAuthenticationBundle\BluemesaImapAuthenticationBundle(),
             new Bluemesa\Bundle\StorageBundle\BluemesaStorageBundle(),
             new Bluemesa\Bundle\SensorBundle\BluemesaSensorBundle(),
+            new Bluemesa\IcmImapUserBundle\BluemesaIcmImapUserBundle(),
+            new Bluemesa\KULeuvenImapUserBundle\BluemesaKULeuvenImapUserBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
