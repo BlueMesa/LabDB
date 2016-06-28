@@ -47,6 +47,7 @@ class AppKernel extends Kernel
             new Bluemesa\Bundle\ImapAuthenticationBundle\BluemesaImapAuthenticationBundle(),
             new Bluemesa\Bundle\StorageBundle\BluemesaStorageBundle(),
             new Bluemesa\Bundle\SensorBundle\BluemesaSensorBundle(),
+            new Bluemesa\GmailImapUserBundle\BluemesaGmailImapUserBundle(),
             new Bluemesa\IcmImapUserBundle\BluemesaIcmImapUserBundle(),
             new Bluemesa\KULeuvenImapUserBundle\BluemesaKULeuvenImapUserBundle(),
         ];

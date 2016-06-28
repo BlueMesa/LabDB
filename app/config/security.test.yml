@@ -31,6 +31,11 @@ security:
     acl:
         connection: default
 
+fos_user:
+    db_driver: orm
+    firewall_name: secured_area
+    user_class: Bluemesa\Bundle\UserBundle\Entity\User
+
 services:
     user_provider:
         alias: fos_user.user_provider.username

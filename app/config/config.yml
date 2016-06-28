@@ -95,11 +95,6 @@ shibboleth:
     secured_handler: true
     session_initiator_path: /Login
 
-fos_user:
-    db_driver: orm
-    firewall_name: secured_area
-    user_class: Bluemesa\Bundle\UserBundle\Entity\User
-
 fos_rest:
     view:
         view_response_listener: 'force'
@@ -120,3 +115,4 @@ jms_di_extra:
             - BluemesaImapAuthenticationBundle
             - BluemesaIcmImapUserBundle
             - BluemesaKULeuvenImapUserBundle
+            - BluemesaGmailImapUserBundle
