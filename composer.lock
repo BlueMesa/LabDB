@@ -463,27 +463,29 @@
         },
         {
             "name": "doctrine/data-fixtures",
-            "version": "v1.1.1",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/data-fixtures.git",
-                "reference": "bd44f6b6e40247b6530bc8abe802e4e4d914976a"
+                "reference": "b3cae5efef97191a08d53d733260f7eb667c16e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/bd44f6b6e40247b6530bc8abe802e4e4d914976a",
-                "reference": "bd44f6b6e40247b6530bc8abe802e4e4d914976a",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/b3cae5efef97191a08d53d733260f7eb667c16e4",
+                "reference": "b3cae5efef97191a08d53d733260f7eb667c16e4",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.2",
-                "php": ">=5.3.2"
+                "php": "^5.6 || ^7.0"
             },
             "conflict": {
                 "doctrine/orm": "< 2.4"
             },
             "require-dev": {
-                "doctrine/orm": "~2.4"
+                "doctrine/dbal": "^2.5.4",
+                "doctrine/orm": "^2.5.4",
+                "phpunit/phpunit": "^5.4.6"
             },
             "suggest": {
                 "doctrine/mongodb-odm": "For loading MongoDB ODM fixtures",
@@ -493,7 +495,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.3.x-dev"
                 }
             },
             "autoload": {
@@ -516,7 +518,7 @@
             "keywords": [
                 "database"
             ],
-            "time": "2015-03-30 12:14:13"
+            "time": "2016-06-20 18:08:26"
         },
         {
             "name": "doctrine/dbal",
@@ -1123,12 +1125,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "bf39f0f902a99169f5f5d42d1db9740e5fc4d2f6"
+                "reference": "c1b87d933dfc9b59fc603f8e44f8064e4530a2b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/bf39f0f902a99169f5f5d42d1db9740e5fc4d2f6",
-                "reference": "bf39f0f902a99169f5f5d42d1db9740e5fc4d2f6",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/c1b87d933dfc9b59fc603f8e44f8064e4530a2b1",
+                "reference": "c1b87d933dfc9b59fc603f8e44f8064e4530a2b1",
                 "shasum": ""
             },
             "require": {
@@ -1203,7 +1205,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2016-05-18 19:53:18"
+            "time": "2016-06-19 14:22:34"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -1211,12 +1213,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "d1fccc6335b74beca94525551cacc06b256ed261"
+                "reference": "298f27ce696deaa6ecd72e6ba563f892a17e0512"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/d1fccc6335b74beca94525551cacc06b256ed261",
-                "reference": "d1fccc6335b74beca94525551cacc06b256ed261",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/298f27ce696deaa6ecd72e6ba563f892a17e0512",
+                "reference": "298f27ce696deaa6ecd72e6ba563f892a17e0512",
                 "shasum": ""
             },
             "require": {
@@ -1272,7 +1274,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2016-05-27 12:14:43"
+            "time": "2016-06-21 10:34:42"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -2216,16 +2218,16 @@
         },
         {
             "name": "knplabs/knp-menu-bundle",
-            "version": "v2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenuBundle.git",
-                "reference": "90aff8e39274d1225dfa3bb7b1dd4e47b7312dca"
+                "reference": "42ff1953c3a79d0b31aba2ece8c03fbd70e7f1ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/90aff8e39274d1225dfa3bb7b1dd4e47b7312dca",
-                "reference": "90aff8e39274d1225dfa3bb7b1dd4e47b7312dca",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenuBundle/zipball/42ff1953c3a79d0b31aba2ece8c03fbd70e7f1ca",
+                "reference": "42ff1953c3a79d0b31aba2ece8c03fbd70e7f1ca",
                 "shasum": ""
             },
             "require": {
@@ -2269,7 +2271,7 @@
             "keywords": [
                 "menu"
             ],
-            "time": "2015-12-15 12:06:23"
+            "time": "2016-06-21 06:53:03"
         },
         {
             "name": "knplabs/knp-paginator-bundle",
@@ -2451,16 +2453,16 @@
         },
         {
             "name": "leafo/scssphp",
-            "version": "v0.6.3",
+            "version": "v0.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leafo/scssphp.git",
-                "reference": "a27edad3d16635a222d7204706572e24c338aa17"
+                "reference": "0649d38dfef6808be1a89040a3312e8bda0b3aed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leafo/scssphp/zipball/a27edad3d16635a222d7204706572e24c338aa17",
-                "reference": "a27edad3d16635a222d7204706572e24c338aa17",
+                "url": "https://api.github.com/repos/leafo/scssphp/zipball/0649d38dfef6808be1a89040a3312e8bda0b3aed",
+                "reference": "0649d38dfef6808be1a89040a3312e8bda0b3aed",
                 "shasum": ""
             },
             "require": {
@@ -2500,25 +2502,25 @@
                 "scss",
                 "stylesheet"
             ],
-            "time": "2016-01-15 02:50:06"
+            "time": "2016-06-20 15:25:08"
         },
         {
             "name": "liuggio/ExcelBundle",
-            "version": "v2.0.5",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/liuggio/ExcelBundle.git",
-                "reference": "728c2bf7a39ab38e73c8b58d0ac2088dcf0f8412"
+                "reference": "b4fe94b64449490a1b5fbbce827c2501be335126"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liuggio/ExcelBundle/zipball/728c2bf7a39ab38e73c8b58d0ac2088dcf0f8412",
-                "reference": "728c2bf7a39ab38e73c8b58d0ac2088dcf0f8412",
+                "url": "https://api.github.com/repos/liuggio/ExcelBundle/zipball/b4fe94b64449490a1b5fbbce827c2501be335126",
+                "reference": "b4fe94b64449490a1b5fbbce827c2501be335126",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "phpoffice/phpexcel": "~1.8.0",
+                "phpoffice/phpexcel": "~1.8.1",
                 "symfony/framework-bundle": "~2.6|~3.0"
             },
             "require-dev": {
@@ -2566,7 +2568,7 @@
                 "excel",
                 "xls"
             ],
-            "time": "2016-04-20 09:58:50"
+            "time": "2016-06-20 17:11:22"
         },
         {
             "name": "monolog/monolog",
@@ -3298,16 +3300,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.6",
+            "version": "v5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "ffe306d09c1f2bad721237f63b2169d1b78253d0"
+                "reference": "a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/ffe306d09c1f2bad721237f63b2169d1b78253d0",
-                "reference": "ffe306d09c1f2bad721237f63b2169d1b78253d0",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a",
+                "reference": "a9c4723cbdbc6cf7fbfdfde3c639cb1943f0293a",
                 "shasum": ""
             },
             "require": {
@@ -3346,7 +3348,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2016-04-25 20:50:31"
+            "time": "2016-06-23 16:11:33"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -4757,22 +4759,22 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "3.0.2",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "45ada3e3fd09789fbfbd6d65b3f0901f0030dc61"
+                "reference": "9270140b940ff02e58ec577c237274e92cd40cdd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/45ada3e3fd09789fbfbd6d65b3f0901f0030dc61",
-                "reference": "45ada3e3fd09789fbfbd6d65b3f0901f0030dc61",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/9270140b940ff02e58ec577c237274e92cd40cdd",
+                "reference": "9270140b940ff02e58ec577c237274e92cd40cdd",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5",
                 "phpdocumentor/reflection-common": "^1.0@dev",
-                "phpdocumentor/type-resolver": "^0.1.5",
+                "phpdocumentor/type-resolver": "^0.2.0",
                 "webmozart/assert": "^1.0"
             },
             "require-dev": {
@@ -4798,20 +4800,20 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2016-06-06 06:44:13"
+            "time": "2016-06-10 09:48:41"
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "0.1.8",
+            "version": "0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "9891754231e55d42f0d16988ffb799af39f31a12"
+                "reference": "b39c7a5b194f9ed7bd0dd345c751007a41862443"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/9891754231e55d42f0d16988ffb799af39f31a12",
-                "reference": "9891754231e55d42f0d16988ffb799af39f31a12",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/b39c7a5b194f9ed7bd0dd345c751007a41862443",
+                "reference": "b39c7a5b194f9ed7bd0dd345c751007a41862443",
                 "shasum": ""
             },
             "require": {
@@ -4820,7 +4822,7 @@
             },
             "require-dev": {
                 "mockery/mockery": "^0.9.4",
-                "phpunit/phpunit": "^5.2"
+                "phpunit/phpunit": "^5.2||^4.8.24"
             },
             "type": "library",
             "extra": {
@@ -4845,7 +4847,7 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
-            "time": "2016-03-28 10:02:29"
+            "time": "2016-06-10 07:14:17"
         },
         {
             "name": "phpspec/prophecy",
@@ -5155,16 +5157,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.4.2",
+            "version": "5.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "f5726a0262e5f74f8e9cf03128798b64160c441d"
+                "reference": "2f1fc94b77ea6418bd6a06c64a1dac0645fbce59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f5726a0262e5f74f8e9cf03128798b64160c441d",
-                "reference": "f5726a0262e5f74f8e9cf03128798b64160c441d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2f1fc94b77ea6418bd6a06c64a1dac0645fbce59",
+                "reference": "2f1fc94b77ea6418bd6a06c64a1dac0645fbce59",
                 "shasum": ""
             },
             "require": {
@@ -5183,13 +5185,16 @@
                 "phpunit/phpunit-mock-objects": "^3.2",
                 "sebastian/comparator": "~1.1",
                 "sebastian/diff": "~1.2",
-                "sebastian/environment": "~1.3",
+                "sebastian/environment": "^1.3 || ^2.0",
                 "sebastian/exporter": "~1.2",
                 "sebastian/global-state": "~1.0",
                 "sebastian/object-enumerator": "~1.0",
                 "sebastian/resource-operations": "~1.0",
                 "sebastian/version": "~1.0|~2.0",
                 "symfony/yaml": "~2.1|~3.0"
+            },
+            "conflict": {
+                "phpdocumentor/reflection-docblock": "3.0.2"
             },
             "suggest": {
                 "phpunit/php-invoker": "~1.1"
@@ -5226,20 +5231,20 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-06-03 09:59:50"
+            "time": "2016-06-16 06:01:15"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "3.2.1",
+            "version": "3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "0dc8fd8e87e0366c22b6c25d1f43c4e2e66847b3"
+                "reference": "b13d0d9426ced06958bd32104653526a6c998a52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/0dc8fd8e87e0366c22b6c25d1f43c4e2e66847b3",
-                "reference": "0dc8fd8e87e0366c22b6c25d1f43c4e2e66847b3",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/b13d0d9426ced06958bd32104653526a6c998a52",
+                "reference": "b13d0d9426ced06958bd32104653526a6c998a52",
                 "shasum": ""
             },
             "require": {
@@ -5285,7 +5290,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2016-06-04 05:52:19"
+            "time": "2016-06-12 07:37:26"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -5500,16 +5505,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "7ae5513327cb536431847bcc0c10edba2701064e"
+                "reference": "42c4c2eec485ee3e159ec9884f95b431287edde4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/7ae5513327cb536431847bcc0c10edba2701064e",
-                "reference": "7ae5513327cb536431847bcc0c10edba2701064e",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/42c4c2eec485ee3e159ec9884f95b431287edde4",
+                "reference": "42c4c2eec485ee3e159ec9884f95b431287edde4",
                 "shasum": ""
             },
             "require": {
@@ -5517,12 +5522,13 @@
                 "sebastian/recursion-context": "~1.0"
             },
             "require-dev": {
+                "ext-mbstring": "*",
                 "phpunit/phpunit": "~4.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.3.x-dev"
                 }
             },
             "autoload": {
@@ -5562,7 +5568,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2015-06-21 07:55:53"
+            "time": "2016-06-17 09:04:28"
         },
         {
             "name": "sebastian/global-state",
@@ -5801,16 +5807,16 @@
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "v3.0.6",
+            "version": "v3.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "ac91535054d025937d897d78ebb5fc2da5e955a4"
+                "reference": "d1be460925376703a470a3ac6ec034eb7eab3892"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/ac91535054d025937d897d78ebb5fc2da5e955a4",
-                "reference": "ac91535054d025937d897d78ebb5fc2da5e955a4",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/d1be460925376703a470a3ac6ec034eb7eab3892",
+                "reference": "d1be460925376703a470a3ac6ec034eb7eab3892",
                 "shasum": ""
             },
             "require": {
@@ -5849,7 +5855,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2016-02-26 04:36:01"
+            "time": "2016-06-20 05:58:05"
         },
         {
             "name": "symfony/phpunit-bridge",
