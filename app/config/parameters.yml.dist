@@ -2,9 +2,11 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     localhost
     database_port:     3306
+    database_socket:   ~
     database_name:     labdb
     database_user:     root
     database_password: ~
+
 
     memcached_host:    localhost
     memcached_port:    11211

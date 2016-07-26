@@ -1,0 +1,16 @@
+{% extends "BluemesaConstructBundle:Construct:layout.html.twig" %}
+{% use "BluemesaSiteTemplateBundle:Show:modal.html.twig" %}
+{% import "BluemesaSiteTemplateBundle:Macros:show.html.twig" as s %}
+{% import 'BluemesaSiteTemplateBundle:Macros:status.html.twig' as status %}
+
+{% block modal_header %}
+  #{{ construct.id }} - {{ construct }}
+{% endblock modal_header %}
+
+{% block modal_body %}
+  {{ s.row("Type", construct.type) }}
+  {{ s.row("Size", construct.size) }}
+{% endblock modal_body %}
+
+{% block modal_footer %}
+{% endblock modal_footer %}

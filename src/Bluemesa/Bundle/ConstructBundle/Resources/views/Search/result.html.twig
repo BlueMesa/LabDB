@@ -1,0 +1,19 @@
+{% extends "BluemesaAntibodyBundle:Antibody:layout.html.twig" %}
+{% use "BluemesaSiteTemplateBundle:List:table.html.twig" %}
+{% import "BluemesaSiteTemplateBundle:Macros:list.html.twig" as l %}
+{% import 'BluemesaSiteTemplateBundle:Macros:status.html.twig' as status %}
+
+{% block headline %}
+  Search results
+{% endblock headline %}
+
+{% block list_header %}
+  {% include 'BluemesaAntibodyBundle:Antibody:list_head.html.twig' %}
+{% endblock list_header %}
+
+{% block list_item %}
+  {% include 'BluemesaAntibodyBundle:Antibody:list_row.html.twig' with {'entity': entity} %}
+{% endblock list_item %}
+
+{% block list_buttons %}
+{% endblock list_buttons %}

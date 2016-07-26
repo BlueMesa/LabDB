@@ -1,0 +1,17 @@
+{% extends "BluemesaConstructBundle:Construct:layout.html.twig" %}
+{% use "BluemesaSiteTemplateBundle:List:table.html.twig" %}
+{% import "BluemesaSiteTemplateBundle:Macros:list.html.twig" as l %}
+{% import 'BluemesaSiteTemplateBundle:Macros:status.html.twig' as status %}
+
+{% block headline %}Constructs{% endblock headline %}
+
+{% block list_header %}
+  {% include 'BluemesaConstructBundle:Construct:head.html.twig' %}
+{% endblock list_header %}
+
+{% block list_item %}
+  {% include 'BluemesaConstructBundle:Construct:row.html.twig' with {'entity': entity} %}
+{% endblock list_item %}
+
+{% block list_buttons %}
+{% endblock list_buttons %}

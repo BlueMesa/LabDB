@@ -1,6 +1,6 @@
 {
     "name": "bluemesa/labdb",
-    "description": "Symfony2-based LIMS for Drosophila Labs",
+    "description": "Symfony3-based LIMS for Drosophila Labs",
     "autoload": {
         "psr-4": { "": "src/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]

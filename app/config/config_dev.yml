@@ -26,11 +26,12 @@ assetic:
 
 doctrine:
     dbal:
-        driver:   pdo_sqlite
-        host:     ~
-        port:     ~
-        dbname:   test.db
-        user:     ~
-        password: ~
-        charset:  UTF8
-        path:     %kernel.root_dir%/Resources/db/test.db
+        driver:      pdo_sqlite
+        host:        ~
+        port:        ~
+        unix_socket: ~
+        dbname:      test.db
+        user:        ~
+        password:    ~
+        charset:     UTF8
+        path:        %kernel.root_dir%/Resources/db/test.db

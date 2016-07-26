@@ -102,6 +102,7 @@ fos_rest:
         serialize_null: true
     body_converter:
         enabled: true
+    param_fetcher_listener: true
 
 jms_di_extra:
     locations:
