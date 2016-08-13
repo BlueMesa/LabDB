@@ -33,16 +33,16 @@ class RestrictionLigationType extends AbstractType
     {
         $builder->add('vector', TextType::class, array(
                         'label'     => 'Vector'))
-                ->add('insert', TextType::class, array(
-                        'label'     => 'Insert'))
                 ->add('vectorSize', NumberType::class, array(
-                        'label'     => 'Size',
+                        'label'     => 'Vector size',
                         'attr'      => array('class' => 'input-small'),
                         'widget_addon_append' => array(
-                                'text' => 'kb',
+                            'text' => 'kb',
                         )))
+                ->add('insert', TextType::class, array(
+                        'label'     => 'Insert'))
                 ->add('insertSize', NumberType::class, array(
-                        'label'     => 'Size',
+                        'label'     => 'Insert size',
                         'attr'      => array('class' => 'input-small'),
                         'widget_addon_append' => array(
                             'text' => 'kb',

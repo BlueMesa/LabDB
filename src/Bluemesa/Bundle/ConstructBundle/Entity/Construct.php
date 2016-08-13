@@ -280,7 +280,8 @@ class Construct extends SecureEntity
     public function setMethod($method)
     {
         $this->method = $method;
+        if ($method->getConstruct() !== $this) {
+            $method->setConstruct($this);
+        }
     }
-
-
 }

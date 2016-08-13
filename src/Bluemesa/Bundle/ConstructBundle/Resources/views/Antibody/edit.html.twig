@@ -1,9 +1,0 @@
-{% extends "BluemesaAntibodyBundle:Antibody:layout.html.twig" %}
-{% use "BluemesaSiteTemplateBundle:Form:form.html.twig" %}
-{% import "BluemesaSiteTemplateBundle:Macros:form.html.twig" as f %}
-
-{% block modal_header %}Edit antibody{% endblock modal_header %}
-
-{% block modal_footer %}
-  {{ f.buttons(form.vars.value,'bluemesa_antibody_antibody') }}
-{% endblock modal_footer %}

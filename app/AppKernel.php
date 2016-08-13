@@ -51,6 +51,7 @@ class AppKernel extends Kernel
             new Bluemesa\GmailImapUserBundle\BluemesaGmailImapUserBundle(),
             new Bluemesa\IcmImapUserBundle\BluemesaIcmImapUserBundle(),
             new Bluemesa\KULeuvenImapUserBundle\BluemesaKULeuvenImapUserBundle(),
+            new Bluemesa\Bundle\CrudBundle\BluemesaCrudBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

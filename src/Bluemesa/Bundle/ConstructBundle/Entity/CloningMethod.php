@@ -64,5 +64,8 @@ class CloningMethod extends Entity
      */
     public function setConstruct(Construct $construct) {
         $this->construct = $construct;
+        if ($construct->getMethod() !== $this) {
+            $construct->setMethod($this);
+        }
     }
 }
