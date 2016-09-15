@@ -109,6 +109,7 @@ jms_di_extra:
         all_bundles: false
         bundles:
             - BluemesaCoreBundle
+            - BluemesaCrudBundle
             - BluemesaAclBundle
             - BluemesaFormsBundle
             - BluemesaFliesBundle

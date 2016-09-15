@@ -30,14 +30,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
- * Class EntityHandler
+ * Class CrudHandler
  *
  * @DI\Service("bluemesa.crud.handler")
  *
  * @package Bluemesa\Bundle\CrudBundle\Request
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class EntityHandler
+class CrudHandler
 {
     /**
      * @var EventDispatcherInterface
@@ -86,8 +86,45 @@ class EntityHandler
         $this->router = $router;
     }
 
+    /**
+     * This method calls a proper handler for the incoming request
+     *
+     * @param Request $request
+     *
+     * @return View
+     * @throws \LogicException
+     */
+    public function handle(Request $request)
+    {
+        $action = $request->get('crud_action');
+        switch($action) {
+            case 'index':
+                $result = $this->handleIndexAction($request);
+                break;
+            case 'show':
+                $result =  $this->handleShowAction($request);
+                break;
+            case 'new':
+                $result = $this->handleNewAction($request);
+                break;
+            case 'edit':
+                $result = $this->handleEditAction($request);
+                break;
+            case 'delete':
+                $result = $this->handleDeleteAction($request);
+                break;
+            default:
+                $message  = "The action '" . $action;
+                $message .= "' is not one of the allowed CRUD actions ('index', 'show', 'new', 'edit', 'delete').";
+                throw new \LogicException($message);
+        }
+
+        return $result;
+    }
 
     /**
+     * This method handles index action requests.
+     *
      * @param  Request $request
      *
      * @return View
@@ -117,18 +154,20 @@ class EntityHandler
     }
 
     /**
+     * This method handles new action requests.
+     *
      * @param Request $request
      *
      * @return View
      */
     public function handleNewAction(Request $request)
     {
-        $type = $request->get('form_class');
+        $type = $request->get('form_type');
         $entityClass = $request->get('entity_class');
 
         /** @var Entity $entity */
         $entity = new $entityClass();
-        $form = $this->factory->create($type, $entity);
+        $form = $this->factory->create($type, $entity, array('method' => 'PUT'));
 
         $event = new NewActionEvent($request, $entity, $form);
         $this->dispatcher->dispatch(CrudControllerEvents::NEW_INITIALIZE, $event);
@@ -148,7 +187,7 @@ class EntityHandler
             $em->flush();
 
             if (null === $view = $event->getView()) {
-                $route = $request->get('redirect_route');
+                $route = $request->get('edit_redirect_route');
                 $view = View::createRouteRedirect($route, array('id' => $entity->getId()));
             }
 
@@ -163,6 +202,8 @@ class EntityHandler
     }
 
     /**
+     * This method handles show action requests.
+     *
      * @param Request $request
      *
      * @return View
@@ -176,10 +217,10 @@ class EntityHandler
         $this->dispatcher->dispatch(CrudControllerEvents::SHOW_INITIALIZE, $event);
 
         if (null === $view = $event->getView()) {
-            $view = View::create(array('entity' => $entity, '$delete_form' => $deleteForm->createView()));
+            $view = View::create(array('entity' => $entity, 'delete_form' => $deleteForm->createView()));
         }
 
-        $event = new IndexActionEvent($request, $entity);
+        $event = new ShowActionEvent($request, $entity);
         $this->dispatcher->dispatch(CrudControllerEvents::SHOW_COMPLETED, $event);
 
         /** @var View $view */
@@ -187,6 +228,8 @@ class EntityHandler
     }
 
     /**
+     * This method handles edit action requests.
+     *
      * @param Request $request
      *
      * @return View
@@ -195,7 +238,7 @@ class EntityHandler
     {
         /** @var Entity $entity */
         $entity = $request->get('entity');
-        $type = $request->get('form_class');
+        $type = $request->get('form_type');
         $form = $this->factory->create($type, $entity);
         $deleteForm = $this->createDeleteForm($request);
 
@@ -217,7 +260,7 @@ class EntityHandler
             $em->flush();
 
             if (null === $view = $event->getView()) {
-                $route = $request->get('success_redirect_route');
+                $route = $request->get('edit_redirect_route');
                 $view = View::createRouteRedirect($route, array('id' => $entity->getId()));
             }
 
@@ -231,11 +274,13 @@ class EntityHandler
         return View::create(array(
             'entity' => $entity,
             'form' => $form->createView(),
-            '$delete_form' => $deleteForm->createView()));
+            'delete_form' => $deleteForm->createView()));
     }
 
 
     /**
+     * This method handles delete action requests.
+     *
      * @param Request $request
      *
      * @return View
@@ -264,7 +309,7 @@ class EntityHandler
             $em->flush();
 
             if (null === $view = $event->getView()) {
-                $route = $request->get('success_redirect_route');
+                $route = $request->get('delete_redirect_route');
                 $view = View::createRouteRedirect($route);
             }
 

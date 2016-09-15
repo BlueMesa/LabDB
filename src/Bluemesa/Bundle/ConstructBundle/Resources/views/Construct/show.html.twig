@@ -4,12 +4,12 @@
 {% import 'BluemesaSiteTemplateBundle:Macros:status.html.twig' as status %}
 
 {% block modal_header %}
-  #{{ construct.id }} - {{ construct }}
+  #{{ entity.id }} - {{ entity }}
 {% endblock modal_header %}
 
 {% block modal_body %}
-  {{ s.row("Type", construct.type) }}
-  {{ s.row("Size", construct.size) }}
+  {{ s.row("Type", entity.type) }}
+  {{ s.row("Size", entity.size) }}
 {% endblock modal_body %}
 
 {% block modal_footer %}

@@ -18,18 +18,16 @@
 
 namespace Bluemesa\Bundle\ConstructBundle\Controller;
 
-use Bluemesa\Bundle\ConstructBundle\Entity\Construct;
-use Bluemesa\Bundle\ConstructBundle\Form\ConstructType;
-use Bluemesa\Bundle\CoreBundle\Controller\RestController;
+use Bluemesa\Bundle\CrudBundle\Controller\Annotations as CRUD;
+use Bluemesa\Bundle\CrudBundle\Controller\CrudControllerTrait;
 use FOS\RestBundle\Controller\Annotations as REST;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\View\View;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 
 /**
@@ -40,122 +38,84 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ConstructController
- * @package Bluemesa\Bundle\ConstructBundle\Controller
+ *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  *
- * @Route("/constructs")
+ * @REST\Prefix("/constructs")
+ * @REST\NamePrefix("bluemesa_construct_")
+ * @CRUD\Controller()
  */
-class ConstructController extends RestController
+class ConstructController extends Controller
 {
+    use CrudControllerTrait;
+
     /**
-     * @REST\View()
-     * @REST\Get("/index.{_format}", name="bluemesa_construct_index", defaults={"_format" = "html"})
+     * @CRUD\Action("index")
+     * @REST\Get("/", defaults={"_format" = "html"}))
+     * @REST\Get("", name="_rest", defaults={"_format" = "html"}))
      *
      * @param  Request     $request
      * @return View
      */
     public function indexAction(Request $request)
     {
-        return new View();
+        return $this->getCrudHandler()->handle($request);
     }
 
     /**
+     * @CRUD\Action("show")
      * @REST\View()
-     * @REST\Get("/{id}.{_format}", name="bluemesa_construct_show",
-     *     defaults={"_format" = "html"}, requirements={"construct" = "\d+"})
-     *
-     * @ParamConverter("construct", class="BluemesaConstructBundle:Construct")
+     * @REST\Get("/{id}", requirements={"id"="\d+"}, defaults={"_format" = "html"})
      *
      * @param  Request     $request
-     * @param  Construct   $construct
      * @return View
      */
-    public function showAction(Request $request, Construct $construct)
+    public function showAction(Request $request)
     {
-        return new View(array('construct' => $construct));
+        return $this->getCrudHandler()->handle($request);
     }
 
     /**
+     * @CRUD\Action("new")
      * @REST\View()
-     * @REST\Get("/new.{_format}", name="bluemesa_construct_new",
-     *     defaults={"_format" = "html"})
-     * @REST\Post("/new.{_format}", name="bluemesa_construct_new_submit",
-     *     defaults={"_format" = "html"})
+     * @REST\Route("/new", methods={"GET", "PUT"}, defaults={"_format" = "html"})
+     * @REST\Put("", name="_rest", defaults={"_format" = "html"})
      *
      * @param  Request     $request
      * @return View
      */
     public function newAction(Request $request)
     {
-        $construct = new Construct;
-        $form = $this->createEditForm($construct);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManagerForClass(Construct::class);
-            $em->persist($construct);
-            $em->flush();
-
-            return $this->routeRedirectView('bluemesa_construct_show',
-                array('construct' => $construct->getId()));
-        }
-
-        return new View(array('form' => $form));
+        return $this->getCrudHandler()->handle($request);
     }
 
     /**
-     * Displays a form to edit an existing Construct entity.
-     *
+     * @CRUD\Action("edit")
      * @REST\View()
-     * @REST\Get("/{id}/edit.{_format}", name="bluemesa_construct_edit",
-     *     defaults={"_format" = "html"})
-     * @REST\Post("/{id}.{_format}", name="bluemesa_construct_edit_submit",
-     *     defaults={"_format" = "html"})
-     *
-     * @ParamConverter("construct", class="BluemesaConstructBundle:Construct")
+     * @REST\Route("/{id}/edit", methods={"GET", "POST"}, requirements={"id"="\d+"}, defaults={"_format" = "html"})
+     * @REST\Post("/{id}", name="_rest", requirements={"id"="\d+"}, defaults={"_format" = "html"})
      *
      * @param  Request     $request
      * @return View
      */
-    public function editAction(Request $request, Construct $construct)
+    public function editAction(Request $request)
     {
-        $form = $this->createEditForm($construct);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManagerForClass(Construct::class);
-            $em->persist($construct);
-            $em->flush();
-
-            return $this->routeRedirectView('bluemesa_construct_show',
-                array('construct' => $construct->getId()));
-        }
-
-        return new View(array('form' => $form));
+        return $this->getCrudHandler()->handle($request);
     }
 
     /**
-     * Deletes a Construct entity.
-     *
-     * @REST\Delete("/{id}/delete.{_format}", name="bluemesa_construct_delete",
-     *     defaults={"_format" = "html"})
+     * @CRUD\Action("delete")
+     * @REST\View()
+     * @REST\Route("/{id}/delete", methods={"DELETE", "POST"}, requirements={"id"="\d+"}, defaults={"_format" = "html"})
+     * @REST\Delete("/{id}", name="_rest", requirements={"id"="\d+"}, defaults={"_format" = "html"})
      */
-    public function deleteAction(Request $request, Construct $construct)
+    public function deleteAction(Request $request)
     {
-        $form = $this->createDeleteForm($construct);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManagerForClass(Construct::class);
-            $em->remove($construct);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('bluemesa_construct_index');
+        return $this->getCrudHandler()->handle($request);
     }
 
     /**
-     * @REST\Post("/_ajax/method/form.{_format}", name="bluemesa_construct_ajaxform",
+     * @REST\Post("/_ajax/method/form",
      *     defaults={"_format" = "html"}, requirements={"_format" = "html"})
      * @REST\RequestParam(name="entity")
      * @REST\RequestParam(name="form")
@@ -182,31 +142,5 @@ class ConstructController extends RestController
 
         return new Response($this->renderView('BluemesaConstructBundle:Construct:ajaxform.html.twig',
             array('form' => $builder->getForm()->createView())));
-    }
-
-    /**
-     * Creates a form to edit a Construct entity.
-     *
-     * @param Construct $construct
-     * @return \Symfony\Component\Form\Form
-     */
-    private function createEditForm(Construct $construct)
-    {
-        return $this->createForm(ConstructType::class, $construct);
-    }
-
-    /**
-     * Creates a form to delete a Construct entity.
-     *
-     * @param Construct $construct The Construct entity
-     * @return Form The form
-     */
-    private function createDeleteForm(Construct $construct)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('bluemesa_construct_delete', array('id' => $construct->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-            ;
     }
 }

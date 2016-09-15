@@ -18,9 +18,9 @@
   {% set value = form.vars.value %}
   {% if value.id is not null %}
     {% if is_granted('ROLE_ADMIN') or is_granted('DELETE',value) %}
-    <a href="{{ path('bluemesa_construct_show', { 'construct': value.id }) }}" class="btn btn-danger">Delete</a>
+    <a href="{{ path('bluemesa_construct_show', { 'id': value.id }) }}" class="btn btn-danger">Delete</a>
     {% endif %}
-    <a href="{{ path('bluemesa_construct_show', { 'construct': value.id }) }}" class="btn btn-default">Cancel</a>
+    <a href="{{ path('bluemesa_construct_show', { 'id': value.id }) }}" class="btn btn-default">Cancel</a>
   {% else %}
     <a href="{{ path('bluemesa_construct_list') }}" class="btn btn-default">Cancel</a>
   {% endif %}
@@ -32,7 +32,7 @@
     $("#construct_cloningMethod").on("change", function (e) {
       if(this.value) {
         data = $.parseJSON(this.value);
-        $.post('{{ path('bluemesa_construct_ajaxform') }}', data, function(data, status) {
+        $.post('{{ path('bluemesa_construct_ajax_form') }}', data, function(data, status) {
           $('.construct_method_placeholder').replaceWith(data);
           $('.select2').not('.select2-container').not('.select2-offscreen').select2({
             width: 'resolve',
