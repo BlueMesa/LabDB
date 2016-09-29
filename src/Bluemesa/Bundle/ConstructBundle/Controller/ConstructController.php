@@ -1,19 +1,12 @@
 <?php
 
 /*
- * Copyright 2011 Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
+ * This file is part of the ConstructBundle.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Copyright (c) 2016 BlueMesa LabDB Contributors <labdb@bluemesa.eu>
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Bluemesa\Bundle\ConstructBundle\Controller;
@@ -27,14 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\KernelEvents;
 
-
-/**
- * AntibodyController class
- *
- * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
- */
 
 /**
  * Class ConstructController
@@ -51,8 +37,9 @@ class ConstructController extends Controller
 
     /**
      * @CRUD\Action("index")
-     * @REST\Get("/", defaults={"_format" = "html"}))
-     * @REST\Get("", name="_rest", defaults={"_format" = "html"}))
+     * @CRUD\Paginate(25)
+     * @REST\View()
+     * @REST\Get("", defaults={"_format" = "html"}))
      *
      * @param  Request     $request
      * @return View

@@ -1,15 +1,17 @@
-{% extends "BluemesaAntibodyBundle::layout.html.twig" %}
+{% extends "BluemesaConstructBundle::layout.html.twig" %}
 
-{% block headline %}Antibodies{% endblock headline %}
+{% block headline %}Constructs{% endblock headline %}
 
 {% block content_sidebar %}
 <ul class="nav nav-list well">
   <li class="nav-header">List</li>
-  <li><a href="{{ path('bluemesa_antibody_antibody_list') }}">All</a></li>
-  <li><a href="{{ path('bluemesa_antibody_antibody_list') }}">Primary</a></li>
-  <li><a href="{{ path('bluemesa_antibody_antibody_list') }}">Secondary</a></li>
+  <li><a href="{{ path('bluemesa_construct_index') }}">All</a></li>
+  <li><a href="{{ path('bluemesa_construct_index') }}">Plasmids</a></li>
+  <li><a href="{{ path('bluemesa_construct_index') }}">Genomic constructs</a></li>
+  <li><a href="{{ path('bluemesa_construct_index') }}">Synthetic DNA</a></li>
+
   <li class="nav-header">Actions</li>
-  <li><a href="{{ path('bluemesa_antibody_antibody_create') }}">New antibody</a></li>
-  <li><a href="{{ path('bluemesa_antibody_search_advanced') }}">Search</a></li>
+  <li><a href="{{ path('bluemesa_construct_new') }}">New construct</a></li>
+  <li><a href="{{ path('bluemesa_construct_search') }}">Search</a></li>
 </ul>
 {% endblock content_sidebar %}

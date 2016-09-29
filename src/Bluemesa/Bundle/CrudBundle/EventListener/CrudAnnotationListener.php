@@ -1,12 +1,12 @@
 <?php
 
 /*
- * This file is part of the Symfony framework.
+ * This file is part of the CRUD Bundle.
  *
- * (c) Fabien Potencier <fabien@symfony.com>
+ * Copyright (c) 2016 BlueMesa LabDB Contributors <labdb@bluemesa.eu>
  *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Bluemesa\Bundle\CrudBundle\EventListener;
@@ -21,8 +21,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -40,7 +38,7 @@ use Symfony\Component\Routing\RouterInterface;
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class CrudAnnotationListener implements EventSubscriberInterface
+class CrudAnnotationListener
 {
     /**
      * @var ParamConverterManager
@@ -62,7 +60,8 @@ class CrudAnnotationListener implements EventSubscriberInterface
      *
      * @DI\InjectParams({
      *     "manager" = @DI\Inject("sensio_framework_extra.converter.manager"),
-     *     "reader" = @DI\Inject("annotation_reader")
+     *     "reader" = @DI\Inject("annotation_reader"),
+     *     "router" = @DI\Inject("router")
      * })
      *
      * @param ParamConverterManager $manager  A ParamConverterManager instance
@@ -90,7 +89,8 @@ class CrudAnnotationListener implements EventSubscriberInterface
             $c = new \ReflectionClass(ClassUtils::getClass($controller[0]));
             $m = new \ReflectionMethod($controller[0], $controller[1]);
         } elseif (is_object($controller) && is_callable($controller, '__invoke')) {
-            $c = new \ReflectionClass(ClassUtils::getClass($controller[0]));
+            /** @var object $controller */
+            $c = new \ReflectionClass(ClassUtils::getClass($controller));
             $m = new \ReflectionMethod($controller, '__invoke');
         } else {
             return;
@@ -327,17 +327,5 @@ class CrudAnnotationListener implements EventSubscriberInterface
         if (! $request->attributes->has($attribute)) {
             $request->attributes->set($attribute, $value);
         }
-    }
-
-    /**
-     * Get subscribed events.
-     *
-     * @return array Subscribed events
-     */
-    public static function getSubscribedEvents()
-    {
-        return array(
-            KernelEvents::CONTROLLER => 'onKernelController',
-        );
     }
 }

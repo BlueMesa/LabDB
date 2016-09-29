@@ -18,7 +18,7 @@
                     <a href="{{ path('bluemesa_antibody_antibody_list') }}">Antibodies</a>
                 </li>
                 <li>
-                    <a href="{{ path('bluemesa_construct_construct_getConstructs') }}">Constructs</a>
+                    <a href="{{ path('bluemesa_construct_index') }}">Constructs</a>
                 </li>
             </ul>
             {% if app.user is not empty %}
@@ -40,7 +40,7 @@
                 </li>
           </ul>
           {% endif %}
-          {{ render(controller('BluemesaAntibodyBundle:Search:search')) }}
+          {{ render(controller('BluemesaConstructBundle:Search:search')) }}
         </div>
     </div>
 </nav>

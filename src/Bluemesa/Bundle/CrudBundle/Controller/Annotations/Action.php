@@ -14,7 +14,7 @@ namespace Bluemesa\Bundle\CrudBundle\Controller\Annotations;
 
 
 /**
- * Entity Annotation
+ * Action Annotation
  *
  * @Annotation
  * @Target("METHOD")

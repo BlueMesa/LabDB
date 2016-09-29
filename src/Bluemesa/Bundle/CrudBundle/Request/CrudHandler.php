@@ -138,7 +138,10 @@ class CrudHandler
         $event = new IndexActionEvent($request, $repository);
         $this->dispatcher->dispatch(CrudControllerEvents::INDEX_INITIALIZE, $event);
 
-        $entities = $repository->findAll();
+        if (null === $entities = $event->getEntities()) {
+            $entities = $repository->findAll();
+        }
+
         $event = new IndexActionEvent($request, $repository, $entities);
         $this->dispatcher->dispatch(CrudControllerEvents::INDEX_FETCHED, $event);
 

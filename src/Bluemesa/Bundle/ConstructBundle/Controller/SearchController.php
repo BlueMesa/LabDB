@@ -18,25 +18,66 @@
 
 namespace Bluemesa\Bundle\ConstructBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use Bluemesa\Bundle\AclBundle\Controller\SecureController;
-
 use Bluemesa\Bundle\SearchBundle\Controller\SearchController as BaseSearchController;
 use Bluemesa\Bundle\ConstructBundle\Search\SearchQuery;
 use Bluemesa\Bundle\ConstructBundle\Form\SearchType;
 use Bluemesa\Bundle\ConstructBundle\Form\AdvancedSearchType;
+use FOS\RestBundle\Controller\Annotations as REST;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Search controller for the antibody bundle
  *
- * @Route("/search")
+ * @REST\Prefix("/constructs/search")
+ * @REST\NamePrefix("bluemesa_construct_")
  *
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
 class SearchController extends BaseSearchController
 {
     use SecureController;
+
+    /**
+     * Render advanced search form
+     *
+     * @REST\Get("", defaults={"_format" = "html"}))
+     * @REST\View()
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function advancedAction()
+    {
+        return parent::advancedAction();
+    }
+
+    /**
+     * Render quick search form
+     *
+     * @REST\Get("/simple", defaults={"_format" = "html"}))
+     * @REST\View()
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function searchAction()
+    {
+        return parent::searchAction();
+    }
+
+    /**
+     * Handle search result
+     *
+     * @REST\Get("/result", defaults={"_format" = "html"}))
+     * @REST\View()
+     *
+     * @param  Request $request
+     * @return array
+     */
+    public function resultAction(Request $request)
+    {
+        return parent::resultAction($request);
+    }
 
     /**
      * {@inheritdoc}

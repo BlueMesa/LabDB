@@ -13,10 +13,8 @@
 namespace Bluemesa\Bundle\CrudBundle\Event;
 
 
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityRepository;
-use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
 
 class IndexActionEvent extends CrudEvent
@@ -27,7 +25,7 @@ class IndexActionEvent extends CrudEvent
     private $repository;
 
     /**
-     * @var Collection
+     * @var mixed
      */
     private $entities;
 
@@ -37,16 +35,14 @@ class IndexActionEvent extends CrudEvent
      *
      * @param Request                $request
      * @param ObjectRepository|null  $repository
-     * @param Collection|null        $entities
-     * @param View|null              $view
+     * @param array|null             $entities
      */
     public function __construct(Request $request, ObjectRepository $repository = null,
-                                Collection $entities = null)
+                                $entities = null)
     {
         $this->request = $request;
         $this->repository = $repository;
         $this->entities = $entities;
-        $this->view = $view;
     }
 
     /**
@@ -66,7 +62,7 @@ class IndexActionEvent extends CrudEvent
     }
 
     /**
-     * @return Collection
+     * @return mixed
      */
     public function getEntities()
     {
@@ -74,7 +70,7 @@ class IndexActionEvent extends CrudEvent
     }
 
     /**
-     * @param Collection $entities
+     * @param mixed $entities
      */
     public function setEntities($entities)
     {
