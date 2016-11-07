@@ -42,7 +42,7 @@
 	url = ../SensorBundle/
 [submodule "src/Bluemesa/Bundle/CrudBundle"]
 	path = src/Bluemesa/Bundle/CrudBundle
-	url = /Users/radoslaw.ejsmont/src/web/bluemesa/modules/CrudBundle
+	url = ../CrudBundle
 [submodule "src/Bluemesa/Bundle/ConstructBundle"]
 	path = src/Bluemesa/Bundle/ConstructBundle
-	url = /Users/radoslaw.ejsmont/src/web/bluemesa/modules/ConstructBundle
+	url = ../ConstructBundle
