@@ -55,6 +55,10 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+knp_paginator:
+    default_options:
+        sort_field_name: ~
+
 mopa_bootstrap:
     initializr:
         meta:
