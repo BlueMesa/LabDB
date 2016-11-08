@@ -7,6 +7,7 @@ php:
 before_script:
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - echo "memory_limit = 1024M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - cp app/config/security.test.yml app/config/security.yml
   - composer selfupdate
   - composer install --no-interaction
 
