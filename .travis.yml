@@ -11,4 +11,4 @@ before_script:
   - composer selfupdate
   - composer install --no-interaction
 
-script: vendor/bin/phpunit
+script: SYMFONY_DEPRECATIONS_HELPER=weak vendor/bin/phpunit
