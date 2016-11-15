@@ -1,37 +1,21 @@
 <?php
 
 /*
- * Copyright 2013 Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
+ * This file is part of the KULeuvenImapUserBundle.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Copyright (c) 2016 BlueMesa LabDB Contributors <labdb@bluemesa.eu>
  *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace Bluemesa\KULeuvenImapUserBundle\Security;
 
+use Bluemesa\Bundle\ImapAuthenticationBundle\Provider\ImapUserProvider as BaseUserProvider;
+use Bluemesa\Bundle\UserBundle\Entity\User;
 use FOS\UserBundle\Model\UserInterface;
 use JMS\DiExtraBundle\Annotation as DI;
 
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
-
-use FOS\UserBundle\Security\UserProvider as BaseUserProvider;
-use FOS\UserBundle\Model\UserManagerInterface;
-
-use Egulias\EmailValidator\EmailParser;
-use Egulias\EmailValidator\EmailLexer;
-
-use Bluemesa\Bundle\ImapAuthenticationBundle\Provider\ImapUserProviderInterface;
-use Bluemesa\Bundle\UserBundle\Entity\User;
 
 /**
  * KU Leuven IMAP UserProvider
@@ -40,77 +24,21 @@ use Bluemesa\Bundle\UserBundle\Entity\User;
  * 
  * @author Radoslaw Kamil Ejsmont <radoslaw@ejsmont.net>
  */
-class ImapUserProvider extends BaseUserProvider implements ImapUserProviderInterface
+class ImapUserProvider extends BaseUserProvider
 {
-    private $emailParser;
-    
-    /**
-     * @DI\InjectParams({
-     *     "userManager" = @DI\Inject("fos_user.user_manager")
-     * })
-     * 
-     * {@inheritDoc}
-     */
-    public function __construct(UserManagerInterface $userManager)
-    {
-        parent::__construct($userManager);
-        $this->emailParser = new EmailParser(new EmailLexer());
-    }
+    const DOMAIN = 'kuleuven.be';
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function loadUserByUsername($username)
+    protected function setUserData(UserInterface $user)
     {
-        $parts = $this->emailParser->parse($username);
-        $this->verifyDomain($parts['domain']);        
-        $user = parent::loadUserByUsername($username);
-        
-        return $user;
-    }
-    
-    /**
-     * Create a new user using imap data source
-     *
-     * @param  TokenInterface $token
-     * @return UserInterface
-     */
-    public function createUser(TokenInterface $token)
-    {
-        $user = $this->userManager->createUser();
-        $user->setUsername($token->getUsername());
-        $this->setUserData($user);
-
-        return $user;
-    }
-
-    /**
-     * Update user using imap data source
-     *
-     * @param  TokenInterface  $token
-     * @return UserInterface
-     */
-    public function updateUser(TokenInterface $token)
-    {
-        $user = $this->loadUserByUsername($token->getUsername());
-        $this->setUserData($user);
-
-        return $user;
-    }
-
-    /**
-     * Set user data using imap data source
-     *
-     * @param UserInterface  $user
-     */
-    private function setUserData(UserInterface $user)
-    {
-        $parts = $this->emailParser->parse($user->getUsername());
+        $parts = $this->splitUsername($user->getUsername());
         $this->verifyDomain($parts['domain']);
-        
+
         $localPart = $parts['local'];
         $unumber = str_replace('u', '', $localPart);
-        
+
         $url = "http://www.kuleuven.be/wieiswie/en/person/" . $unumber;
         $ch = curl_init();
         $timeout = 5;
@@ -122,14 +50,14 @@ class ImapUserProvider extends BaseUserProvider implements ImapUserProviderInter
 
         $dom = new \DOMDocument();
         @$dom->loadHTML($html);
-        
+
         $uname = "";
-        foreach($dom->getElementsByTagName('h1') as $h1) {
+        foreach ($dom->getElementsByTagName('h1') as $h1) {
             $uname = $h1->nodeValue;
         }
-        
+
         $uemail = "";
-        foreach($dom->getElementsByTagName('script') as $script) {
+        foreach ($dom->getElementsByTagName('script') as $script) {
             $emailPre = trim($script->nodeValue);
             if (!empty($emailPre)) {
                 $emailPre = str_replace('document.write(String.fromCharCode(', '', $emailPre);
@@ -137,70 +65,44 @@ class ImapUserProvider extends BaseUserProvider implements ImapUserProviderInter
                 $emailArray = explode(',', $emailPre);
 
                 $emailLink = "";
-                    foreach ($emailArray as $element) {
-                    $emailLink .= chr(eval('return '.$element.';'));
+                foreach ($emailArray as $element) {
+                    $emailLink .= chr(eval('return ' . $element . ';'));
                 }
 
                 $domInner = new \DOMDocument();
                 @$domInner->loadHTML($emailLink);
 
-                foreach($domInner->getElementsByTagName('a') as $a) {
+                foreach ($domInner->getElementsByTagName('a') as $a) {
                     $uemail = $a->nodeValue;
                 }
             }
         }
 
         $names = explode(" ", $uname);
-        $mailparts = $this->emailParser->parse($uemail);
+        $mailparts = $this->splitUsername($uemail);
         $mailuname = $mailparts['local'];
         $mailnames = explode(".", $mailuname);
-        
+
         $surnameIndex = 0;
         foreach ($names as $index => $name) {
             if (strtolower(substr($mailnames[1], 0, strlen($name))) === strtolower($name)) {
                 $surnameIndex = $index;
             }
         }
-        
+
         if ($user instanceof User) {
             $givenName = implode(" ", array_slice($names, 0, $surnameIndex));
             $user->setGivenName($givenName);
             $lastName = implode(" ", array_slice($names, $surnameIndex));
             $user->setSurname($lastName);
         }
-        
+
         $user->setEmail($uemail);
         $user->setPlainPassword($this->generateRandomString());
         $user->addRole('ROLE_USER');
         $user->addRole('ROLE_KULEUVEN');
         $user->setEnabled(true);
-        
+
         $this->userManager->updateUser($user);
-    }
-
-    /**
-     * @param  int     $length
-     * @return string
-     */
-    private function generateRandomString($length = 10) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-
-        return $randomString;
-    }
-
-    /**
-     * @param  string $domain
-     * @throws UsernameNotFoundException
-     */
-    private function verifyDomain($domain)
-    {
-        if ($domain != 'kuleuven.be') {
-            throw new UsernameNotFoundException();
-        }
     }
 }
