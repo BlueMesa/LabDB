@@ -1,6 +1,6 @@
 LabDB
 =========================
-[![Build Status](https://travis-ci.org/BlueMesa/LabDB.png)](https://travis-ci.org/BlueMesa/LabDB.png)
+[![Build Status](https://travis-ci.org/BlueMesa/LabDB.png)](https://travis-ci.org/BlueMesa/LabDB)
 
 LabDB is a laboratory inventory management system created with a strong focus
 on labs using *Drosophila* as a model organism. In fact, currently most of
