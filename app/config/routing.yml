@@ -31,10 +31,9 @@ vib_flies:
     type:     annotation
     prefix:   /flies
 
-vib_antibody:
+bluemesa_antibody:
     resource: "@BluemesaAntibodyBundle/Controller/"
-    type:     annotation
-    prefix:   /antibodies
+    type:     rest
 
 vib_calendar:
     resource: "@BluemesaCalendarBundle/Controller/"
