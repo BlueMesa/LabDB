@@ -75,8 +75,8 @@ mopa_bootstrap:
             wt:          "%google_verification%"
             analytics:   "%google_analytics%"
     form:
-        horizontal_label_class:  col-sm-3 control-label
-        horizontal_label_offset_class:  col-sm-offset-3
+        horizontal_label_class:          col-sm-3 control-label
+        horizontal_label_offset_class:   col-sm-offset-3
         horizontal_input_wrapper_class:  col-sm-9
         collection:
             widget_remove_btn:
@@ -96,8 +96,8 @@ bluemesa_acl:
     walker: Bluemesa\Bundle\AclBundle\Bridge\Doctrine\AclWalker
 
 shibboleth:
-    handler_path: /Shibboleth.sso
-    secured_handler: true
+    handler_path:           /Shibboleth.sso
+    secured_handler:        true
     session_initiator_path: /Login
 
 fos_rest:
@@ -107,6 +107,15 @@ fos_rest:
     body_converter:
         enabled: true
     param_fetcher_listener: true
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        sequence_file:
+            uri_prefix:         /uploads/sequences
+            upload_destination: '%kernel.root_dir%/../web/uploads/sequences'
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     true
 
 jms_di_extra:
     locations:

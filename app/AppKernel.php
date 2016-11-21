@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
             new KULeuven\ShibbolethBundle\ShibbolethBundle(),
             new Bluemesa\Bundle\SiteTemplateBundle\BluemesaSiteTemplateBundle(),
