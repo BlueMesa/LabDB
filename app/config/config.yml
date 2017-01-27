@@ -127,6 +127,7 @@ jms_di_extra:
             - BluemesaFormsBundle
             - BluemesaFliesBundle
             - BluemesaSecurityBundle
+            - BluemesaSearchBundle
             - BluemesaUserBundle
             - BluemesaImapAuthenticationBundle
             - BluemesaIcmImapUserBundle

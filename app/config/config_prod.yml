@@ -6,16 +6,16 @@ doctrine:
     orm:
         metadata_cache_driver:
             type: memcached
-            host: %memcached_host%
-            port: %memcached_port%
+            host: "%memcached_host%"
+            port: "%memcached_port%"
         result_cache_driver:
             type: memcached
-            host: %memcached_host%
-            port: %memcached_port%
+            host: "%memcached_host%"
+            port: "%memcached_port%"
         query_cache_driver:
             type: memcached
-            host: %memcached_host%
-            port: %memcached_port%
+            host: "%memcached_host%"
+            port: "%memcached_port%"
 
 monolog:
     handlers:
@@ -25,5 +25,5 @@ monolog:
             handler:      nested
         nested:
             type:  stream
-            path:  %kernel.logs_dir%/%kernel.environment%.log
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug

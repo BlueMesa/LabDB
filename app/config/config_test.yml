@@ -20,14 +20,14 @@ monolog:
     handlers:
         main:
             type:  stream
-            path:  %kernel.logs_dir%/%kernel.environment%.log
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
         firephp:
             type:  firephp
             level: info
 
 assetic:
-    debug:          %kernel.debug%
+    debug:          "%kernel.debug%"
     use_controller: true
 
 doctrine:
@@ -39,4 +39,4 @@ doctrine:
         user:     ~
         password: ~
         charset:  UTF8
-        path:     %kernel.root_dir%/Resources/db/test.db
+        path:     "%kernel.root_dir%/Resources/db/test.db"
