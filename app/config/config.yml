@@ -138,4 +138,5 @@ jms_di_extra:
             - BluemesaImapAuthenticationBundle
             - BluemesaIcmImapUserBundle
             - BluemesaKULeuvenImapUserBundle
+            - BluemesaFUBerlinImapUserBundle
             - BluemesaGmailImapUserBundle
