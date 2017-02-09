@@ -108,6 +108,11 @@ fos_rest:
         enabled: true
     param_fetcher_listener: true
 
+fos_user:
+    from_email:
+        address:        noreply@db.hassanlab.eu
+        sender_name:    Hassan Lab DB
+
 vich_uploader:
     db_driver: orm
     mappings:
