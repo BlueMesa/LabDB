@@ -26,10 +26,9 @@ bluemesa_core:
     type:     annotation
     prefix:   /_ajax
 
-vib_flies:
+bluemesa_flies:
     resource: "@BluemesaFliesBundle/Controller/"
-    type:     annotation
-    prefix:   /flies
+    type:     rest
 
 bluemesa_antibody:
     resource: "@BluemesaAntibodyBundle/Controller/"
