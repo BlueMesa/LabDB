@@ -1,8 +1,8 @@
 # Installation instructions for Ubuntu Server:
 
 > The codebase of this project aged over time and installation got a bit more complicated.
-To get you started quickly, we now provide a Docker image that will get you up and running
-in minutes. If you want to install on a standalone server, you can use the Docker images
+To get you started quickly, we now provide a [Docker image](https://github.com/BlueMesa/LabDB-docker) that will get you up and running
+in minutes. If you want to install on a standalone server, you can use the [Docker image](https://github.com/BlueMesa/LabDB-docker)
 as an inspiration. The below instructions will most certainly fail until I upgrade them to more
 recent ubuntu version and PHP 7 which is now required for this project.
 

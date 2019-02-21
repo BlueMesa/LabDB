@@ -12,7 +12,7 @@ its unique identifier and an entry in the database.
 
 ## Documentation
 
-> We now provide a docker image to get you up and running quickly!
+> We now provide a [Docker image](https://github.com/BlueMesa/LabDB-docker) to get you up and running quickly!
 
 * [Hardware and software requirements](doc/Requirements.md)
 * [Installation instructions](doc/Install.md)
