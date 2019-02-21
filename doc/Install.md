@@ -1,6 +1,12 @@
-# Installation instructions for Ubuntu Server 14.04:
+# Installation instructions for Ubuntu Server:
 
-Before you install, please read the [requirements] (Requirements.md).
+> The codebase of this project aged over time and installation got a bit more complicated.
+To get you started quickly, we now provide a Docker image that will get you up and running
+in minutes. If you want to install on a standalone server, you can use the Docker images
+as an inspiration. The below instructions will most certainly fail until I upgrade them to more
+recent ubuntu version and PHP 7 which is now required for this project.
+
+Before you install, please read the [requirements](Requirements.md).
 
 ### Install the required software
 
@@ -73,8 +79,7 @@ If you have run tests, the test database has been populated with example data an
 access it. Since the test version is only accessible from to localhost, first you have to
 install lynx and disable self-signed certificate and cookie prompts.
 
-Alternatively you can setup [ssh port forwarding]
-(https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding)
+Alternatively you can setup [ssh port forwarding](https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding)
 and access the test database from your computer.
 
 ```

@@ -12,15 +12,17 @@ its unique identifier and an entry in the database.
 
 ## Documentation
 
-* [Hardware and software requirements] (doc/Requirements.md)
-* [Installation instructions] (doc/Install.md)
-* [Upgrading] (doc/Upgrade.md)
-* [Further reading] (doc/Reading.md)
+> We now provide a docker image to get you up and running quickly!
+
+* [Hardware and software requirements](doc/Requirements.md)
+* [Installation instructions](doc/Install.md)
+* [Upgrading](doc/Upgrade.md)
+* [Further reading](doc/Reading.md)
 
 ## Support LabDB
 
 You can support development of the LabDB in several ways!
 
-* By [reporting bugs and requesting features] (https://github.com/rejsmont/LabDB/issues/new)
-* By [contributing your code to the LabDB] (https://github.com/rejsmont/LabDB/fork)
+* By [reporting bugs and requesting features](https://github.com/rejsmont/LabDB/issues/new)
+* By [contributing your code to the LabDB](https://github.com/rejsmont/LabDB/fork)
 * By spreading a good word about the database

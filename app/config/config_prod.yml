@@ -5,17 +5,17 @@ imports:
 doctrine:
     orm:
         metadata_cache_driver:
-            type: memcached
-            host: "%memcached_host%"
-            port: "%memcached_port%"
+            type: "%cache_driver%"
+            host: "%cache_host%"
+            port: "%cache_port%"
         result_cache_driver:
-            type: memcached
-            host: "%memcached_host%"
-            port: "%memcached_port%"
+            type: "%cache_driver%"
+            host: "%cache_host%"
+            port: "%cache_port%"
         query_cache_driver:
-            type: memcached
-            host: "%memcached_host%"
-            port: "%memcached_port%"
+            type: "%cache_driver%"
+            host: "%cache_host%"
+            port: "%cache_port%"
 
 monolog:
     handlers:

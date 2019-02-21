@@ -25,6 +25,7 @@ so please take this into account when choosing your label provider.
 * php5-memcache and a memcached server
 * php5 module for your database platform (php5-mysql, php5-pgsql)
 * java :( is required for cssembed and yuicompressor
+* npm and bower
 
 ### Optional PHP modules:
 * php5-sqlite is required for tests to run
