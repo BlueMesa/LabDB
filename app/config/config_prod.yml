@@ -20,8 +20,10 @@ doctrine:
 monolog:
     handlers:
         main:
-            type: syslog
-            level: info
-            facility: local7
-            ident: "sfl-labdb[%kernel.environment%]"
-            logopts: 0
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug

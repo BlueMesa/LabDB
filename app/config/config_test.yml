@@ -19,11 +19,9 @@ swiftmailer:
 monolog:
     handlers:
         main:
-            type: syslog
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
-            facility: local7
-            ident: "sfl-labdb[%kernel.environment%]"
-            logopts: 0
         firephp:
             type:  firephp
             level: info
