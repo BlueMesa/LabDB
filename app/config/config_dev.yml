@@ -13,9 +13,11 @@ web_profiler:
 monolog:
     handlers:
         main:
-            type:  stream
-            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            type: syslog
             level: debug
+            facility: local7
+            ident: "sfl-labdb[%kernel.environment%]"
+            logopts: 0
         firephp:
             type:  firephp
             level: info
