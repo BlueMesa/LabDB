@@ -140,3 +140,4 @@ jms_di_extra:
             - BluemesaKULeuvenImapUserBundle
             - BluemesaFUBerlinImapUserBundle
             - BluemesaGmailImapUserBundle
+            - BluemesaCriImapUserBundle
